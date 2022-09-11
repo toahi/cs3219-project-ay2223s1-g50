@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import redis from './redis.js';
 import 'dotenv/config';
 
 const ROLES = {
@@ -6,57 +7,96 @@ const ROLES = {
     "User": 100	
 };
 
-const validateAccessToken = (req, res, next) => {
+const validateAccessToken = async (req, res, next) => {
+	console.log('\nTOKEN...');
+
     const authorizationHeader = req.headers.authorization;
     if (!authorizationHeader) {
+		console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${req.headers}`); 
         return res.status(401).json({'error': 'Request has no authorization header!'}); // Unauthorized code (authentication fail)
     }
 
     const token = authorizationHeader.split(' ')[1];
     if (!token) {
+		console.log(`[TOKEN][VALIDATION] Can't find token!\n ${authorizationHeader}`); 
         return res.status(401).json({'error': 'Request has no JWT!'}); // Unauthorized code (authentication fail)
     }
+	
+	const isTokenBlacklisted = await checkTokenBlacklisted(token);
+	if (isTokenBlacklisted) {
+		console.log(`[TOKEN][VALIDATION] Token is blacklisted!\n Token: ${token}`); 
+		return res.status(401).json({'error': 'Blacklisted JWT!'}); // Unauthorized code (authentication fail)
+	}
 
     jwt.verify(
         token,
         process.env.JWT_ACCESS_TOKEN_SECRET,
         (err, decoded) => {
             if (err) { 
+				console.log(`[TOKEN][FAILURE] Token is invalid! Decoded:\n ${JSON.stringify(decoded)}`); 
 				return res.status(401).json({'error': 'Invalid/Expired JWT!'}); // Unauthorized code (authentication fail)
 			}
 
+			console.log(`[TOKEN][VALIDATION] Decoded:\n ${JSON.stringify(decoded)}`); 
+
             req.user = decoded.username;
-            req.roles = decoded.roles;
+            req.role = decoded.role;
 
             next();
         }
     );
 
+	console.log(`[TOKEN][SUCCESS] Token is validated!\n Token: ${token}`); 
+
 	// TODO
 	// call user service to find out if token is blacklisted (user logged out / deleted account)
+	// delete the helper function isTokenBlacklisted
 }
 
 const validateRoles = (allowedRoles) => {
     return (req, res, next) => {
-		const { roles } = req;
-        if (!roles) {
+		console.log('\nROLES...');
+
+		const role = req.role;
+        if (!role) {
 			return res.status(403).json({'error': 'User does not have a role!'}); // Forbidden code, user is unauthorized (no privilege for action)
 		}
 
-		console.log(`Looking for: ${allowedRoles}`);
-		console.log(`Received: ${roles}`);
+		console.log(`[ROLE] Looking for: ${allowedRoles}`);
+		console.log(`[ROLE] Received: ${role}`);
 
-        const hasPermission = req.roles
-			.map(role => allowedRoles.includes(role))
-			.includes(true);
+		const hasPermission = allowedRoles.includes(role);
         if (!hasPermission) {
-			console.log('DENIED\n');
+			console.log('[ROLE][FAILURE] User has no permission!');
 			return res.status(403).json({'error': 'User does not have permission for this action!'}); // Forbidden code, user is unauthorized (no privilege for action)
 		}
 
-		console.log('APPROVED\n');
+		console.log(`[ROLE][SUCCESS] Role is validated!`); 
         next();
     }
 }
 
-export default { ROLES, validateAccessToken, validateRoles };
+const checkTokenBlacklisted = async (token) => {
+	return await redis.exists(token); 
+};
+
+const blacklistAccessToken = async (req) => {
+	try {
+		console.log('\nBLACKLIST...');
+
+		// Can assume we have authorization header and token since already validated access token
+		const authorizationHeader = req.headers.authorization;
+		const token = authorizationHeader.split(' ')[1];
+
+		// Remember to delete access token on client-side!
+		await redis.set(token, '', 'EX', 60 * 60 * 24 * 2); // invalidate it for 2 days (more than token's ttl)
+
+		console.log(`[BLACKLIST][SUCCESS] Server blacklisted token successfully!`);
+		return true;
+	} catch (err) {
+		console.log(`[BLACKLIST][FAILURE] Server failed to blacklist token:\n ${err}`);
+		return false;
+	}
+}
+
+export default { ROLES, validateAccessToken, validateRoles, blacklistAccessToken };
