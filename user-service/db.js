@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import 'dotenv/config';
 
+// TODO transition to mongoDB atlas
+
 // let mongoDB = process.env.ENV == "PROD" ? process.env.DB_CLOUD_URI : process.env.DB_LOCAL_URI;
 let MONGODB_URI = 'mongodb://localhost/app'; 
 

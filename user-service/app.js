@@ -2,9 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import 'dotenv/config';
 import User from './model/UserModel.js'
 import auth from './auth.js';
+import 'dotenv/config';
 
 const app = express();
 
@@ -149,7 +149,5 @@ app.delete('/delete', auth.validateRoles([auth.ROLES.User]), async (req, res) =>
 	console.log(`[DELETE][SUCCESS] Server deleted user ${username} successfully!`);
 	return res.status(200).json({message: 'Successfully deleted account and logged out!'});
 });
-
-console.log(`\n[ROUTE FAILURE] Server could not find a route for the request!`);
 
 export default app;
