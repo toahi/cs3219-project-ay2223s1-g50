@@ -7,13 +7,17 @@
   "scripts": {
     "dev": "NODE_ENV=test nodemon index.js",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./ --ext .js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "nodemon": "^2.0.19",
+    "prettier": "2.7.1"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
