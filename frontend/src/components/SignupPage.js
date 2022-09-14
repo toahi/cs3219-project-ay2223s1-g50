@@ -46,12 +46,11 @@ function SignupPage() {
     }
 
     const validateEmail = (email) => {
-        // return String(email)
-        //   .toLowerCase()
-        //   .match(
-        //     EMAIL_REGEX
-        //   );
-        return true
+        return String(email)
+          .toLowerCase()
+          .match(
+            EMAIL_REGEX
+          );
       };
 
     const validateForm = () => {
