@@ -9,8 +9,8 @@ const ROLES = {
 
 const validateAccessToken = async (req, res, next) => {
   console.log('\nTOKEN...');
-
-  const authorizationHeader = req.headers.authorization;
+  
+  const authorizationHeader = req.body.headers.authorization;
   if (!authorizationHeader) {
     console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${req.headers}`);
     return res.status(401).json({ 'error': 'Request has no authorization header!' }); // Unauthorized code (authentication fail)
@@ -85,7 +85,7 @@ const blacklistAccessToken = async (req) => {
     console.log('\nBLACKLIST...');
 
     // Can assume we have authorization header and token since already validated access token
-    const authorizationHeader = req.headers.authorization;
+    const authorizationHeader = req.body.headers.authorization;
     const token = authorizationHeader.split(' ')[1];
 
     console.log(`Token: ${token}`);
