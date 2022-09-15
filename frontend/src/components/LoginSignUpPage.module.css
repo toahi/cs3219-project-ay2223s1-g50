@@ -1,0 +1,15 @@
+.box-text {
+    cursor: pointer;
+}
+
+.box-text:hover {
+    color: blue;
+}
+
+.login {
+    padding-top: 1rem;
+}
+
+.signup {
+    padding-top: 2rem;
+}
