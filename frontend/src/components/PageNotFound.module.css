@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+    display: block;
+}
+
+.container > * {
+    margin: 3rem;
+}
+
+.title {
+    font-size: 10rem;
+}
