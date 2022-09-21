@@ -9,6 +9,7 @@ import UserContextProvider from "./components/context/user-context";
 import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
 import ExistingAuth from "./components/protected-routes/ExistingAuth";
+import Profile from "./components/Profile";
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
 
                         {/** Protected paths */}
                         <Route element={<RequireAuth />}>
-                            <Route path="/dashboard" element={<DashBoard />}/>
+                            <Route path="/dashboard" element={<DashBoard />} />
+                            <Route path="/profile" element={<Profile />} />
                         </Route>
 
                         { /** TODO  */}

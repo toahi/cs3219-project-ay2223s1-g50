@@ -5,9 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import { UserContext } from '../context/user-context';
 import axios from 'axios';
 import { URL_LOGOUT_USER_SVC } from '../../configs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsersLine } from '@fortawesome/free-solid-svg-icons'
 import Logo from '../ui/Logo';
+import Badge from 'react-bootstrap/Badge';
 
 axios.defaults.withCredentials = true;
 
@@ -30,7 +29,7 @@ const NavBar = () => {
             <Logo size="h4"/>
           </Navbar.Brand>
           <Nav className="justify-content-end">
-          { username && <Nav.Link><h4>Hello {username}</h4></Nav.Link>}
+          { username && <Nav.Link href="/profile"><Badge bg="info"><h5>{username}</h5></Badge></Nav.Link>}
             <Nav.Link href="/"><h4>Home</h4></Nav.Link>
             { !username && <Nav.Link href="/login"><h4>Login</h4></Nav.Link>}
             { !username && <Nav.Link href="/signup"><h4>Sign Up</h4></Nav.Link>}
