@@ -33,9 +33,7 @@ const LoginPage = () => {
     const [dialogMsg, setDialogMsg] = React.useState("");
     const [isLoginSuccess, setIsLoginSuccess] = React.useState(false);
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-    const [dialogEmail, setDialogEmail] = React.useState("")
     const [dialogText, setDialogText] = React.useState("")
-    const [dialogEmailError, setDialogEmailError] = React.useState(false)
 
     useExistingAuth();
 
@@ -69,38 +67,6 @@ const LoginPage = () => {
         setIsLoading(false)
     };
 
-    /** Start of methods for forget password dialog*/
-    const handleClose = () => {
-        setIsDialogOpen(false);
-        setDialogEmail("")
-        setDialogEmailError(false)
-    };
-
-    const handleDialog = () => {
-        
-        if (!dialogEmail) {
-            setDialogEmailError(true)
-            setDialogText("Field cannot be empty")
-            return
-        }
-
-        if (!(dialogEmail.includes("@"))) {
-            setDialogEmailError(true)
-            setDialogText("Invalid email format")
-            return
-        }
-
-        // Use EmailJS to send reset password link?
-        alert("Check your email")
-        handleClose()
-    }
-
-    const onDialogInputChange = (event) => {
-        setDialogEmail(event.target.value)
-        setDialogEmailError(false)
-    } 
-    /** End of methods for forget password dialog */
-
     /** Start of methods for login dialog */
     const closeDialog = () => setIsDialogOpen(false);
 
@@ -114,34 +80,6 @@ const LoginPage = () => {
     /** End of methods for login dialog */
 
     /** Start of Dialogs */
-    const forgotPasswordDialog = (
-        <Dialog open={isDialogOpen} onClose={handleClose}>
-            <DialogTitle>Password Recovery</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                    Please enter your email to get your password reset link
-                </DialogContentText>
-                <TextField
-                    error={dialogEmailError}
-                    helperText={dialogEmailError && dialogText} 
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    value={dialogEmail}
-                    onChange={onDialogInputChange}
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleDialog}>OK</Button>
-            </DialogActions>
-        </Dialog>
-    );
-
     const loginDialog = <Dialog open={isLoginDialogOpen} onClose={closeDialog}>
         <DialogTitle>{dialogTitle}</DialogTitle>
         <DialogContent>
@@ -170,8 +108,8 @@ const LoginPage = () => {
             padding={"50px 100px"}
         >
             <Logo size="h5" margin="0 auto 2rem"/>
-            <Typography variant={"h3"} marginBottom={"2rem"}>
-                Login
+            <Typography variant={"h4"} margin={"0 auto 2rem"}>
+                Login to PeerPrep
             </Typography>
             <TextField
                 error={usernameIsEmpty}
@@ -192,13 +130,6 @@ const LoginPage = () => {
             <Typography
                 variant={"subtitle2"}
                 className={[classes["box-text"], classes.login].join(' ')}
-                onClick={() => setIsDialogOpen(true)}
-            >
-                Forgot Password?
-            </Typography>
-            <Typography
-                variant={"subtitle2"}
-                className={[classes["box-text"], classes.login].join(' ')}
                 component={Link} to="/signup"
             >
                 Don't have an account? Click here to register
@@ -216,7 +147,6 @@ const LoginPage = () => {
                     </Button>
                 )}
             </Box>
-            {forgotPasswordDialog}
             {loginDialog}
         </Box>
     );
