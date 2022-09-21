@@ -16,7 +16,6 @@ import { URL_REGISTER_USER_SVC, URL_LOGIN_USER_SVC } from "../configs";
 import { STATUS_CODE_CREATED, MIN_USERNAME_LEN, MIN_PASSWORD_LEN } from "../constants";
 import { Link } from "react-router-dom";
 import classes from './LoginSignUpPage.module.css';
-import useExistingAuth from "./hooks/useExistingAuth";
 import Logo from "./ui/Logo"
 
 axios.defaults.withCredentials = true;
@@ -32,8 +31,6 @@ function SignupPage() {
     const [dialogTitle, setDialogTitle] = useState("");
     const [dialogMsg, setDialogMsg] = useState("");
     const [isSignupSuccess, setIsSignupSuccess] = useState(false);
-
-    useExistingAuth()
 
     const validateUsername = (username) => {
         return String(username).length >= MIN_USERNAME_LEN;

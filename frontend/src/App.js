@@ -4,10 +4,11 @@ import LoginPage from "./components/LoginPage";
 import {Box} from "@mui/material";
 import NavBar from "./components/layouts/Navbar";
 import DashBoard from "./components/Dashboard";
-import RequireAuth from "./components/RequireAuth";
+import RequireAuth from "./components/protected-routes/RequireAuth";
 import UserContextProvider from "./components/context/user-context";
 import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
+import ExistingAuth from "./components/protected-routes/ExistingAuth";
 
 function App() {
 
@@ -18,9 +19,11 @@ function App() {
             <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
                 <Router>
                     <Routes>
-                        <Route exact path="/" element={<Navigate replace to="/signup" />} />
-                        <Route path="/signup" element={<SignupPage />} />
-                        <Route path="/login" element={<LoginPage />} />
+                        <Route element={<ExistingAuth />}>
+                            <Route exact path="/" element={<Navigate replace to="/signup" />} />
+                            <Route path="/signup" element={<SignupPage />} />
+                            <Route path="/login" element={<LoginPage />} />
+                        </Route>
                         <Route path="/loading" element={<LoadingPage />} />
 
                         {/** Protected paths */}

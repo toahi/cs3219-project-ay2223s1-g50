@@ -17,7 +17,6 @@ import { URL_LOGIN_USER_SVC } from "../configs";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
 import { UserContext } from "./context/user-context";
-import useExistingAuth from "./hooks/useExistingAuth";
 import Logo from "./ui/Logo";
 
 const LoginPage = () => {
@@ -32,10 +31,7 @@ const LoginPage = () => {
     const [dialogTitle, setDialogTitle] = React.useState("");
     const [dialogMsg, setDialogMsg] = React.useState("");
     const [isLoginSuccess, setIsLoginSuccess] = React.useState(false);
-    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-    const [dialogText, setDialogText] = React.useState("")
-
-    useExistingAuth();
+    const [setIsDialogOpen] = React.useState(false);
 
     const handleLogin = async () => {
         setIsLoginSuccess(false);

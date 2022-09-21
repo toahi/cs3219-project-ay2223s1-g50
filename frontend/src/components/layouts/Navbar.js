@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="py-2">
+      <Navbar bg="dark" variant="dark" className="py-3">
         <Container>
           <Navbar.Brand href="/">
             <Logo size="h4"/>
