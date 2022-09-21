@@ -54,7 +54,6 @@ const Profile = () => {
     };
 
     const handleSubmit = async () => {
-        
         if (entered) {
             closeDialog();
             return;
@@ -100,7 +99,8 @@ const Profile = () => {
         setIsLoading(false);
     }
 
-    const passwordField = <TextField
+    const passwordField = (
+        <TextField
             required
             error={newPasswordError}
             label="Password"
@@ -112,8 +112,10 @@ const Profile = () => {
             sx={{ marginBottom: "1rem" }}
             autoFocus
         />
+    )
 
-    const confirmPasswordField = <TextField
+    const confirmPasswordField = (
+        <TextField
             required
             error={confirmPasswordError}
             label="Confirm Password"
@@ -125,18 +127,19 @@ const Profile = () => {
             sx={{ marginBottom: "1rem" }}
             autoFocus
         />
+    )
 
     const dialog = <Dialog open={isDialogOpen} onClose={closeDialog}>
         <DialogTitle>{dialogTitle}</DialogTitle>
         <DialogContent>
             <DialogContentText>
-            {entered ? dialogMsg :
-                <Box sx={{display: 'grid'}}>
-                {passwordField}
-                {confirmPasswordField}
-                </Box>
-            }
-            {isLoading ? <CircularProgress /> : <Button onClick={handleSubmit}>OK</Button>}
+                {entered ? dialogMsg :
+                    <Box sx={{display: 'grid'}}>
+                    {passwordField}
+                    {confirmPasswordField}
+                    </Box>
+                }
+                {isLoading ? <CircularProgress /> : <Button onClick={handleSubmit}>OK</Button>}
             </DialogContentText>
         </DialogContent>
         <DialogActions>
