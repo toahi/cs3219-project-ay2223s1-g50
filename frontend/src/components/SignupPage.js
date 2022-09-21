@@ -17,6 +17,7 @@ import { STATUS_CODE_CREATED, MIN_USERNAME_LEN, MIN_PASSWORD_LEN, EMAIL_REGEX } 
 import { Link } from "react-router-dom";
 import classes from './LoginSignUpPage.module.css';
 import useExistingAuth from "./hooks/useExistingAuth";
+import Logo from "./ui/Logo"
 
 axios.defaults.withCredentials = true;
 
@@ -160,11 +161,14 @@ function SignupPage() {
             margin={"auto"}
             border={"solid #e2f0f1 2px"}
             borderRadius={"5%"}
-            padding={"100px"}
+            padding={"50px 100px 100px"}
         >
+            <Logo size="h5" margin="0 auto 2rem"/>
+
             <Typography variant={"h3"} marginBottom={"2rem"}>
                 Sign Up
             </Typography>
+
             <TextField
                 required
                 error={usernameIsEmpty || usernameIsInvalid}

@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
 import { UserContext } from "./context/user-context";
 import useExistingAuth from "./hooks/useExistingAuth";
+import Logo from "./ui/Logo";
 
 const LoginPage = () => {
     const userContext = React.useContext(UserContext)
@@ -166,8 +167,9 @@ const LoginPage = () => {
             margin={"auto"}
             border={"solid #e2f0f1 2px"}
             borderRadius={"5%"}
-            padding={"100px"}
+            padding={"50px 100px"}
         >
+            <Logo size="h5" margin="0 auto 2rem"/>
             <Typography variant={"h3"} marginBottom={"2rem"}>
                 Login
             </Typography>

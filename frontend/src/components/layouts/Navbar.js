@@ -5,6 +5,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { UserContext } from '../context/user-context';
 import axios from 'axios';
 import { URL_LOGOUT_USER_SVC } from '../../configs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUsersLine } from '@fortawesome/free-solid-svg-icons'
+import Logo from '../ui/Logo';
 
 axios.defaults.withCredentials = true;
 
@@ -14,31 +17,24 @@ const NavBar = () => {
   
   const handleLogout = () => {
       axios.post(URL_LOGOUT_USER_SVC, { headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
-        userContext.setUsername("test")
+        userContext.setUsername(null)
         userContext.setToken(null)
       })
   }
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="py-2">
         <Container>
           <Navbar.Brand href="/">
-            <img
-              alt=""
-              src=""
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{' '}
-            Peer Prep
+            <Logo size="h4"/>
           </Navbar.Brand>
           <Nav className="justify-content-end">
-            <Nav.Link href="/">Home</Nav.Link>
-            { !username && <Nav.Link href="/login">Login</Nav.Link>}
-            { !username && <Nav.Link href="/signup">Sign Up</Nav.Link>}
-            { username && <Nav.Link>Hello {username}</Nav.Link>}
-            { username && <Nav.Link href="/" onClick={handleLogout}>Logout</Nav.Link>}
+          { username && <Nav.Link><h4>Hello {username}</h4></Nav.Link>}
+            <Nav.Link href="/"><h4>Home</h4></Nav.Link>
+            { !username && <Nav.Link href="/login"><h4>Login</h4></Nav.Link>}
+            { !username && <Nav.Link href="/signup"><h4>Sign Up</h4></Nav.Link>}
+            { username && <Nav.Link href="/" onClick={handleLogout}><h4>Logout</h4></Nav.Link>}
           </Nav>
         </Container>
       </Navbar>
