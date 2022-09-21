@@ -12,7 +12,7 @@ import {
     DialogTitle,
 } from "@mui/material";
 import axios from "axios";
-import { STATUS_CODE_SUCCESS, PREFIX_COOKIE_TOKEN } from "../constants"
+import { STATUS_CODE_SUCCESS } from "../constants"
 import { URL_LOGIN_USER_SVC } from "../configs";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
@@ -55,7 +55,7 @@ const LoginPage = () => {
             .catch(err => {
                 setErrorDialog(err.response.data.error);
             })
-        if (res && res.status == STATUS_CODE_SUCCESS) {
+        if (res?.status == STATUS_CODE_SUCCESS) {
             userContext.setUsername(username)
             userContext.setToken(res.data.accessToken)
             navigate('/dashboard')
@@ -75,7 +75,6 @@ const LoginPage = () => {
     const closeLoginDialog = () => setIsLoginDialogOpen(false);
     /** End of methods for login dialog */
 
-    /** Start of Dialogs */
     const loginDialog = <Dialog open={isLoginDialogOpen} onClose={closeDialog}>
         <DialogTitle>{dialogTitle}</DialogTitle>
         <DialogContent>
@@ -91,7 +90,6 @@ const LoginPage = () => {
             )}
         </DialogActions>
     </Dialog>
-    /** End of Dialogs */
 
     return (
         <Box

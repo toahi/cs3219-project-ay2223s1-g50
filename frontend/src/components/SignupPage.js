@@ -85,7 +85,7 @@ function SignupPage() {
             .catch((err) => {
                 setErrorDialog(err.response.data.error);
             });
-        if (res && res.status === STATUS_CODE_CREATED) {
+        if (res?.status === STATUS_CODE_CREATED) {
             setSuccessDialog("Account successfully created");
             setIsSignupSuccess(true);
 
@@ -182,7 +182,7 @@ function SignupPage() {
                 </DialogContent>
                 <DialogActions>
                     {isSignupSuccess ? (
-                        <Button component={Link} to="/">
+                        <Button component={Link} to="/dashboard">
                             Continue
                         </Button>
                     ) : (

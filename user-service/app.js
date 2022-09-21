@@ -138,8 +138,8 @@ app.get('/check-token', (_, res) => res.status(200).json({success: 'You have a v
 app.put('/update', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
   // currently only allow password updates
   console.log('\nUPDATE...');
-
-  const username = req.user;
+  console.log(req.body)
+  const username = req.body.username;
 
   const {newPassword} = req.body;
   if (!newPassword) {
