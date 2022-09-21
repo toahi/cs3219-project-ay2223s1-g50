@@ -13,9 +13,11 @@ axios.defaults.withCredentials = true;
 const NavBar = () => {
   const userContext = React.useContext(UserContext)
   const username = userContext.username
+  const token = userContext.token
+  console.log(token)
   
   const handleLogout = () => {
-      axios.post(URL_LOGOUT_USER_SVC, { headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
+      axios.post(URL_LOGOUT_USER_SVC, {},{ headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
         userContext.setUsername(null)
         userContext.setToken(null)
       })
