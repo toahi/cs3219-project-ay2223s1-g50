@@ -39,7 +39,7 @@ function App() {
 
                         { /** TODO  */}
                         { /** CHECK WHY VALUES IN CONTEXT IS REMOVED WHEN PATH="*"  */}
-                        <Route path='*' element={<Timer />}/>
+                        <Route path='*' element={<PageNotFound />}/>
                     </Routes>
                 </Router>
             </Box>
