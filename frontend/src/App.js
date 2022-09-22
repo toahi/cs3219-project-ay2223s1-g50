@@ -11,6 +11,7 @@ import LoadingPage from "./components/LoadingPage";
 import ExistingAuth from "./components/protected-routes/ExistingAuth";
 import Profile from "./components/Profile";
 import InterviewSession from "./components/InterviewSession";
+import Timer from "./components/ui/Timer";
 
 function App() {
 
@@ -32,12 +33,13 @@ function App() {
                         <Route element={<RequireAuth />}>
                             <Route path="/dashboard" element={<DashBoard />} />
                             <Route path="/profile" element={<Profile />} />
+                            {/**Add InterviewSession into another protected path iff has matching */}
                             <Route path='/interview-session' element={<InterviewSession />} />
                         </Route>
 
                         { /** TODO  */}
                         { /** CHECK WHY VALUES IN CONTEXT IS REMOVED WHEN PATH="*"  */}
-                        <Route path='*' element={<PageNotFound />}/>
+                        <Route path='*' element={<Timer />}/>
                     </Routes>
                 </Router>
             </Box>
