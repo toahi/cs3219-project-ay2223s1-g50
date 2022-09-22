@@ -10,8 +10,7 @@ import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
 import ExistingAuth from "./components/protected-routes/ExistingAuth";
 import Profile from "./components/Profile";
-import InterviewSession from "./components/InterviewSession";
-import Timer from "./components/ui/Timer";
+import Interview from "./components/Interview";
 
 function App() {
 
@@ -34,7 +33,7 @@ function App() {
                             <Route path="/dashboard" element={<DashBoard />} />
                             <Route path="/profile" element={<Profile />} />
                             {/**Add InterviewSession into another protected path iff has matching */}
-                            <Route path='/interview-session' element={<InterviewSession />} />
+                            <Route path='/interview-session' element={<Interview />} />
                         </Route>
 
                         { /** TODO  */}

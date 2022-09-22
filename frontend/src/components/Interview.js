@@ -9,7 +9,7 @@ import { UserContext } from "./context/user-context";
 import Timer from "./ui/Timer";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-const InterviewSession = () => {
+const Interview = () => {
     const userContext = React.useContext(UserContext);
     const username = userContext.username;
 
@@ -54,4 +54,4 @@ const InterviewSession = () => {
     )
 }
 
-export default InterviewSession;
+export default Interview;
