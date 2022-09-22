@@ -10,6 +10,7 @@ import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
 import ExistingAuth from "./components/protected-routes/ExistingAuth";
 import Profile from "./components/Profile";
+import InterviewSession from "./components/InterviewSession";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
                         <Route element={<RequireAuth />}>
                             <Route path="/dashboard" element={<DashBoard />} />
                             <Route path="/profile" element={<Profile />} />
+                            <Route path='/interview-session' element={<InterviewSession />} />
                         </Route>
 
                         { /** TODO  */}
