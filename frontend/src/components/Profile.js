@@ -3,13 +3,14 @@ import {
     Box,
     Button,
     TextField,
-    CircularProgress,
     Typography,
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle, } from "@mui/material";
+    DialogTitle,
+    LinearProgress
+} from "@mui/material";
 import { UserContext } from './context/user-context'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
@@ -139,7 +140,7 @@ const Profile = () => {
                     {confirmPasswordField}
                     </Box>
                 }
-                {isLoading ? <CircularProgress /> : <Button onClick={handleSubmit}>OK</Button>}
+                {isLoading ? <LinearProgress /> : <Button onClick={handleSubmit}>OK</Button>}
             </DialogContentText>
         </DialogContent>
         <DialogActions>
