@@ -5,40 +5,37 @@ import Navbar from 'react-bootstrap/Navbar';
 import { UserContext } from '../context/user-context';
 import axios from 'axios';
 import { URL_LOGOUT_USER_SVC } from '../../configs';
+import Logo from '../ui/Logo';
+import Badge from 'react-bootstrap/Badge';
 
 axios.defaults.withCredentials = true;
 
 const NavBar = () => {
   const userContext = React.useContext(UserContext)
   const username = userContext.username
+  const token = userContext.token
+  console.log(token)
   
   const handleLogout = () => {
-      axios.post(URL_LOGOUT_USER_SVC, { headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
-        userContext.setUsername("test")
+      axios.post(URL_LOGOUT_USER_SVC, {},{ headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
+        userContext.setUsername(null)
         userContext.setToken(null)
       })
   }
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="py-3">
         <Container>
           <Navbar.Brand href="/">
-            <img
-              alt=""
-              src=""
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{' '}
-            Peer Prep
+            <Logo size="h4"/>
           </Navbar.Brand>
           <Nav className="justify-content-end">
-            <Nav.Link href="/">Home</Nav.Link>
-            { !username && <Nav.Link href="/login">Login</Nav.Link>}
-            { !username && <Nav.Link href="/signup">Sign Up</Nav.Link>}
-            { username && <Nav.Link>Hello {username}</Nav.Link>}
-            { username && <Nav.Link href="/" onClick={handleLogout}>Logout</Nav.Link>}
+          { username && <Nav.Link href="/profile"><Badge bg="info"><h5>{username}</h5></Badge></Nav.Link>}
+            <Nav.Link href="/"><h4>Home</h4></Nav.Link>
+            { !username && <Nav.Link href="/login"><h4>Login</h4></Nav.Link>}
+            { !username && <Nav.Link href="/signup"><h4>Sign Up</h4></Nav.Link>}
+            { username && <Nav.Link href="/" onClick={handleLogout}><h4>Logout</h4></Nav.Link>}
           </Nav>
         </Container>
       </Navbar>
