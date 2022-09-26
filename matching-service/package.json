@@ -51,6 +51,7 @@
     "neverthrow": "^4.3.1",
     "sinon": "^14.0.0",
     "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "tsoa": "^3.9.0",

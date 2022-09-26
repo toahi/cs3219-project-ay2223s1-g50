@@ -32,7 +32,6 @@
     "specVersion": 3
   },
   "routes": {
-    "authenticationModule": "./src/middleware/authentication.ts",
     "routesDir": "build"
   }
 }

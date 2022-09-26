@@ -112,12 +112,6 @@ export class MatchSocket {
 
   start() {
     this.io.on(SocketEvent.Connection, (socket) => {
-      // TODO: Remove after development!!!
-      // @ts-ignore
-      socket.onAny((args) => {
-        console.log(`Incoming: ${args}`)
-      })
-
       socket.on(MatchSocketEvent.FindMatch, async (payload: FindMatchPayload) =>
         this.findMatch(payload, socket)
       )
