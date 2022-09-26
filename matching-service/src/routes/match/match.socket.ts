@@ -94,13 +94,14 @@ export class MatchSocket {
   }
 
   newRoomMessage(
-    { message, roomId }: SendRoomMessagePayload,
+    { message, roomId, type }: SendRoomMessagePayload,
     sendingSocket: Socket
   ) {
     this.rooms[roomId].forEach((otherSocketId) => {
       if (otherSocketId === sendingSocket.id) return
 
       const receivePayload: ReceiveRoomMessagePayload = {
+        type,
         from: sendingSocket.id,
         message,
       }

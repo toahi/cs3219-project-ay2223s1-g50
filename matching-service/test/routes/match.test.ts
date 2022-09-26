@@ -9,6 +9,8 @@ import {
   LeftRoomPayload,
   MatchSocketEvent,
   ReceiveRoomMessagePayload,
+  SendRoomMessagePayload,
+  RoomMessageType,
 } from '../../src/routes/match/match.model'
 import { Difficulty } from '../../src/mongo/rooms/rooms.model'
 import sinon from 'sinon'
@@ -146,12 +148,12 @@ describe('match socket tests', () => {
    * Flow:
    * client 1 -> find match
    * client 2 -> find match
-   * client 1 -> found match, send message 2
-   * client 2 -> found message
+   * client 1, 2 -> found match
+   * client 2 -> send chat message to 2
    * client 2 -> receive message, send message to 1
    * client 1 -> receive message, done
    */
-  it('should receive messages between two clients in the same room', (done) => {
+  it('should receive chat messages between two clients in the same room', (done) => {
     // @ts-ignore
     client1 = new Client(address)
     // @ts-ignore
@@ -173,10 +175,14 @@ describe('match socket tests', () => {
       ({ otherUser, roomId: currRoomId }: FindMatchResult) => {
         assert(otherUser === client2.id)
         roomId = currRoomId
-        client1.emit(MatchSocketEvent.RoomMessage, {
+
+        const client1Message: SendRoomMessagePayload = {
+          type: RoomMessageType.Chat,
           message: messageFromClient1ToClient2,
           roomId,
-        })
+        }
+
+        client1.emit(MatchSocketEvent.RoomMessage, client1Message)
       }
     )
 
@@ -189,21 +195,27 @@ describe('match socket tests', () => {
 
     client2.on(
       MatchSocketEvent.RoomMessage,
-      ({ message, from }: ReceiveRoomMessagePayload) => {
+      ({ message, type, from }: ReceiveRoomMessagePayload) => {
         assert(message === messageFromClient1ToClient2)
         assert(from === client1.id)
-        client2.emit(MatchSocketEvent.RoomMessage, {
+        assert(type === RoomMessageType.Chat)
+
+        const client2Message: SendRoomMessagePayload = {
           message: messageFromClient2ToClient1,
           roomId,
-        })
+          type: RoomMessageType.Chat,
+        }
+
+        client2.emit(MatchSocketEvent.RoomMessage, client2Message)
       }
     )
 
     client1.on(
       MatchSocketEvent.RoomMessage,
-      ({ message, from }: ReceiveRoomMessagePayload) => {
+      ({ message, type, from }: ReceiveRoomMessagePayload) => {
         assert(message === messageFromClient2ToClient1)
         assert(from === client2.id)
+        assert(type === RoomMessageType.Chat)
         done()
       }
     )

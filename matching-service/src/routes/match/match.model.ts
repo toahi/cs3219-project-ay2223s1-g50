@@ -29,11 +29,13 @@ export type LeftRoomPayload = {
 
 export type SendRoomMessagePayload = {
   roomId: RoomId
+  type: RoomMessageType
   message: string
 }
 
 export type ReceiveRoomMessagePayload = {
   from: SocketId
+  type: RoomMessageType
   message: string
 }
 
@@ -61,4 +63,9 @@ export enum MatchSocketEvent {
 
   // receiving message events
   RoomMessage = 'room_message',
+}
+
+export enum RoomMessageType {
+  Chat = 'chat',
+  Code = 'code',
 }
