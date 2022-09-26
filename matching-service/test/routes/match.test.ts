@@ -118,7 +118,7 @@ describe('match socket tests', () => {
    * Client 1 -> find match
    * Client 1 -> cancel
    * Client 2 -> find match
-   * Server 1 -> assert receive cancel
+   * Server -> receive cancel, done
    */
   it('should allow user to cancel looking for room', (done) => {
     // @ts-ignore
