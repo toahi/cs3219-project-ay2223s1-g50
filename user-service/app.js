@@ -16,7 +16,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.DEPLOY_URL || 'http://localhost:3000'],
+  origin: [process.env.DEPLOY_URL || 'http://localhost:8080'],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
