@@ -10,6 +10,7 @@ import 'dotenv/config';
 
 const MIN_USERNAME_LEN = 6;
 const MIN_PASSWORD_LEN = 6;
+
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
@@ -133,7 +134,23 @@ app.post('/login', async (req, res) => {
 // The API calls below here onwards require authentication
 app.use(auth.validateAccessToken);
 
-app.get('/check-token', (_, res) => res.status(200).json({success: 'You have a valid access token!'}));
+app.get('/verify-token-or-role', async (req, res) => {
+  console.log('\nVERIFY TOKEN...');
+  console.log(req.body)
+
+  const role = req.body.role;
+  if (role) {
+    if (!auth.validateRoles([role])) {
+      console.log('[VERIFY][FAILURE] User has a valid access token but role is not authorized!');
+      return res.status(403).json({ 'error': 'User has a valid access token but role is not authorized!' }); // Forbidden code, user is unauthorized (no privilege for action) 
+    }
+    console.log('[VERIFY][SUCCESS] User has a valid access token and a valid role!');
+    return res.status(200).json({success: 'User has a valid access token and a valid role!'});
+  }
+
+  console.log('[VERIFY][SUCCESS] User has a valid access token!');
+  return res.status(200).json({success: 'User have a valid access token!'});
+});
 
 app.put('/update', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
   // currently only allow password updates
