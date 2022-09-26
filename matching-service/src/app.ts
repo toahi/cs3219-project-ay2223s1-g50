@@ -5,6 +5,9 @@ import { RegisterRoutes } from '../build/routes'
 import { errorHandler, requestLogger } from './middleware/logging'
 import { corsWithOptions } from './middleware/cors'
 import cookieParser from 'cookie-parser'
+import { MatchSocket } from './routes/match/match.socket'
+import { Server } from 'socket.io'
+import { createServer } from 'http'
 
 export const app: Application = express()
 
@@ -20,3 +23,5 @@ app.use('/docs', swaggerUi.serve, async (req: Request, res: Response) => {
 RegisterRoutes(app)
 
 app.use(errorHandler)
+
+export const socketIo = new MatchSocket(new Server(createServer()))

@@ -10,5 +10,4 @@ export type RoomDocument = {
   id: string
   users: string[]
   difficulty: string
-  isLookingForMatch: boolean
 } & mongoose.Document
