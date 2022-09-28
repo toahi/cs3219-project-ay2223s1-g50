@@ -24,7 +24,7 @@ const NavBar = () => {
   }
 
   return (
-    <>
+    <div data-testid="navbar" >
       <Navbar bg="dark" variant="dark" className="py-3">
         <Container>
           <Navbar.Brand href="/">
@@ -39,7 +39,7 @@ const NavBar = () => {
           </Nav>
         </Container>
       </Navbar>
-    </>
+    </div>
   );
 }
 
