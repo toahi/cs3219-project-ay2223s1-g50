@@ -21,7 +21,6 @@ function App() {
             <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
                 <Router>
                     <Routes>
-                    <Route path="/profile" element={<LoginPage />} />
                         <Route element={<ExistingAuth />}>
                             <Route exact path="/" element={<Navigate replace to="/signup" />} />
                             <Route path="/signup" element={<SignupPage />} />
@@ -32,7 +31,7 @@ function App() {
                         {/** Protected paths */}
                         <Route element={<RequireAuth />}>
                             <Route path="/dashboard" element={<DashBoard />} />
-                            //<Route path="/profile" element={<Profile />} />
+                            <Route path="/profile" element={<Profile />} />
                             {/**Add InterviewSession into another protected path iff has matching */}
                             <Route path='/interview-session' element={<Interview />} />
                         </Route>
