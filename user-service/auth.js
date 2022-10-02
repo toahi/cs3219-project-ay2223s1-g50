@@ -12,7 +12,7 @@ const validateAccessToken = async (req, res, next) => {
   
   const authorizationHeader = req.headers.authorization;
   if (!authorizationHeader) {
-    console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${req.headers}`);
+    console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${JSON.stringify(req.headers)}`);
     return res.status(401).json({ 'error': 'Request has no authorization header!' }); // Unauthorized code (authentication fail)
   }
 
@@ -42,15 +42,11 @@ const validateAccessToken = async (req, res, next) => {
       req.user = decoded.username;
       req.role = decoded.role;
 
+      console.log(`[TOKEN][SUCCESS] Token is validated!\n Token: ${token}`);
+
       next();
     }
   );
-
-  console.log(`[TOKEN][SUCCESS] Token is validated!\n Token: ${token}`);
-
-  // TODO
-  // call user service to find out if token is blacklisted (user logged out / deleted account)
-  // delete the helper function isTokenBlacklisted
 }
 
 const validateRoles = (allowedRoles) => {
@@ -59,7 +55,11 @@ const validateRoles = (allowedRoles) => {
 
     const role = req.role;
     if (!role) {
-      return res.status(403).json({ 'error': 'User does not have a role!' }); // Forbidden code, user is unauthorized (no privilege for action)
+      console.log(`[ROLE][FAILURE] User does not have a role!`);
+      // if there is res, means this is to be used as middleware, else just a normal function
+      return res 
+        ? res.status(403).json({ 'error': 'User does not have a role!' }) // Forbidden code, user is unauthorized (no privilege for action)
+        : false;
     }
 
     console.log(`[ROLE] Looking for: ${allowedRoles}`);
@@ -68,11 +68,17 @@ const validateRoles = (allowedRoles) => {
     const hasPermission = allowedRoles.includes(role);
     if (!hasPermission) {
       console.log('[ROLE][FAILURE] User has no permission!');
-      return res.status(403).json({ 'error': 'User does not have permission for this action!' }); // Forbidden code, user is unauthorized (no privilege for action)
+      return res 
+        ? res.status(403).json({ 'error': 'User does not have permission for this action!' }) // Forbidden code, user is unauthorized (no privilege for action)
+        : false;
     }
 
     console.log(`[ROLE][SUCCESS] Role is validated!`);
-    next();
+    if (next) {
+      next();
+    } else {
+      return true;
+    }
   }
 }
 
