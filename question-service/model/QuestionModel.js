@@ -16,10 +16,10 @@ const QuestionModelSchema = new Schema({
     type: String,
     required: true,
   },
-  examples: [{
-    input: String,
-    output: String,
-  }],
+  examples: {
+    type: String,
+    required: true,
+  },
 });
 
 const QuestionModel = mongoose.model('QuestionModel', QuestionModelSchema);

@@ -139,10 +139,11 @@ app.post('/verify-token-or-role', async (req, res) => {
   console.log(req.body)
 
   const role = req.body.role;
+  const validateRoles = auth.validateRoles([role]);
   if (role) {
-    if (!auth.validateRoles([role])) {
+    if (!validateRoles(req)) {
       console.log('[VERIFY][FAILURE] User has a valid access token but role is not authorized!');
-      return res.status(403).json({ 'error': 'User has a valid access token but role is not authorized!' }); // Forbidden code, user is unauthorized (no privilege for action) 
+      return res.status(403).json({error: 'User has a valid access token but role is not authorized!' }); // Forbidden code, user is unauthorized (no privilege for action) 
     }
     console.log('[VERIFY][SUCCESS] User has a valid access token and a valid role!');
     return res.status(200).json({success: 'User has a valid access token and a valid role!'});
@@ -160,7 +161,7 @@ app.put('/update', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
 
   const {newPassword} = req.body;
   if (!newPassword) {
-    console.log('[UPDATE][VALIDATION] Client did not provide  new password!');
+    console.log('[UPDATE][VALIDATION] Client did not provide new password!');
     return res.status(400).json({error: 'Please provide new password!'});
   }
 

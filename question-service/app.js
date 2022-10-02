@@ -21,10 +21,11 @@ app.get('/', (_, res) => res.send('Question service is running well!'));
 app.get('/get-two-questions-by-diff', async (req, res) => {
   console.log('\nGETTING 2 QUESTIONS BY DIFFICULTY...');
 
-  const authRes = await auth.validateAccessTokenAndRole(req, auth.ROLES.User);
-  if (!authRes.data.success) {
-    console.log(`\nAUTH FAILED: ${JSON.stringify(authRes)}`);
-    return authRes;
+  try {
+    await auth.validateAccessTokenAndRole(req, auth.ROLES.User);
+  } catch (e) {
+    console.log(`\nAUTH FAILED: ${JSON.stringify(e)}`);
+    return res.status(e.response.status).json(e.response.data);
   }
 
   const { difficulty } = req.body;
@@ -59,10 +60,11 @@ app.get('/get-two-questions-by-diff', async (req, res) => {
 app.post('/create-question', async (req, res) => {
   console.log('\nCREATING QUESTION...');
 
-  const authRes = auth.validateAccessTokenAndRole(req, auth.ROLES.Admin);
-  if (!authRes.success) {
-    console.log(`\nAUTH FAILED: ${authRes}`);
-    return authRes;
+  try {
+    await auth.validateAccessTokenAndRole(req, auth.ROLES.Admin);
+  } catch (e) {
+    console.log(`\nAUTH FAILED:\n ${JSON.stringify(e)}`);
+    return res.status(e.response.status).json(e.response.data);
   }
 
   const { name, description, difficulty, examples } = req.body;

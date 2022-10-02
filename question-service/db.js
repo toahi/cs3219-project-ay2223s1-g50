@@ -5,11 +5,11 @@ import 'dotenv/config';
 let MONGODB_URI = process.env.DB_CLOUD_URI;
 
 const open = async () => {
-  if (process.env.NODE_ENV === 'test') {
-    // use memory server for now for ease of dev
-    const mongod = await MongoMemoryServer.create();
-    MONGODB_URI = mongod.getUri();
-  }
+  // if (process.env.NODE_ENV === 'test') {
+  //   // use memory server for now for ease of dev
+  //   const mongod = await MongoMemoryServer.create();
+  //   MONGODB_URI = mongod.getUri();
+  // }
 
   await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
   mongoose.connection.on('connected', () => {

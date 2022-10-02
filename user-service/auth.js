@@ -55,7 +55,11 @@ const validateRoles = (allowedRoles) => {
 
     const role = req.role;
     if (!role) {
-      return res.status(403).json({ 'error': 'User does not have a role!' }); // Forbidden code, user is unauthorized (no privilege for action)
+      console.log(`[ROLE][FAILURE] User does not have a role!`);
+      // if there is res, means this is to be used as middleware, else just a normal function
+      return res 
+        ? res.status(403).json({ 'error': 'User does not have a role!' }) // Forbidden code, user is unauthorized (no privilege for action)
+        : false;
     }
 
     console.log(`[ROLE] Looking for: ${allowedRoles}`);
@@ -64,11 +68,17 @@ const validateRoles = (allowedRoles) => {
     const hasPermission = allowedRoles.includes(role);
     if (!hasPermission) {
       console.log('[ROLE][FAILURE] User has no permission!');
-      return res.status(403).json({ 'error': 'User does not have permission for this action!' }); // Forbidden code, user is unauthorized (no privilege for action)
+      return res 
+        ? res.status(403).json({ 'error': 'User does not have permission for this action!' }) // Forbidden code, user is unauthorized (no privilege for action)
+        : false;
     }
 
     console.log(`[ROLE][SUCCESS] Role is validated!`);
-    next();
+    if (next) {
+      next();
+    } else {
+      return true;
+    }
   }
 }
 
