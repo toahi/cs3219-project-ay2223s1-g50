@@ -12,7 +12,7 @@ const validateAccessToken = async (req, res, next) => {
   
   const authorizationHeader = req.headers.authorization;
   if (!authorizationHeader) {
-    console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${req.headers}`);
+    console.log(`[TOKEN][VALIDATION] Can't find authorization header!\n ${JSON.stringify(req.headers)}`);
     return res.status(401).json({ 'error': 'Request has no authorization header!' }); // Unauthorized code (authentication fail)
   }
 
@@ -42,15 +42,11 @@ const validateAccessToken = async (req, res, next) => {
       req.user = decoded.username;
       req.role = decoded.role;
 
+      console.log(`[TOKEN][SUCCESS] Token is validated!\n Token: ${token}`);
+
       next();
     }
   );
-
-  console.log(`[TOKEN][SUCCESS] Token is validated!\n Token: ${token}`);
-
-  // TODO
-  // call user service to find out if token is blacklisted (user logged out / deleted account)
-  // delete the helper function isTokenBlacklisted
 }
 
 const validateRoles = (allowedRoles) => {

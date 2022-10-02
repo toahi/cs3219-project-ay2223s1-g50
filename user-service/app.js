@@ -134,8 +134,8 @@ app.post('/login', async (req, res) => {
 // The API calls below here onwards require authentication
 app.use(auth.validateAccessToken);
 
-app.get('/verify-token-or-role', async (req, res) => {
-  console.log('\nVERIFY TOKEN...');
+app.post('/verify-token-or-role', async (req, res) => {
+  console.log('\nVERIFY TOKEN OR ROLE...');
   console.log(req.body)
 
   const role = req.body.role;
