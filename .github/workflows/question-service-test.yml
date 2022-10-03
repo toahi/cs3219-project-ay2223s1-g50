@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
        run:
-         working-directory: ./question-service
+         working-directory: question-service
     steps:
     - name: Run tests
       run: |

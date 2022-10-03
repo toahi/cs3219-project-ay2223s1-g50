@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.owner == 'CS3219-AY2223S1' }}  # build job runs only if merging to master repo
     defaults:
        run:
-         working-directory: ./question-service
+         working-directory: question-service
     steps:
 
     - name: Check out repository
