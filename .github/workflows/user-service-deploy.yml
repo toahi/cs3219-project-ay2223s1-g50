@@ -13,7 +13,8 @@ jobs:
   build:
     name: User Service Docker Image to ECR
     runs-on: ubuntu-latest
-    environment: cs3219-project-ay2223s1-g50
+    if: ${{ github.repository_owner == 'CS3219-AY2223S1' }} # only run deployment on master repo and not forks
+    environment: cs3219-project-ay2223s1-g50 # needed to retrieve the secrets from GH environment
     defaults:
        run:
          working-directory: user-service
