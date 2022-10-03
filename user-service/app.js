@@ -230,5 +230,3 @@ app.delete('/delete', auth.validateRoles([auth.ROLES.User]), async (req, res) =>
 });
 
 export default app;
-
-
