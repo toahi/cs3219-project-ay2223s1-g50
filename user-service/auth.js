@@ -39,6 +39,7 @@ const validateAccessToken = async (req, res, next) => {
 
       console.log(`[TOKEN][VALIDATION] Decoded:\n ${JSON.stringify(decoded)}`);
 
+      // Attach decoded information to request so server can further process it
       req.user = decoded.username;
       req.role = decoded.role;
 
@@ -56,7 +57,7 @@ const validateRoles = (allowedRoles) => {
     const role = req.role;
     if (!role) {
       console.log(`[ROLE][FAILURE] User does not have a role!`);
-      // if there is res, means this is to be used as middleware, else just a normal function
+      // If there res is passed in, it means this is to be used as middleware, else just a normal function
       return res 
         ? res.status(403).json({ 'error': 'User does not have a role!' }) // Forbidden code, user is unauthorized (no privilege for action)
         : false;
@@ -97,7 +98,7 @@ const blacklistAccessToken = async (req) => {
     console.log(`Token: ${token}`);
 
     // Remember to delete access token on client-side!
-    await redis.set(token, '', 'EX', 60 * 60 * 24 * 2); // invalidate it for 2 days (more than token's ttl)
+    await redis.set(token, '', 'EX', 60 * 60 * 24 * 2); // Invalidate it for 2 days (more than token's ttl)
 
     console.log(`[BLACKLIST][SUCCESS] Server blacklisted token successfully!`);
     return true;
