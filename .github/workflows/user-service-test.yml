@@ -4,6 +4,10 @@
 name: cs3219-project-ay2223s1-g50-user-service-test
 
 on:
+  push:
+    branches: [ "main" ]
+    paths: 
+      - "user-service/**"
   pull_request:
     branches: [ "main" ]
     paths: 

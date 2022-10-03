@@ -4,6 +4,10 @@
 name: cs3219-project-ay2223s1-g50-question-service-test
 
 on:
+  push:
+    branches: [ "main" ]
+    paths: 
+      - "question-service/**"
   pull_request:
     branches: [ "main" ]
     paths: 
