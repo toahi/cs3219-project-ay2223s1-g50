@@ -3,6 +3,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './model/UserModel.js';
+import FRONTEND_SERVICE_LOCAL_URL from './url.js';
 import auth from './auth.js';
 import session from "express-session";
 import cookieParser from "cookie-parser"
@@ -11,16 +12,12 @@ import 'dotenv/config';
 const MIN_USERNAME_LEN = 6;
 const MIN_PASSWORD_LEN = 6;
 
-const FRONTEND_SERVICE_URL = process.env.NODE_ENV == 'test'
-  ? process.env.FRONTEND_SERVICE_LOCAL_URL
-  : process.env.FRONTEND_SERVICE_PROD_URL;
-
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({
-  origin: [FRONTEND_SERVICE_URL],
+  origin: [FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
