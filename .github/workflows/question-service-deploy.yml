@@ -10,19 +10,6 @@ on:
       - "question-service/**"
 
 jobs:
-
-  test:
-    name: Question Service test 
-    runs-on: ubuntu-latest
-    defaults:
-       run:
-         working-directory: ./question-service
-    steps:
-    - name: Run tests
-      run: |
-        npm ci
-        npm test
-
   build:
     name: Question Service Docker Image to ECR
     runs-on: ubuntu-latest

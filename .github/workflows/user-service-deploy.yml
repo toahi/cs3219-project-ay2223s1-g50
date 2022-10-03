@@ -10,19 +10,6 @@ on:
       - "user-service/**"
 
 jobs:
-
-  test:
-    name: User Service test 
-    runs-on: ubuntu-latest
-    defaults:
-       run:
-         working-directory: ./user-service
-    steps:
-    - name: Run tests
-      run: |
-        npm ci
-        npm test
-
   build:
     name: User Service Docker Image to ECR
     runs-on: ubuntu-latest
