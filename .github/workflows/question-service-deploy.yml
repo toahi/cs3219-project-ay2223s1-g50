@@ -13,6 +13,7 @@ jobs:
   build:
     name: Question Service Docker Image to ECR
     runs-on: ubuntu-latest
+    environment: cs3219-project-ay2223s1-g50
     defaults:
        run:
          working-directory: question-service
