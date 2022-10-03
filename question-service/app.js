@@ -2,20 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import Question from './model/QuestionModel.js';
 import DIFFICULTY from './const.js';
+import FRONTEND_SERVICE_LOCAL_URL from './url.js';
 import cookieParser from "cookie-parser"
 import auth from './auth.js';
 import 'dotenv/config.js';
-
-const FRONTEND_SERVICE_URL = process.env.NODE_ENV == 'test'
-  ? process.env.FRONTEND_SERVICE_LOCAL_URL
-  : process.env.FRONTEND_SERVICE_PROD_URL;
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: [FRONTEND_SERVICE_URL],
+  origin: [FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
