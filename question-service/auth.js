@@ -10,19 +10,22 @@ const USER_SERVICE_URL = process.env.NODE_ENV === 'test'
   ? process.env.USER_SERVICE_LOCAL_URL
   : process.env.USER_SERVICE_PROD_URL;
 
+const VERIFY_TOKEN_OR_ROLE_ROUTE = `${USER_SERVICE_URL}/verify-token-or-role`;
+
 const validateAccessTokenAndRole = async (req, role) => {
   console.log('\nVALIDATING TOKEN AND ROLE BY CALLING USER SERVICE...');
 
-  let body = {};
-  if (role) {
-    body.role = role;
-  }
+  const data = {
+    role,
+  };
 
-  return await axios.post(`${USER_SERVICE_URL}/verify-token-or-role`, body, {
+  const config = {
     headers: {
       'authorization': req.headers.authorization
     },
-  });
+  };
+
+  return await axios.post(VERIFY_TOKEN_OR_ROLE_ROUTE, data, config);
 }
 
 export default { ROLES, validateAccessTokenAndRole };

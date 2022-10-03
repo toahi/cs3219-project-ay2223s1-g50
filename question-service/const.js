@@ -4,4 +4,4 @@ const DIFFICULTY = {
   Hard: 'hard',
 };
 
-export default { DIFFICULTY };
+export default DIFFICULTY;
