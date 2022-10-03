@@ -27,5 +27,7 @@ jobs:
 
     - name: Run tests
       run: |
+        echo ${{ github.repository.owner}}
         npm ci
         npm test
+
