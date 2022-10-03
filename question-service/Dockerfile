@@ -14,7 +14,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install prod dependencies
-RUN npm ci --omit=dev
+RUN npm ci
+# RUN npm ci --omit=dev
 
 # Copy everything to container
 COPY . .
