@@ -1,8 +1,11 @@
+# Base image
+FROM node:16
+
 # Arguments for env variables
 ARG DB_QUESTIONS_CLOUD_URI
 
-# Base image
-FROM node:16
+# Env variables
+ENV DB_QUESTIONS_CLOUD_URI $DB_QUESTIONS_CLOUD_URI
 
 # Working directory
 WORKDIR /usr/src/app
@@ -16,8 +19,7 @@ RUN npm ci --omit=dev
 # Copy everything to container
 COPY . .
 
-# Env variables
-ENV DB_QUESTIONS_CLOUD_URI=$DB_QUESTIONS_CLOUD_URI
-
 EXPOSE 8090
+# command below to be updated
+# CMD ["npm", "run", "dev"]
 CMD [ "node", "index.js" ]
