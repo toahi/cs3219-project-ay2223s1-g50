@@ -11,12 +11,16 @@ import 'dotenv/config';
 const MIN_USERNAME_LEN = 6;
 const MIN_PASSWORD_LEN = 6;
 
+const FRONTEND_SERVICE_URL = process.env.NODE_ENV == 'test'
+  ? process.env.FRONTEND_SERVICE_LOCAL_URL
+  : process.env.FRONTEND_SERVICE_PROD_URL;
+
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.DEPLOY_URL || 'http://localhost:8080'],
+  origin: [FRONTEND_SERVICE_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
@@ -123,10 +127,10 @@ app.post('/login', async (req, res) => {
   );
   console.log(`[LOGIN][TOKEN] Created access token '${accessToken}' successfully!`);
 
-  console.log(`[LOGIN][SUCCESS] Server logged in user ${username} successfully!`);
-
   req.session.user = username
   req.session.token = accessToken
+
+  console.log(`[LOGIN][SUCCESS] Server logged in user ${username} successfully!`);
 
   return res.status(200).json({success: 'Logged in successfully!', accessToken}); 
 });
@@ -157,6 +161,7 @@ app.put('/update', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
   // currently only allow password updates
   console.log('\nUPDATE...');
   console.log(req.body)
+
   const username = req.body.username;
 
   const {newPassword} = req.body;
@@ -199,10 +204,10 @@ app.post('/logout', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
     if (err) {
       console.log(`[LOGOUT][UNSUCCESSFUL] Server could not log out user ${req.username} successfully!`);
       return res.status(500).json({message: 'Unable to log out'});
-    } else {
-      console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
-      return res.status(200).json({message: 'Successfully logged out!'});
     }
+
+    console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
+    return res.status(200).json({message: 'Successfully logged out!'});
   })
 });
 
