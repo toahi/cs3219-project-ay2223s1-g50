@@ -4,7 +4,7 @@
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
 // Select the database to use.
-use('test');
+use('questions');
 
 // The drop() command destroys all data from a collection.
 // Make sure you run it against the correct database and collection.
@@ -27,13 +27,13 @@ db.questionmodels.insertMany(
   {
     "name": "Largest Palindrome Product",
     "description": "Find the largest palindrome made from the product of two n-digit numbers\nSince the result could be very large, you should return the largest palindrome mod 1337\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: 2\nOutput: 987\nExplanation: 99 x 91 = 9009, 9009 % 1337 = 987\nNote:\nThe range of n is [1,8].\n"
   },
   {
     "name": "Find All Duplicates in an Array",
     "description": "Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once\nFind all the elements that appear twice in this array\nCould you do it without extra space and in O(n) runtime?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n[4,3,2,7,8,2,3,1]Output:\n[2,3]"
   },
   {
@@ -45,7 +45,7 @@ db.questionmodels.insertMany(
   {
     "name": "Add Two Numbers",
     "description": "You are given two non-empty linked lists representing two non-negative integers\nThe digits are stored in reverse order and each of their nodes contain a single digit\nAdd the two numbers and return it as a linked list\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself\nInput: (2 -> 4 -> 3) + (5 -> 6 -> 4)Output: 7 -> 0 -> 8",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -75,13 +75,13 @@ db.questionmodels.insertMany(
   {
     "name": "Reverse Integer",
     "description": "Reverse digits of an integer\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example1: x =  123, return  321\nExample2: x = -123, return -321\nclick to show spoilers.\nHave you thought about this?Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!\nIf the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.\nDid you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?\nFor the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.\nNote:\nThe input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.\n"
   },
   {
     "name": "String to Integer (atoi)",
     "description": "Implement atoi to convert a string to an integer\nHint: Carefully consider all possible input cases\nIf you want a challenge, please do not see below and ask yourself what are the possible input cases\nNotes:It is intended for this problem to be specified vaguely (ie, no given input specs)\nYou are responsible to gather all the input requirements up front\nUpdate (2015-02-10):The signature of the C++ function had been updated\nIf you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition\nspoilers alert\n\n\nclick to show requirements for atoi\nRequirements for atoi:The function first discards as many whitespace characters as necessary until the first non-whitespace character is found\nThen, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value\nThe string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function\nIf the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed\nIf no valid conversion could be performed, a zero value is returned\nIf the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -93,7 +93,7 @@ db.questionmodels.insertMany(
   {
     "name": "Regular Expression Matching",
     "description": "Implement regular expression matching with support for '\n' and '*'\n'\n' Matches any single character\n'*' Matches zero or more of the preceding element\nThe matching should cover the entire input string (not partial)\nThe function prototype should be:bool isMatch(const char *s, const char *p)",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Some examples:\nisMatch(\"aa\",\"a\") → falseisMatch(\"aa\",\"aa\") → trueisMatch(\"aaa\",\"aa\") → falseisMatch(\"aa\", \"a*\") → trueisMatch(\"aa\", \".*\") → true\nisMatch(\"ab\", \".*\") → true\nisMatch(\"aab\", \"c*a*b\") → true"
   },
   {
@@ -147,7 +147,7 @@ db.questionmodels.insertMany(
   {
     "name": "Remove Nth Node From End of List",
     "description": "Given a linked list, remove the nth node from the end of list and return its head\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,   Given linked list: 1->2->3->4->5, and n = 2.\n   After removing the second node from the end, the linked list becomes 1->2->3->5.\nNote:\nGiven n will always be valid.\nTry to do this in one pass.\n"
   },
   {
@@ -159,7 +159,7 @@ db.questionmodels.insertMany(
   {
     "name": "Merge Two Sorted Lists",
     "description": "Merge two sorted linked lists and return it as a new list\nThe new list should be made by splicing together the nodes of the first two lists\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -177,7 +177,7 @@ db.questionmodels.insertMany(
   {
     "name": "Swap Nodes in Pairs",
     "description": "Given a linked list, swap every two adjacent nodes and return its head\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given 1->2->3->4, you should return the list as 2->1->4->3.\nYour algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.\n"
   },
   {
@@ -213,7 +213,7 @@ db.questionmodels.insertMany(
   {
     "name": "Substring with Concatenation of All Words",
     "description": "You are given a string, s, and a list of words, words, that are all of the same length\nFind all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, given:\ns: \"barfoothefoobarman\"\nwords: [\"foo\", \"bar\"]\nYou should return the indices: [0,9].\n(order does not matter).\n"
   },
   {
@@ -237,13 +237,13 @@ db.questionmodels.insertMany(
   {
     "name": "Search for a Range",
     "description": "Given an array of integers sorted in ascending order, find the starting and ending position of a given target value\nYour algorithm's runtime complexity must be in the order of O(log n)\nIf the target is not found in the array, return [-1, -1]\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given [5, 7, 7, 8, 8, 10] and target value 8,return [3, 4].\n"
   },
   {
     "name": "Search Insert Position",
     "description": "Given a sorted array and a target value, return the index if the target is found\nIf not, return the index where it would be if it were inserted in order\nYou may assume no duplicates in the array\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Here are few examples.\n[1,3,5,6], 5 → 2[1,3,5,6], 2 → 1[1,3,5,6], 7 → 4[1,3,5,6], 0 → 0"
   },
   {
@@ -279,19 +279,19 @@ db.questionmodels.insertMany(
   {
     "name": "First Missing Positive",
     "description": "Given an unsorted integer array, find the first missing positive integer\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given [1,2,0] return 3,and [3,4,-1,1] return 2.\nYour algorithm should run in O(n) time and uses constant space.\n"
   },
   {
     "name": "Trapping Rain Water",
     "description": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.\nThe above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!\n"
   },
   {
     "name": "Multiply Strings",
     "description": "Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2\nNote:The length of both num1 and num2 is < 110\nBoth num1 and num2 contains only digits 0-9\nBoth num1 and num2 does not contain any leading zero\nYou must not use any built-in BigInteger library or convert the inputs to integer directly\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -321,7 +321,7 @@ db.questionmodels.insertMany(
   {
     "name": "Rotate Image",
     "description": "You are given an n x n 2D matrix representing an image\nRotate the image by 90 degrees (clockwise)\nFollow up:Could you do this in-place?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -345,7 +345,7 @@ db.questionmodels.insertMany(
   {
     "name": "N-Queens II",
     "description": "Follow up for N-Queens problem\nNow, instead outputting board configurations, return the total number of distinct solutions\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -423,13 +423,13 @@ db.questionmodels.insertMany(
   {
     "name": "Valid Number",
     "description": "Validate if a given string is numeric\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Some examples:\n\"0\" => true\"   0.1  \" => true\n\"abc\" => false\"1 a\" => false\"2e10\" => trueNote: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.\nUpdate (2015-02-10):\nThe signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition.\n"
   },
   {
     "name": "Plus One",
     "description": "Given a non-negative integer represented as a non-empty array of digits, plus one to the integer\nYou may assume the integer do not contain any leading zero, except the number 0 itself\nThe digits are stored such that the most significant digit is at the head of the list\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -441,7 +441,7 @@ db.questionmodels.insertMany(
   {
     "name": "Text Justification",
     "description": "Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified\nYou should pack your words in a greedy approach; that is, pack as many words as you can in each line\nPad extra spaces ' ' when necessary so that each line has exactly L characters\nExtra spaces between words should be distributed as evenly as possible\nIf the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right\nFor the last line of text, it should be left justified and no extra space is inserted between words\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,words: [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"]\nL: 16.\nReturn the formatted lines as:\n[   \"This    is    an\",   \"example  of text\",   \"justification.  \"\n]Note: Each word is guaranteed not to exceed L in length.\nclick to show corner cases.\nCorner Cases:\nA line other than the last line might contain only one word. What should you do in this case?\nIn this case, that line should be left-justified.\n"
   },
   {
@@ -453,7 +453,7 @@ db.questionmodels.insertMany(
   {
     "name": "Climbing Stairs",
     "description": "You are climbing a stair case\nIt takes n steps to reach to the top\nEach time you can either climb 1 or 2 steps\nIn how many distinct ways can you climb to the top?Note: Given n will be a positive integer\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -483,7 +483,7 @@ db.questionmodels.insertMany(
   {
     "name": "Sort Colors",
     "description": "Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue\nHere, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively\nNote:You are not suppose to use the library's sort function for this problem\nclick to show follow up\nFollow up:A rather straight forward solution is a two-pass algorithm using counting sort\nFirst, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's\nCould you come up with an one-pass algorithm using only constant space?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -495,7 +495,7 @@ db.questionmodels.insertMany(
   {
     "name": "Combinations",
     "description": "Given two integers n and k, return all possible combinations of k numbers out of 1\n\n\nn\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,If n = 4 and k = 2, a solution is:\n[  [2,4],  [3,4],  [2,3],  [1,2],  [1,3],  [1,4],]"
   },
   {
@@ -507,19 +507,19 @@ db.questionmodels.insertMany(
   {
     "name": "Word Search",
     "description": "Given a 2D board and a word, find if the word exists in the grid\nThe word can be constructed from letters of sequentially adjacent cell, where \"adjacent\" cells are those horizontally or vertically neighboring\nThe same letter cell may not be used more than once\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given board =[  ['A','B','C','E'],  ['S','F','C','S'],  ['A','D','E','E']]word = \"ABCCED\", -> returns true,word = \"SEE\", -> returns true,word = \"ABCB\", -> returns false.\n"
   },
   {
     "name": "Remove Duplicates from Sorted Array II",
     "description": "Follow up for \"Remove Duplicates\":What if duplicates are allowed at most twice?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given sorted array nums = [1,1,1,2,2,3],Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3. It doesn't matter what you leave beyond the new length.\n"
   },
   {
     "name": "Search in Rotated Sorted Array II",
     "description": "Follow up for \"Search in Rotated Sorted Array\":What if duplicates are allowed?Would this affect the run-time complexity? How and why?Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand\n(i\ne\n, 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2)\nWrite a function to determine if a given target is in the array\nThe array may contain duplicates\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -573,7 +573,7 @@ db.questionmodels.insertMany(
   {
     "name": "Subsets II",
     "description": "Given a collection of integers that might contain duplicates, nums, return all possible subsets\nNote: The solution set must not contain duplicate subsets\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,If nums = [1,2,2], a solution is:\n[  [2],  [1],  [1,2,2],  [2,2],  [1,2],  []]"
   },
   {
@@ -585,7 +585,7 @@ db.questionmodels.insertMany(
   {
     "name": "Reverse Linked List II",
     "description": "Reverse a linked list from position m to n\nDo it in-place and in one-pass\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven 1->2->3->4->5->NULL, m = 2 and n = 4,return 1->4->3->2->5->NULL.\nNote:\nGiven m, n satisfy the following condition:\n1 ≤ m ≤ n ≤ length of list.\n"
   },
   {
@@ -597,7 +597,7 @@ db.questionmodels.insertMany(
   {
     "name": "Binary Tree Inorder Traversal",
     "description": "Given a binary tree, return the inorder traversal of its nodes' values\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven binary tree [1,null,2,3],   1    \\     2    /   3return [1,3,2].\nNote: Recursive solution is trivial, could you do it iteratively?\n"
   },
   {
@@ -633,13 +633,13 @@ db.questionmodels.insertMany(
   {
     "name": "Same Tree",
     "description": "Given two binary trees, write a function to check if they are equal or not\nTwo binary trees are considered equal if they are structurally identical and the nodes have the same value\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Symmetric Tree",
     "description": "Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, this binary tree [1,2,2,3,4,4,3] is symmetric:\n    1   / \\  2   2 / \\ / \\3  4 4  3But the following [1,2,2,null,3,null,3]  is not:\n    1   / \\  2   2   \\   \\   3    3Note:\nBonus points if you could solve it both recursively and iteratively.\n"
   },
   {
@@ -657,7 +657,7 @@ db.questionmodels.insertMany(
   {
     "name": "Maximum Depth of Binary Tree",
     "description": "Given a binary tree, find its maximum depth\nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -669,13 +669,13 @@ db.questionmodels.insertMany(
   {
     "name": "Construct Binary Tree from Inorder and Postorder Traversal",
     "description": "Given inorder and postorder traversal of a tree, construct the binary tree\nNote:You may assume that duplicates do not exist in the tree\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Binary Tree Level Order Traversal II",
     "description": "Given a binary tree, return the bottom-up level order traversal of its nodes' values\n(ie, from left to right, level by level from leaf to root)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven binary tree [3,9,20,null,null,15,7],    3   / \\  9  20    /  \\   15   7return its bottom-up level order traversal as:\n[  [15,7],  [9,20],  [3]]"
   },
   {
@@ -699,13 +699,13 @@ db.questionmodels.insertMany(
   {
     "name": "Minimum Depth of Binary Tree",
     "description": "Given a binary tree, find its minimum depth\nThe minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Path Sum",
     "description": "Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven the below binary tree and sum = 22,              5             / \\            4   8           /   / \\          11  13  4         /  \\      \\        7    2      1return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.\n"
   },
   {
@@ -723,7 +723,7 @@ db.questionmodels.insertMany(
   {
     "name": "Distinct Subsequences",
     "description": "Given a string S and a string T, count the number of distinct subsequences of T in S\nA subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters\n(ie, \"ACE\" is a subsequence of \"ABCDE\" while \"AEC\" is not)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Here is an example:\nS = \"rabbbit\", T = \"rabbit\"Return 3.\n"
   },
   {
@@ -765,7 +765,7 @@ db.questionmodels.insertMany(
   {
     "name": "Best Time to Buy and Sell Stock II",
     "description": "Say you have an array for which the ith element is the price of a given stock on day i\nDesign an algorithm to find the maximum profit\nYou may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times)\nHowever, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -777,7 +777,7 @@ db.questionmodels.insertMany(
   {
     "name": "Binary Tree Maximum Path Sum",
     "description": "Given a binary tree, find the maximum path sum\nFor this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections\nThe path must contain at least one node and does not need to go through the root\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven the below binary tree,       1      / \\     2   3Return 6.\n"
   },
   {
@@ -831,7 +831,7 @@ db.questionmodels.insertMany(
   {
     "name": "Clone Graph",
     "description": "Clone an undirected graph\nEach node in the graph contains a label and a list of its neighbors\nOJ's undirected graph serialization:Nodes are labeled uniquely\nWe use # as a separator for each node, and , as a separator for node label and each neighbor of the node\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "As an example, consider the serialized graph {0,1,2#1,2#2,2}.\nThe graph has a total of three nodes, and therefore contains three parts as separated by #.\nFirst node is labeled as 0. Connect node 0 to both nodes 1 and 2.\nSecond node is labeled as 1. Connect node 1 to node 2.\nThird node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.\nVisually, the graph looks like the following:\n       1      / \\     /   \\    0 --- 2         / \\         \\_/"
   },
   {
@@ -843,13 +843,13 @@ db.questionmodels.insertMany(
   {
     "name": "Candy",
     "description": "There are N children standing in a line\nEach child is assigned a rating value\nYou are giving candies to these children subjected to the following requirements:Each child must have at least one candy\nChildren with a higher rating get more candies than their neighbors\nWhat is the minimum candies you must give?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Single Number",
     "description": "Given an array of integers, every element appears twice except for one\nFind that single one\nNote:Your algorithm should have a linear runtime complexity\nCould you implement it without using extra memory?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -873,7 +873,7 @@ db.questionmodels.insertMany(
   {
     "name": "Word Break II",
     "description": "Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word\nYou may assume the dictionary does not contain duplicate words\nReturn all such possible sentences\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, givens = \"catsanddog\",dict = [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"].\nA solution is [\"cats and dog\", \"cat sand dog\"].\nUPDATE (2017/1/4):\nThe wordDict parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.\n"
   },
   {
@@ -897,13 +897,13 @@ db.questionmodels.insertMany(
   {
     "name": "Binary Tree Preorder Traversal",
     "description": "Given a binary tree, return the preorder traversal of its nodes' values\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven binary tree {1,#,2,3},   1    \\     2    /   3return [1,2,3].\nNote: Recursive solution is trivial, could you do it iteratively?\n"
   },
   {
     "name": "Binary Tree Postorder Traversal",
     "description": "Given a binary tree, return the postorder traversal of its nodes' values\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven binary tree {1,#,2,3},   1    \\     2    /   3return [3,2,1].\nNote: Recursive solution is trivial, could you do it iteratively?\n"
   },
   {
@@ -921,7 +921,7 @@ db.questionmodels.insertMany(
   {
     "name": "Sort List",
     "description": "Sort a linked list in O(n log n) time using constant space complexity\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -939,13 +939,13 @@ db.questionmodels.insertMany(
   {
     "name": "Reverse Words in a String",
     "description": "Given an input string, reverse the string word by word\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given s = \"the sky is blue\",return \"blue is sky the\".\nUpdate (2015-02-12):\nFor C programmers: Try to solve it in-place in O(1) space.\nclick to show clarification.\nClarification:\nWhat constitutes a word?A sequence of non-space characters constitutes a word.\nCould the input string contain leading or trailing spaces?Yes. However, your reversed string should not contain leading or trailing spaces.\nHow about multiple spaces between two words?Reduce them to a single space in the reversed string.\n"
   },
   {
     "name": "Maximum Product Subarray",
     "description": "Find the contiguous subarray within an array (containing at least one number) which has the largest product\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, given the array [2,3,-2,4],the contiguous subarray [2,3] has the largest product = 6.\n"
   },
   {
@@ -957,7 +957,7 @@ db.questionmodels.insertMany(
   {
     "name": "Find Minimum in Rotated Sorted Array II",
     "description": "Follow up for \"Find Minimum in Rotated Sorted Array\":What if duplicates are allowed?Would this affect the run-time complexity? How and why?Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand\n(i\ne\n, 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2)\nFind the minimum element\nThe array may contain duplicates\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1011,19 +1011,19 @@ db.questionmodels.insertMany(
   {
     "name": "Majority Element",
     "description": "Given an array of size n, find the majority element\nThe majority element is the element that appears more than ⌊ n/2 ⌋ times\nYou may assume that the array is non-empty and the majority element always exist in the array\nCredits:Special thanks to @ts for adding this problem and creating all test cases\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Excel Sheet Column Number",
     "description": "Related to question Excel Sheet Column TitleGiven a column title as appear in an Excel sheet, return its corresponding column number\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\n    A -> 1    B -> 2    C -> 3    ...\n    Z -> 26    AA -> 27    AB -> 28Credits:Special thanks to @ts for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Factorial Trailing Zeroes",
     "description": "Given an integer n, return the number of trailing zeroes in n!\nNote: Your solution should be in logarithmic time complexity\nCredits:Special thanks to @ts for adding this problem and creating all test cases\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1035,7 +1035,7 @@ db.questionmodels.insertMany(
   {
     "name": "Dungeon Game",
     "description": "table\ndungeon,\ndungeon th,\ndungeon td {border:3px solid black;}\ndungeon th,\ndungeon td {text-align: center;height: 70px;width: 70px;}The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon\nThe dungeon consists of M x N rooms laid out in a 2D grid\nOur valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess\nThe knight has an initial health point represented by a positive integer\nIf at any point his health point drops to 0 or below, he dies immediately\nSome of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms;other rooms are either empty (0's) or contain magic orbs that increase the knight's health (positive integers)\nIn order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step\nWrite a function to determine the knight's minimum initial health so that he is able to rescue the princess\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, given the dungeon below, the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-> RIGHT -> DOWN -> DOWN.\n-2 (K)-33-5-1011030-5 (P)Notes:\nThe knight's health has no upper bound.\nAny room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.\nCredits:Special thanks to @stellari for adding this problem and creating all test cases.\n"
   },
   {
@@ -1047,13 +1047,13 @@ db.questionmodels.insertMany(
   {
     "name": "Repeated DNA Sequences",
     "description": "Best Time to Buy and Sell Stock IV",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: \"ACGAATTCCG\". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.\nWrite a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.\nFor example,Given s = \"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\",Return:\n[\"AAAAACCCCC\", \"CCCCCAAAAA\"].\nBest Time to Buy and Sell Stock IV"
   },
   {
     "name": "Rotate Array",
     "description": "Rotate an array of n elements to the right by k steps\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].\nNote:\nTry to come up as many solutions as you can, there are at least 3 different ways to solve this problem.\n[show hint]Hint:\nCould you do it in-place with O(1) extra space?Related problem: Reverse Words in a String II\nCredits:Special thanks to @Freezen for adding this problem and creating all test cases.\n"
   },
   {
@@ -1077,7 +1077,7 @@ db.questionmodels.insertMany(
   {
     "name": "Binary Tree Right Side View",
     "description": "Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven the following binary tree,   1            <--- /   \\2     3         <--- \\     \\  5     4       <---You should return [1, 3, 4].\nCredits:Special thanks to @amrsaqr for adding this problem and creating all test cases.\n"
   },
   {
@@ -1095,7 +1095,7 @@ db.questionmodels.insertMany(
   {
     "name": "Happy Number",
     "description": "Write an algorithm to determine if a number is \"happy\"\nA happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1\nThose numbers for which this process ends in 1 are happy numbers\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example: 19 is a happy number\n12 + 92 = 8282 + 22 = 6862 + 82 = 10012 + 02 + 02 = 1Credits:Special thanks to @mithmatt and @ts for adding this problem and creating all test cases.\n"
   },
   {
@@ -1107,7 +1107,7 @@ db.questionmodels.insertMany(
   {
     "name": "Count Primes",
     "description": "Description:Count the number of prime numbers less than a non-negative number, n\nCredits:Special thanks to @mithmatt for adding this problem and creating all test cases\nLet's start with a isPrime function\nTo determine if a number is prime, we need to check if it is not divisible by any number less than n\nThe runtime complexity of isPrime function would be O(n) and hence counting the total prime numbers up to n would be O(n2)\nCould we do better?As we know the number must not be divisible by any number > n / 2, we can immediately cut the total iterations half by dividing only up to n / 2\nCould we still do better?Let's write down all of 12's factors:2 × 6 = 123 × 4 = 124 × 3 = 126 × 2 = 12As you can see, calculations of 4 × 3 and 6 × 2 are not necessary\nTherefore, we only need to consider factors up to √n because, if n is divisible by some number p, then n = p × q and since p ≤ q, we could derive that p ≤ √n\nOur total runtime has now improved to O(n1\n5), which is slightly better\nIs there a faster approach?public int countPrimes(int n) {int count = 0;for (int i = 1; i < n; i++) {if (isPrime(i)) count++;}return count;}private boolean isPrime(int num) {if (num <= 1) return false;// Loop's ending condition is i * i <= num instead of i <= sqrt(num)// to avoid repeatedly calling an expensive function sqrt()\nfor (int i = 2; i * i <= num; i++) {if (num % i == 0) return false;}return true;}The Sieve of Eratosthenes is one of the most efficient ways to find all prime numbers up to n\nBut don't let that name scare you, I promise that the concept is surprisingly simple\nSieve of Eratosthenes: algorithm steps for primes below 121\n\"Sieve of Eratosthenes Animation\" by SKopp is licensed under CC BY 2\n0\nWe start off with a table of n numbers\nLet's look at the first number, 2\nWe know all multiples of 2 must not be primes, so we mark them off as non-primes\nThen we look at the next number, 3\nSimilarly, all multiples of 3 such as 3 × 2 = 6, 3 × 3 = 9,\n\n\nmust not be primes, so we mark them off as well\nNow we look at the next number, 4, which was already marked off\nWhat does this tell you? Should you mark off all multiples of 4 as well?4 is not a prime because it is divisible by 2, which means all multiples of 4 must also be divisible by 2 and were already marked off\nSo we can skip 4 immediately and go to the next number, 5\nNow, all multiples of 5 such as 5 × 2 = 10, 5 × 3 = 15, 5 × 4 = 20, 5 × 5 = 25,\n\n\ncan be marked off\nThere is a slight optimization here, we do not need to start from 5 × 2 = 10\nWhere should we start marking off?In fact, we can mark off multiples of 5 starting at 5 × 5 = 25, because 5 × 2 = 10 was already marked off by multiple of 2, similarly 5 × 3 = 15 was already marked off by multiple of 3\nTherefore, if the current number is p, we can always mark off multiples of p starting at p2, then in increments of p: p2 + p, p2 + 2p,\n\n\nNow what should be the terminating loop condition?It is easy to say that the terminating loop condition is p < n, which is certainly correct but not efficient\nDo you still remember Hint #3?Yes, the terminating loop condition can be p < √n, as all non-primes ≥ √n must have already been marked off\nWhen the loop terminates, all the numbers in the table that are non-marked are prime\nThe Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n)\nFor the more mathematically inclined readers, you can read more about its algorithm complexity on Wikipedia\npublic int countPrimes(int n) {boolean[] isPrime = new boolean[n];for (int i = 2; i < n; i++) {isPrime[i] = true;}// Loop's ending condition is i * i < n instead of i < sqrt(n)// to avoid repeatedly calling an expensive function sqrt()\nfor (int i = 2; i * i < n; i++) {if (!isPrime[i]) continue;for (int j = i * i; j < n; j += i) {isPrime[j] = false;}}int count = 0;for (int i = 2; i < n; i++) {if (isPrime[i]) count++;}return count;}",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1119,13 +1119,13 @@ db.questionmodels.insertMany(
   {
     "name": "Reverse Linked List",
     "description": "Reverse a singly linked list\nclick to show more hints\nHint:A linked list can be reversed either iteratively or recursively\nCould you implement both?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
     "name": "Course Schedule",
     "description": "There are a total of n courses you have to take, labeled from 0 to n - 1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]\nGiven the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?For example:\n2, [[1,0]]There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n2, [[1,0],[0,1]]There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\nNote:\nThe input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.\nYou may assume that there are no duplicate edges in the input prerequisites.\nclick to show more hints.\nHints:\nThis problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.\nTopological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.\nTopological sort could also be done via BFS.\n"
   },
   {
@@ -1137,19 +1137,19 @@ db.questionmodels.insertMany(
   {
     "name": "Minimum Size Subarray Sum",
     "description": "Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s\nIf there isn't one, return 0 instead\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, given the array [2,3,1,2,4,3] and s = 7,the subarray [4,3] has the minimal length under the problem constraint.\nclick to show more practice.\nMore practice:\nIf you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n).\nCredits:Special thanks to @Freezen for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Course Schedule II",
     "description": "There are a total of n courses you have to take, labeled from 0 to n - 1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]\nGiven the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.\nThere may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.\nFor example:\n2, [[1,0]]There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]\n4, [[1,0],[2,0],[3,1],[3,2]]There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].\nNote:\nThe input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.\nYou may assume that there are no duplicate edges in the input prerequisites.\nclick to show more hints.\nHints:\nThis problem is equivalent to finding the topological order in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.\nTopological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.\nTopological sort could also be done via BFS.\n"
   },
   {
     "name": "Add and Search Word - Data structure design",
     "description": "Design a data structure that supports the following two operations:void addWord(word)bool search(word)search(word) can search a literal word or a regular expression string containing only letters a-z or\n\nA\nmeans it can represent any one letter\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\naddWord(\"bad\")addWord(\"dad\")addWord(\"mad\")search(\"pad\") -> falsesearch(\"bad\") -> truesearch(\".ad\") -> true\nsearch(\"b..\") -> true\nNote:\nYou may assume that all words are consist of lowercase letters a-z.\nclick to show hint.\nYou should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.\n"
   },
   {
@@ -1197,7 +1197,7 @@ db.questionmodels.insertMany(
   {
     "name": "Contains Duplicate II",
     "description": "Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1221,7 +1221,7 @@ db.questionmodels.insertMany(
   {
     "name": "Rectangle Area",
     "description": "Find the total area covered by two rectilinear rectangles in a 2D plane\nEach rectangle is defined by its bottom left corner and top right corner as shown in the figure\nAssume that the total area is never beyond the maximum possible value of int\nCredits:Special thanks to @mithmatt for adding this problem, creating the above image and all test cases\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1245,7 +1245,7 @@ db.questionmodels.insertMany(
   {
     "name": "Basic Calculator II",
     "description": "Implement a basic calculator to evaluate a simple expression string\nThe expression string contains only non-negative integers, +, -, *, / operators and empty spaces\nThe integer division should truncate toward zero\nYou may assume that the given expression is always valid\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Some examples:\n\"3+2*2\" = 7\" 3/2 \" = 1\" 3+5 / 2 \" = 5Note: Do not use the eval built-in library function.\nCredits:Special thanks to @ts for adding this problem and creating all test cases.\n"
   },
   {
@@ -1257,7 +1257,7 @@ db.questionmodels.insertMany(
   {
     "name": "Majority Element II",
     "description": "Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times\nThe algorithm should run in linear time and in O(1) space\nHow many majority elements could it possibly have?Do you have a better hint? Suggest it!",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1281,13 +1281,13 @@ db.questionmodels.insertMany(
   {
     "name": "Number of Digit One",
     "description": "Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nGiven n = 13,Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.\n  Beware of overflow.\n"
   },
   {
     "name": "Palindrome Linked List",
     "description": "Given a singly linked list, determine if it is a palindrome\nFollow up:Could you do it in O(n) time and O(1) space?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1329,7 +1329,7 @@ db.questionmodels.insertMany(
   {
     "name": "Different Ways to Add Parentheses",
     "description": "Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators\nThe valid operators are +, - and *\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1Input: \"2-1-1\".\n((2-1)-1) = 0(2-(1-1)) = 2Output: [0, 2]\nExample 2Input: \"2*3-4*5\"\n(2*(3-(4*5))) = -34((2*3)-(4*5)) = -14((2*(3-4))*5) = -10(2*((3-4)*5)) = -10(((2*3)-4)*5) = 10Output: [-34, -14, -10, -10, 10]\nCredits:Special thanks to @mithmatt for adding this problem and creating all test cases.\n"
   },
   {
@@ -1413,13 +1413,13 @@ db.questionmodels.insertMany(
   {
     "name": "Peeking Iterator",
     "description": "Given an Iterator class interface with methods: next() and hasNext(), design and implement a PeekingIterator that support the peek() operation -- it essentially peek() at the element that will be returned by the next call to next()\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Here is an example. Assume that the iterator is initialized to the beginning of the list: [1, 2, 3].\nCall next() gets you 1, the first element in the list.\nNow you call peek() and it returns 2, the next element. Calling next() after that still return 2.\nYou call next() the final time and it returns 3, the last element. Calling hasNext() after that should return false.\n  Think of \"looking ahead\". You want to cache the next element.\n  Is one variable sufficient? Why or why not?  Test your design with call order of peek() before next() vs next() before peek().\n  For a clean implementation, check out Google's guava library source code.\nFollow up: How would you extend your design to be generic and work with all types, not just integer?\nCredits:Special thanks to @porker2008 for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Find the Duplicate Number",
     "description": "Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist\nAssume that there is only one duplicate number, find the duplicate one\nNote:You must not modify the array (assume the array is read only)\nYou must use only constant, O(1) extra space\nYour runtime complexity should be less than O(n2)\nThere is only one duplicate number in the array, but it could be repeated more than once\nCredits:Special thanks to @jianchao\nli\nfighter for adding this problem and creating all test cases\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": ""
   },
   {
@@ -1437,7 +1437,7 @@ db.questionmodels.insertMany(
   {
     "name": "Nim Game",
     "description": "You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones\nThe one who removes the last stone will be the winner\nYou will take the first turn to remove the stones\nBoth of you are very clever and have optimal strategies for the game\nWrite a function to determine whether you can win the game given the number of stones in the heap\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.\n  If there are 5 stones in the heap, could you figure out a way to remove the stones such that you will always be the winner?Credits:Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.\n"
   },
   {
@@ -1449,19 +1449,19 @@ db.questionmodels.insertMany(
   {
     "name": "Serialize and Deserialize Binary Tree",
     "description": "Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment\nDesign an algorithm to serialize and deserialize a binary tree\nThere is no restriction on how your serialization/deserialization algorithm should work\nYou just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, you may serialize the following tree    1   / \\  2   3     / \\    4   5as \"[1,2,3,null,null,4,5]\", just the same as how LeetCode OJ serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.\nNote: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.\nCredits:Special thanks to @Louis1992 for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Bulls and Cows",
     "description": "You are playing the following Bulls and Cows game with your friend: You write down a number and ask your friend to guess what the number is\nEach time your friend makes a guess, you provide a hint that indicates how many digits in said guess match your secret number exactly in both digit and position (called \"bulls\") and how many digits match the secret number but locate in the wrong position (called \"cows\")\nYour friend will use successive guesses and hints to eventually derive the secret number\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\nSecret number:  \"1807\"\nFriend's guess: \"7810\"\nHint: 1 bull and 3 cows. (The bull is 8, the cows are 0, 1 and 7.)\nWrite a function to return a hint according to the secret number and friend's guess, use A to indicate the bulls and B to indicate the cows. In the above example, your function should return \"1A3B\".\nPlease note that both secret number and friend's guess may contain duplicate digits, for example:\nSecret number:  \"1123\"\nFriend's guess: \"0111\"\nIn this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, and your function should return \"1A1B\".\nYou may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.\nCredits:Special thanks to @jeantimex for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Longest Increasing Subsequence",
     "description": "Given an unsorted array of integers, find the length of longest increasing subsequence\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example,Given [10, 9, 2, 5, 3, 7, 101, 18],The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.\nYour algorithm should run in O(n2) complexity.\nFollow up: Could you improve it to O(n log n) time complexity?\nCredits:Special thanks to @pbrother for adding this problem and creating all test cases.\n"
   },
   {
@@ -1473,25 +1473,25 @@ db.questionmodels.insertMany(
   {
     "name": "Range Sum Query - Immutable",
     "description": "Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -> 1sumRange(2, 5) -> -1sumRange(0, 5) -> -3Note:\nYou may assume that the array does not change.\nThere are many calls to sumRange function.\n"
   },
   {
     "name": "Range Sum Query 2D - Immutable",
     "description": "Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2)\nThe above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains sum = 8\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven matrix = [  [3, 0, 1, 4, 2],  [5, 6, 3, 2, 1],  [1, 2, 0, 1, 5],  [4, 1, 0, 1, 7],  [1, 0, 3, 0, 5]]sumRegion(2, 1, 4, 3) -> 8sumRegion(1, 1, 2, 2) -> 11sumRegion(1, 2, 2, 4) -> 12Note:\nYou may assume that the matrix does not change.\nThere are many calls to sumRegion function.\nYou may assume that row1 ≤ row2 and col1 ≤ col2.\n"
   },
   {
     "name": "Additive Number",
     "description": "Additive number is a string whose digits can form additive sequence\nA valid additive sequence should contain at least three numbers\nExcept for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example:\n\"112358\" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.\n1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8\"199100199\" is also an additive number, the additive sequence is: 1, 99, 100, 199.\n1 + 99 = 100, 99 + 100 = 199Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.\nGiven a string containing only digits '0'-'9', write a function to determine if it's an additive number.\nFollow up:\nHow would you handle overflow for very large input integers?Credits:Special thanks to @jeantimex for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Range Sum Query - Mutable",
     "description": "Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive\nThe update(i, val) function modifies nums by updating the element at index i to val\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven nums = [1, 3, 5]sumRange(0, 2) -> 9update(1, 2)sumRange(0, 2) -> 8Note:\nThe array is only modifiable by the update function.\nYou may assume the number of calls to update and sumRange function is distributed evenly.\n"
   },
   {
@@ -1503,7 +1503,7 @@ db.questionmodels.insertMany(
   {
     "name": "Burst Balloons",
     "description": "Given n balloons, indexed from 0 to n-1\nEach balloon is painted with anumber on it represented by array nums\nYou are asked to burst all the balloons\nIf the you burstballoon i you will get nums[left] * nums[i] * nums[right] coins\nHere leftand right are adjacent indices of i\nAfter the burst, the left and rightthen becomes adjacent\nFind the maximum coins you can collect by bursting the balloons wisely\nNote:(1) You may imagine nums[-1] = nums[n] = 1\nThey are not real therefore you can not burst them\n(2) 0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "    Example:\n    Given [3, 1, 5, 8]    Return 167    nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []   coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167Credits:Special thanks to @dietpepsi for adding this problem and creating all test cases.\n"
   },
   {
@@ -1551,7 +1551,7 @@ db.questionmodels.insertMany(
   {
     "name": "Wiggle Sort II",
     "description": "Given an unsorted array nums, reorder it such thatnums[0] < nums[1] > nums[2] < nums[3]\n\n\n\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "    Example:\n    (1) Given nums = [1, 5, 1, 1, 6, 4], one possible answer is [1, 4, 1, 5, 1, 6].\n    (2) Given nums = [1, 3, 2, 2, 3, 1], one possible answer is [2, 3, 1, 3, 1, 2].\n    Note:\n    You may assume all input has valid answer.\n    Follow Up:\n    Can you do it in O(n) time and/or in-place with O(1) extra space?Credits:Special thanks to @dietpepsi for adding this problem and creating all test cases.\n"
   },
   {
@@ -1569,7 +1569,7 @@ db.questionmodels.insertMany(
   {
     "name": "Odd Even Linked List",
     "description": "Given a singly linked list, group all odd nodes together followed by the even nodes\nPlease note here we are talking about the node number and not the value in the nodes\nYou should try to do it in place\nThe program should run in O(1) space complexity and O(nodes) time complexity\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven 1->2->3->4->5->NULL,return 1->3->5->2->4->NULL.\nNote:\nThe relative order inside both the even and odd groups should remain as it was in the input.\nThe first node is considered odd, the second node even and so on ...\nCredits:Special thanks to @DjangoUnchained for adding this problem and creating all test cases.\n"
   },
   {
@@ -1605,7 +1605,7 @@ db.questionmodels.insertMany(
   {
     "name": "Self Crossing",
     "description": "You are given an array x of n positive numbers\nYou start at point (0,0) and moves x[0] metres to the north, then x[1] metres to the west,x[2] metres to the south,x[3] metres to the east and so on\nIn other words, after each move your direction changescounter-clockwise\nWrite a one-pass algorithm with O(1) extra space to determine, if your path crosses itself, or not\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nGiven x = [2, 1, 1, 2],┌───┐│   │└───┼──>    │Return true (self crossing)Example 2:\nGiven x = [1, 2, 3, 4],┌──────┐│      │││└────────────>Return false (not self crossing)Example 3:\nGiven x = [1, 1, 1, 1],┌───┐│   │└───┼>Return true (self crossing)Credits:Special thanks to @dietpepsi for adding this problem and creating all test cases.\n"
   },
   {
@@ -1635,7 +1635,7 @@ db.questionmodels.insertMany(
   {
     "name": "Power of Four",
     "description": "Given an integer (signed 32 bits), write a function to check whether it is a power of 4\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven num = 16, return true.\nGiven num = 5, return false.\nFollow up: Could you solve it without loops/recursion?\nCredits:Special thanks to @yukuairoy  for adding this problem and creating all test cases.\n"
   },
   {
@@ -1665,7 +1665,7 @@ db.questionmodels.insertMany(
   {
     "name": "Intersection of Two Arrays",
     "description": "Given two arrays, write a function to compute their intersection\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].\nNote:\nEach element in the result must be unique.\nThe result can be in any order.\n"
   },
   {
@@ -1695,7 +1695,7 @@ db.questionmodels.insertMany(
   {
     "name": "Max Sum of Rectangle No Larger Than K",
     "description": "Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven matrix = [  [1,  0, 1],  [0, -2, 3]]k = 2The answer is 2. Because the sum of rectangle [[0, 1], [-2, 3]] is 2 and 2 is the max number no larger than k (k = 2).\nNote:\nThe rectangle inside the matrix must have an area > 0.\nWhat if the number of rows is much larger than the number of columns?Credits:Special thanks to @fujiaozhu for adding this problem and creating all test cases.\n"
   },
   {
@@ -1731,13 +1731,13 @@ db.questionmodels.insertMany(
   {
     "name": "Find K Pairs with Smallest Sums",
     "description": "You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k\nDefine a pair (u,v) which consists of one element from the first array and one element from the second array\nFind the k pairs (u1,v1),(u2,v2)\n\n\n(uk,vk) with the smallest sums\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nGiven nums1 = [1,7,11], nums2 = [2,4,6],  k = 3Return: [1,2],[1,4],[1,6]\nThe first 3 pairs are returned from the sequence:\n[1,2],[1,4],[1,6],[7,2],[7,4],[11,2],[7,6],[11,4],[11,6]Example 2:\nGiven nums1 = [1,1,2], nums2 = [1,2,3],  k = 2Return: [1,1],[1,1]\nThe first 2 pairs are returned from the sequence:\n[1,1],[1,1],[1,2],[2,1],[1,2],[2,2],[1,3],[1,3],[2,3]Example 3:\nGiven nums1 = [1,2], nums2 = [3],  k = 3Return: [1,3],[2,3]\nAll possible pairs are returned from the sequence:\n[1,3],[2,3]Credits:Special thanks to @elmirap and @StefanPochmann for adding this problem and creating all test cases.\n"
   },
   {
     "name": "Guess Number Higher or Lower",
     "description": "We are playing the Guess Game\nThe game is as follows:I pick a number from 1 to n\nYou have to guess which number I picked\nEvery time you guess wrong, I'll tell you whether the number is higher or lower\nYou call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):-1 : My number is lower1 : My number is higher0 : Congrats! You got it!",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nn = 10, I pick 6.\nReturn 6.\n"
   },
   {
@@ -1761,7 +1761,7 @@ db.questionmodels.insertMany(
   {
     "name": "Kth Smallest Element in a Sorted Matrix",
     "description": "Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix\nNote that it is the kth smallest element in the sorted order, not the kth distinct element\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nmatrix = [   [ 1,  5,  9],   [10, 11, 13],   [12, 13, 15]],k = 8,return 13.\nNote:\nYou may assume k is always valid, 1 ≤ k ≤ n2.\n"
   },
   {
@@ -1797,13 +1797,13 @@ db.questionmodels.insertMany(
   {
     "name": "Mini Parser",
     "description": "Given a nested list of integers represented as a string, implement a parser to deserialize it\nEach element is either an integer, or a list -- whose elements may also be integers or other lists\nNote:You may assume that the string is well-formed:String is non-empty\nString does not contain white spaces\nString contains only digits 0-9, [, - ,, ]\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nGiven s = \"324\",You should return a NestedInteger object which contains a single integer 324.\nExample 2:\nGiven s = \"[123,[456,[789]]]\",Return a NestedInteger object containing a nested list with 2 elements:\n1. An integer containing value 123.\n2. A nested list containing two elements:\n    i.  An integer containing value 456.\n    ii. A nested list with one element:\n         a. An integer containing value 789.\n"
   },
   {
     "name": "Lexicographical Numbers",
     "description": "Given an integer n, return 1 - n in lexicographical order\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].\nPlease optimize your algorithm to use less time and space. The input size may be as large as 5,000,000.\n"
   },
   {
@@ -1821,13 +1821,13 @@ db.questionmodels.insertMany(
   {
     "name": "Find the Difference",
     "description": "Given two strings s and t which consist of only lowercase letters\nString t is generated by random shuffling string s and then add one more letter at a random position\nFind the letter that was added in t\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\ns = \"abcd\"t = \"abcde\"Output:\neExplanation:\n'e' is the letter that was added.\n"
   },
   {
     "name": "Elimination Game",
     "description": "There is a list of sorted integers from 1 to n\nStarting from left to right, remove the first number and every other number afterward until you reach the end of the list\nRepeat the previous step again, but this time from right to left, remove the right most number and every other number from the remaining numbers\nWe keep repeating the steps again, alternating left to right and right to left, until a single number remains\nFind the last number that remains starting with a list of length n\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\nn = 9,1 2 3 4 5 6 7 8 92 4 6 82 66Output:\n6"
   },
   {
@@ -1845,13 +1845,13 @@ db.questionmodels.insertMany(
   {
     "name": "UTF-8 Validation",
     "description": "A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:For 1-byte character, the first bit is a 0, followed by its unicode code\nFor n-bytes character, the first n-bits are all one's, the n+1 bit is 0, followed by n-1 bytes with most significant 2 bits being 10\nThis is how the UTF-8 encoding would work:Char\nnumber range  |        UTF-8 octet sequence(hexadecimal)    |              (binary)--------------------+---------------------------------------------0000 0000-0000 007F | 0xxxxxxx0000 0080-0000 07FF | 110xxxxx 10xxxxxx0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxxGiven an array of integers representing the data, return whether it is a valid utf-8 encoding\nNote:The input is an array of integers\nOnly the least significant 8 bits of each integer is used to store the data\nThis means each integer represents only 1 byte of data\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\ndata = [197, 130, 1], which represents the octet sequence: 11000101 10000010 00000001.\nReturn true.\nIt is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.\nExample 2:\ndata = [235, 140, 4], which represented the octet sequence: 11101011 10001100 00000100.\nReturn false.\nThe first 3 bits are all one's and the 4th bit is 0 means it is a 3-bytes character.\nThe next byte is a continuation byte which starts with 10 and that's correct.\nBut the second continuation byte does not start with 10, so it is invalid.\n"
   },
   {
     "name": "Decode String",
     "description": "Given an encoded string, return it's decoded string\nThe encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times\nNote that k is guaranteed to be a positive integer\nYou may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].\nExamples:\ns = \"3[a]2[bc]\", return \"aaabcbc\".\ns = \"3[a2[c]]\", return \"accaccacc\".\ns = \"2[abc]3[cd]ef\", return \"abcabccdcdcdef\".\n"
   },
   {
@@ -1863,7 +1863,7 @@ db.questionmodels.insertMany(
   {
     "name": "Rotate Function",
     "description": "Given an array of integers A and let n to be its length\nAssume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a \"rotation function\" F on A as follow:F(k) = 0 * Bk[0] + 1 * Bk[1] +\n\n\n+ (n-1) * Bk[n-1]\nCalculate the maximum value of F(0), F(1),\n\n\n, F(n-1)\nNote:n is guaranteed to be less than 105\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nA = [4, 3, 2, 6]F(0) = (0 * 4) + (1 * 3) + (2 * 2) + (3 * 6) = 0 + 3 + 4 + 18 = 25F(1) = (0 * 6) + (1 * 4) + (2 * 3) + (3 * 2) = 0 + 4 + 6 + 6 = 16F(2) = (0 * 2) + (1 * 6) + (2 * 4) + (3 * 3) = 0 + 6 + 8 + 9 = 23F(3) = (0 * 3) + (1 * 2) + (2 * 6) + (3 * 4) = 0 + 2 + 12 + 12 = 26So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.\n"
   },
   {
@@ -1893,43 +1893,43 @@ db.questionmodels.insertMany(
   {
     "name": "Binary Watch",
     "description": "A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59)\nEach LED represents a zero or one, with the least significant bit on the right\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, the above binary watch reads \"3:25\".\nGiven a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.\nExample:\nInput: n = 1Return: [\"1:00\", \"2:00\", \"4:00\", \"8:00\", \"0:01\", \"0:02\", \"0:04\", \"0:08\", \"0:16\", \"0:32\"]\nNote:\nThe order of output does not matter.\nThe hour must not contain a leading zero, for example \"01:00\" is not valid, it should be \"1:00\".\nThe minute must be consist of two digits and may contain a leading zero, for example \"10:2\" is not valid, it should be \"10:02\".\n"
   },
   {
     "name": "Remove K Digits",
     "description": "Given a non-negative integer num represented as a string, remove k digits from the number so that the new number is the smallest possible\nNote:The length of num is less than 10002 and will be ≥ k\nThe given num does not contain any leading zero\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: num = \"1432219\", k = 3\nOutput: \"1219\"\nExplanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.\nExample 2:\nInput: num = \"10200\", k = 1\nOutput: \"200\"\nExplanation: Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes.\nExample 3:\nInput: num = \"10\", k = 2\nOutput: \"0\"\nExplanation: Remove all the digits from the number and it is left with nothing which is 0.\n"
   },
   {
     "name": "Frog Jump",
     "description": "A frog is crossing a river\nThe river is divided into x units and at each unit there may or may not exist a stone\nThe frog can jump on a stone, but it must not jump into the water\nGiven a list of stones' positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone\nInitially, the frog is on the first stone and assume the first jump must be 1 unit\nIf the frog's last jump was k units, then its next jump must be either k - 1, k, or k + 1 units\nNote that the frog can only jump in the forward direction\nNote:The number of stones is ≥ 2 and is < 1,100\nEach stone's position will be a non-negative integer < 231\nThe first stone's position is always 0\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\n[0,1,3,5,6,8,12,17]There are a total of 8 stones.\nThe first stone at the 0th unit, second stone at the 1st unit,third stone at the 3rd unit, and so on...\nThe last stone at the 17th unit.\nReturn true. The frog can jump to the last stone by jumping\n1 unit to the 2nd stone, then 2 units to the 3rd stone, then2 units to the 4th stone, then 3 units to the 6th stone,4 units to the 7th stone, and 5 units to the 8th stone.\nExample 2:\n[0,1,2,3,4,8,9,11]Return false. There is no way to jump to the last stone as\nthe gap between the 5th and 6th stone is too large.\n"
   },
   {
     "name": "Sum of Left Leaves",
     "description": "Find the sum of all left leaves in a given binary tree\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\n    3   / \\  9  20    /  \\   15   7There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.\n"
   },
   {
     "name": "Convert a Number to Hexadecimal",
     "description": "Given an integer, write an algorithm to convert it to hexadecimal\nFor negative integer, two’s complement method is used\nNote:All letters in hexadecimal (a-f) must be in lowercase\nThe hexadecimal string must not contain extra leading 0s\nIf the number is zero, it is represented by a single zero character '0'; otherwise, the first character in the hexadecimal string will not be the zero character\nThe given number is guaranteed to fit within the range of a 32-bit signed integer\nYou must not use any method provided by the library which converts/formats the number to hex directly\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput:\n26Output:\n\"1a\"Example 2:\nInput:\n-1Output:\n\"ffffffff\""
   },
   {
     "name": "Queue Reconstruction by Height",
     "description": "Suppose you have a random list of people standing in a queue\nEach person is described by a pair of integers (h, k), where h is the height of the person and k is the number of people in front of this person who have a height greater than or equal to h\nWrite an algorithm to reconstruct the queue\nNote:The number of people is less than 1,100\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "ExampleInput:\n[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]Output:\n[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]"
   },
   {
     "name": "Trapping Rain Water II",
     "description": "Given an m x n matrix of positive integers representing the height of each unit cell in a 2D elevation map, compute the volume of water it is able to trap after raining\nNote:Both m and n are less than 110\nThe height of each unit cell is greater than 0 and is less than 20,000\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven the following 3x6 height map:\n[  [1,4,3,1,3,2],  [3,2,1,3,2,4],  [2,3,3,2,3,1]]Return 4.\nThe above image represents the elevation map [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]] before the rain.\nAfter the rain, water are trapped between the blocks. The total volume of water trapped is 4.\n"
   },
   {
@@ -1941,7 +1941,7 @@ db.questionmodels.insertMany(
   {
     "name": "Split Array Largest Sum",
     "description": "Given an array which consists of non-negative integers and an integer m, you can split the array into m non-empty continuous subarrays\nWrite an algorithm to minimize the largest sum among these m subarrays\nNote:If n is the length of array, assume the following constraints are satisfied:1 ≤ n ≤ 10001 ≤ m ≤ min(50, n)",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Examples:\nInput:\nnums = [7,2,5,10,8]m = 2Output:\n18Explanation:\nThere are four ways to split nums into two subarrays.\nThe best way is to split it into [7,2,5] and [10,8],where the largest sum among the two subarrays is only 18.\n"
   },
   {
@@ -1953,13 +1953,13 @@ db.questionmodels.insertMany(
   {
     "name": "Arithmetic Slices",
     "description": "A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "For example, these are arithmetic sequence:\n1, 3, 5, 7, 97, 7, 7, 73, -1, -5, -9The following sequence is not arithmetic. 1, 1, 2, 5, 7\nA zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 <= P < Q < N.\nA slice (P, Q) of array A is called arithmetic if the sequence:\n    A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 < Q.\nThe function should return the number of arithmetic slices in the array A.\nExample:\nA = [1, 2, 3, 4]return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.\n"
   },
   {
     "name": "Third Maximum Number",
     "description": "Given a non-empty array of integers, return the third maximum number in this array\nIf it does not exist, return the maximum number\nThe time complexity must be in O(n)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [3, 2, 1]\nOutput: 1\nExplanation: The third maximum is 1.\nExample 2:\nInput: [1, 2]\nOutput: 2\nExplanation: The third maximum does not exist, so the maximum (2) is returned instead.\nExample 3:\nInput: [2, 2, 3, 1]\nOutput: 1\nExplanation: Note that the third maximum here means the third maximum distinct number.\nBoth numbers with value 2 are both considered as second maximum.\n"
   },
   {
@@ -1995,7 +1995,7 @@ db.questionmodels.insertMany(
   {
     "name": "Maximum XOR of Two Numbers in an Array",
     "description": "Given a non-empty array of numbers, a0, a1, a2, … , an-1, where 0 ≤ ai < 231\nFind the maximum result of ai XOR aj, where 0 ≤ i, j < n\nCould you do this in O(n) runtime?",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: [3, 10, 5, 25, 2, 8]\nOutput: 28\nExplanation: The maximum result is 5 ^ 25 = 28.\n"
   },
   {
@@ -2007,7 +2007,7 @@ db.questionmodels.insertMany(
   {
     "name": "Longest Repeating Character Replacement",
     "description": "Given a string that consists of only uppercase English letters, you can replace any letter in the string with another letter at most k times\nFind the length of a longest substring containing all repeating letters you can get after performing the above operations\nNote:Both the string's length and k will not exceed 104\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput:\ns = \"ABAB\", k = 2Output:\n4Explanation:\nReplace the two 'A's with two 'B's or vice versa.\nExample 2:\nInput:\ns = \"AABABBA\", k = 1Output:\n4Explanation:\nReplace the one 'A' in the middle with 'B' and form \"AABBBBA\".\nThe substring \"BBBB\" has the longest repeating letters, which is 4.\n"
   },
   {
@@ -2019,7 +2019,7 @@ db.questionmodels.insertMany(
   {
     "name": "Number of Segments in a String",
     "description": "Count the number of segments in a string, where a segment is defined to be a contiguous sequence of non-space characters\nPlease note that the string does not contain any non-printable characters\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: \"Hello, my name is John\"\nOutput: 5\n"
   },
   {
@@ -2031,7 +2031,7 @@ db.questionmodels.insertMany(
   {
     "name": "Find Right Interval",
     "description": "Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the \"right\" of i\nFor any interval i, you need to store the minimum interval j's index, which means that the interval j has the minimum start point to build the \"right\" relationship for interval i\nIf the interval j doesn't exist, store -1 for the interval i\nFinally, you need output the stored value of each interval as an array\nNote:You may assume the interval's end point is always bigger than its start point\nYou may assume none of these intervals have the same start point\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [ [1,2] ]\nOutput: [-1]\nExplanation: There is only one interval in the collection, so it outputs -1.\nExample 2:\nInput: [ [3,4], [2,3], [1,2] ]\nOutput: [-1, 0, 1]\nExplanation: There is no satisfied \"right\" interval for [3,4].\nFor [2,3], the interval [3,4] has minimum-\"right\" start point;For [1,2], the interval [2,3] has minimum-\"right\" start point.\nExample 3:\nInput: [ [1,4], [2,3], [3,4] ]\nOutput: [-1, 2, -1]\nExplanation: There is no satisfied \"right\" interval for [1,4] and [3,4].\nFor [2,3], the interval [3,4] has minimum-\"right\" start point.\n"
   },
   {
@@ -2073,13 +2073,13 @@ db.questionmodels.insertMany(
   {
     "name": "Number of Boomerangs",
     "description": "Given n points in the plane that are all pairwise distinct, a \"boomerang\" is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters)\nFind the number of boomerangs\nYou may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive)\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n[[0,0],[1,0],[2,0]]Output:\n2Explanation:\nThe two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]"
   },
   {
     "name": "Find All Numbers Disappeared in an Array",
     "description": "Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once\nFind all the elements of [1, n] inclusive that do not appear in this array\nCould you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n[4,3,2,7,8,2,3,1]Output:\n[5,6]"
   },
   {
@@ -2103,7 +2103,7 @@ db.questionmodels.insertMany(
   {
     "name": "Minimum Moves to Equal Array Elements",
     "description": "Given a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n[1,2,3]Output:\n3Explanation:\nOnly three moves are needed (remember each move increments two elements):\n[1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]"
   },
   {
@@ -2115,7 +2115,7 @@ db.questionmodels.insertMany(
   {
     "name": "Assign Cookies",
     "description": "Assume you are an awesome parent and want to give your children some cookies\nBut, you should give each child at most one cookie\nEach child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj\nIf sj >= gi, we can assign the cookie j to the child i, and the child i will be content\nYour goal is to maximize the number of your content children and output the maximum number\nNote:You may assume the greed factor is always positive\nYou cannot assign more than one cookie to one child\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [1,2,3], [1,1]\nOutput: 1\nExplanation: You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3.\nAnd even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.\nYou need to output 1.\nExample 2:\nInput: [1,2], [1,2,3]\nOutput: 2\nExplanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2.\nYou have 3 cookies and their sizes are big enough to gratify all of the children,You need to output 2.\n"
   },
   {
@@ -2139,7 +2139,7 @@ db.questionmodels.insertMany(
   {
     "name": "Hamming Distance",
     "description": "The Hamming distance between two integers is the number of positions at which the corresponding bits are different\nGiven two integers x and y, calculate the Hamming distance\nNote:0 ≤ x, y < 231\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: x = 1, y = 4\nOutput: 2\nExplanation:\n1   (0 0 0 1)4   (0 1 0 0)       ↑   ↑The above arrows point to positions where the corresponding bits are different.\n"
   },
   {
@@ -2175,7 +2175,7 @@ db.questionmodels.insertMany(
   {
     "name": "Concatenated Words",
     "description": "Given a list of words (without duplicates), please write a program that returns all concatenated words in the given list of words\nA concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: [\"cat\",\"cats\",\"catsdogcats\",\"dog\",\"dogcatsdog\",\"hippopotamuses\",\"rat\",\"ratcatdogcat\"]\nOutput: [\"catsdogcats\",\"dogcatsdog\",\"ratcatdogcat\"]\nExplanation: \"catsdogcats\" can be concatenated by \"cats\", \"dog\" and \"cats\";  \"dogcatsdog\" can be concatenated by \"dog\", \"cats\" and \"dog\"; \"ratcatdogcat\" can be concatenated by \"rat\", \"cat\", \"dog\" and \"cat\".\nNote:\nThe number of elements of the given array will not exceed 10,000The length sum of elements in the given array will not exceed 600,000.\nAll the input string will only include lower case letters.\nThe returned elements order does not matter.\n"
   },
   {
@@ -2217,7 +2217,7 @@ db.questionmodels.insertMany(
   {
     "name": "Magical String",
     "description": "A magical string S consists of only '1' and '2' and obeys the following rules:The string S is magical because concatenating the number of contiguous occurrences of characters '1' and '2' generates the string S itself\nThe first few elements of string S is the following:S = \"1221121221221121122……\"If we group the consecutive '1's and '2's in S, it will be:1   22  11  2  1  22  1  22  11  2  11  22\n\n\n\n\n\nand the occurrences of '1's or '2's in each group are:1   2    2    1   1    2     1    2     2    1    2    2\n\n\n\n\n\nYou can see that the occurrence sequence above is the S itself\nGiven an integer N as input, return the number of '1's in the first N number in the magical string S\nNote:N will not exceed 100,000\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: 6\nOutput: 3\nExplanation: The first 6 elements of magical string S is \"12211\" and it contains three 1's, so return 3.\n"
   },
   {
@@ -2229,7 +2229,7 @@ db.questionmodels.insertMany(
   {
     "name": "Smallest Good Base",
     "description": "For an integer n, we call k>=2 a good base of n, if all digits of n base k are 1\nNow given a string representing n, you should return the smallest good base of n in string format\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: \"13\"\nOutput: \"3\"\nExplanation: 13 base 3 is 111.\nExample 2:\nInput: \"4681\"\nOutput: \"8\"\nExplanation: 4681 base 8 is 11111.\nExample 3:\nInput: \"1000000000000000000\"\nOutput: \"999999999999999999\"\nExplanation: 1000000000000000000 base 999999999999999999 is 11.\nNote:\nThe range of n is [3, 10^18].\nThe string representing n is always valid and will not have leading zeros.\n"
   },
   {
@@ -2247,7 +2247,7 @@ db.questionmodels.insertMany(
   {
     "name": "Zuma Game",
     "description": "Think about Zuma Game\nYou have a row of balls on the table, colored red(R), yellow(Y), blue(B), green(G), and white(W)\nYou also have several balls in your hand\nEach time, you may choose a ball in your hand, and insert it into the row (including the leftmost place and rightmost place)\nThen, if there is a group of 3 or more balls in the same color touching, remove these balls\nKeep doing this until no more balls can be removed\nFind the minimal balls you have to insert to remove all the balls on the table\nIf you cannot remove all the balls, output -1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Examples:\nInput: \"WRRBBW\", \"RB\"\nOutput: -1\nExplanation: WRRBBW -> WRR[R]BBW -> WBBW -> WBB[B]W -> WW\nInput: \"WWRRBBWW\", \"WRBRW\"\nOutput: 2\nExplanation: WWRRBBWW -> WWRR[R]BBWW -> WWBBWW -> WWBB[B]WW -> WWWW -> empty\nInput:\"G\", \"GGGGG\"\nOutput: 2\nExplanation: G -> G[G] -> GG[G] -> empty\nInput: \"RBYYBBRRB\", \"YRBGB\"\nOutput: 3\nExplanation: RBYYBBRRB -> RBYY[Y]BBRRB -> RBBBRRB -> RRRB -> B -> B[B] -> BB[B] -> empty\nNote:\nYou may assume that the initial row of balls on the table won’t have any 3 or more consecutive balls with the same color.\nThe number of balls on the table won't exceed 20, and the string represents these balls is called \"board\" in the input.\nThe number of balls in your hand won't exceed 5, and the string represents these balls is called \"hand\" in the input.\nBoth input strings will be non-empty and only contain characters 'R','Y','B','G','W'.\n"
   },
   {
@@ -2259,7 +2259,7 @@ db.questionmodels.insertMany(
   {
     "name": "Construct the Rectangle",
     "description": "For a web developer, it is very important to know how to design a web page's size\nSo, given a specific rectangular web page’s area, your job by now is to design a rectangular web page, whose length L and width W satisfy the following requirements:1\nThe area of the rectangular web page you designed must equal to the given target area\n2\nThe width W should not be larger than the length L, which means L >= W\n3\nThe difference between length L and width W should be as small as possible\nYou need to output the length L and the width W of the web page you designed in sequence\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: 4\nOutput: [2, 2]\nExplanation: The target area is 4, and all the possible ways to construct it are [1,4], [2,2], [4,1].\nBut according to requirement 2, [1,4] is illegal; according to requirement 3,  [4,1] is not optimal compared to [2,2]. So the length L is 2, and the width W is 2.\nNote:\nThe given area won't exceed 10,000,000 and is a positive integerThe web page's width and length you designed must be positive integers.\n"
   },
   {
@@ -2283,13 +2283,13 @@ db.questionmodels.insertMany(
   {
     "name": "Next Greater Element I",
     "description": "You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2\nFind all the next greater numbers for nums1's elements in the corresponding places of nums2\nThe Next Greater Number of a number x in nums1 is the first greater number to its right in nums2\nIf it does not exist, output -1 for this number\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: nums1 = [4,1,2], nums2 = [1,3,4,2].\nOutput: [-1,3,-1]\nExplanation:\n    For number 4 in the first array, you cannot find the next greater number for it in the second array, so output -1.\n    For number 1 in the first array, the next greater number for it in the second array is 3.\n    For number 2 in the first array, there is no next greater number for it in the second array, so output -1.\nExample 2:\nInput: nums1 = [2,4], nums2 = [1,2,3,4].\nOutput: [3,-1]\nExplanation:\n    For number 2 in the first array, the next greater number for it in the second array is 3.\n    For number 4 in the first array, there is no next greater number for it in the second array, so output -1.\nNote:\nAll elements in nums1 and nums2 are unique.\nThe length of both nums1 and nums2 would not exceed 1000.\n"
   },
   {
     "name": "Diagonal Traverse",
     "description": "Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]Output:  [1,2,4,7,5,3,6,8,9]\nExplanation:\nNote:\nThe total number of elements of the given matrix will not exceed 10,000.\n"
   },
   {
@@ -2325,7 +2325,7 @@ db.questionmodels.insertMany(
   {
     "name": "Relative Ranks",
     "description": "Given scores of N athletes, find their relative ranks and the people with the top three highest scores, who will be awarded medals: \"Gold Medal\", \"Silver Medal\" and \"Bronze Medal\"\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [5, 4, 3, 2, 1]\nOutput: [\"Gold Medal\", \"Silver Medal\", \"Bronze Medal\", \"4\", \"5\"]\nExplanation: The first three athletes got the top three highest scores, so they got \"Gold Medal\", \"Silver Medal\" and \"Bronze Medal\". For the left two athletes, you just need to output their relative ranks according to their scores.\nNote:\nN is a positive integer and won't exceed 10,000.\nAll the scores of athletes are guaranteed to be unique.\n"
   },
   {
@@ -2349,7 +2349,7 @@ db.questionmodels.insertMany(
   {
     "name": "Freedom Trail",
     "description": "In the video game Fallout 4, the quest \"Road to Freedom\" requires players to reach a metal dial called the \"Freedom Trail Ring\", and use the dial to spell a specific keyword in order to open the door\nGiven a string ring, which represents the code engraved on the outer ring and another string key, which represents the keyword needs to be spelled\nYou need to find the minimum number of steps in order to spell all the characters in the keyword\nInitially, the first character of the ring is aligned at 12:00 direction\nYou need to spell all the characters in the string key one by one by rotating the ring clockwise or anticlockwise to make each character of the string key aligned at 12:00 direction and then by pressing the center button\nAt the stage of rotating the ring to spell the key character key[i]:You can rotate the ring clockwise or anticlockwise one place, which counts as 1 step\nThe final purpose of the rotation is to align one of the string ring's characters at the 12:00 direction, where this character must equal to the character key[i]\nIf the character key[i] has been aligned at the 12:00 direction, you need to press the center button to spell, which also counts as 1 step\nAfter the pressing, you could begin to spell the next character in the key (next stage), otherwise, you've finished all the spelling\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: ring = \"godding\", key = \"gd\"\nOutput: 4\nExplanation: For the first key character 'g', since it is already in place, we just need 1 step to spell this character.  For the second key character 'd', we need to rotate the ring \"godding\" anticlockwise by two steps to make it become \"ddinggo\". Also, we need 1 more step for spelling. So the final output is 4.\nNote:\nLength of both ring and key will be in range 1 to 100.\nThere are only lowercase letters in both strings and might be some duplcate characters in both strings.\nIt's guaranteed that string key could always be spelled by rotating the string ring.\n"
   },
   {
@@ -2367,7 +2367,7 @@ db.questionmodels.insertMany(
   {
     "name": "Super Washing Machines",
     "description": "You have n super washing machines on a line\nInitially, each washing machine has some dresses or is empty\nFor each move, you could choose any m (1 ≤ m ≤ n) washing machines, and pass one dress of each washing machine to one of its adjacent washing machines  at the same time\nGiven an integer array representing the number of dresses in each washing machine from left to right on the line, you should find the minimum number of moves to make all the washing machines have the same number of dresses\nIf it is not possible to do it, return -1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example1Input: [1,0,5]\nOutput: 3\nExplanation:\n1st move:    1     0 <-- 5    =>    1     1     4\n2nd move:    1 <-- 1 <-- 4    =>    2     1     3\n3rd move:    2     1 <-- 3    =>    2     2     2\nExample2Input: [0,3,0]\nOutput: 2\nExplanation:\n1st move:    0 <-- 3     0    =>    1     2     0\n2nd move:    1     2 --> 0    =>    1     1     1\nExample3Input: [0,2,0]\nOutput: -1\nExplanation:\nIt's impossible to make all the three washing machines have the same number of dresses.\nNote:\nThe range of n is [1, 10000].\nThe range of dresses number in a super washing machine is [0, 1e5].\n"
   },
   {
@@ -2385,7 +2385,7 @@ db.questionmodels.insertMany(
   {
     "name": "Continuous Subarray Sum",
     "description": "Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to the multiple of k, that is, sums up to n*k where n is also an integer\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [23, 2, 4, 6, 7],  k=6\nOutput: True\nExplanation: Because [2, 4] is a continuous subarray of size 2 and sums up to 6.\nExample 2:\nInput: [23, 2, 6, 4, 7],  k=6\nOutput: True\nExplanation: Because [23, 2, 6, 4, 7] is an continuous subarray of size 5 and sums up to 42.\nNote:\nThe length of the array won't exceed 10,000.\nYou may assume the sum of all the numbers is in the range of a signed 32-bit integer.\n"
   },
   {
@@ -2409,19 +2409,19 @@ db.questionmodels.insertMany(
   {
     "name": "Minesweeper",
     "description": "Let's play the minesweeper game (Wikipedia, online game)!You are given a 2D char matrix representing the game board\n'M' represents an unrevealed mine, 'E' represents an unrevealed empty square, 'B' represents a revealed blank square that has no adjacent (above, below, left, right, and all 4 diagonals) mines, digit ('1' to '8') represents how many mines are adjacent to this revealed square, and finally 'X' represents a revealed mine\nNow given the next click position (row and column indices) among all the unrevealed squares ('M' or 'E'), return the board after revealing this position according to the following rules:If a mine ('M') is revealed, then the game is over - change it to 'X'\nIf an empty square ('E') with no adjacent mines is revealed, then change it to revealed blank ('B') and all of its adjacent unrevealed squares should be revealed recursively\nIf an empty square ('E') with at least one adjacent mine is revealed, then change it to a digit ('1' to '8') representing the number of adjacent mines\nReturn the board when no more squares will be revealed\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput:\n[['E', 'E', 'E', 'E', 'E'], ['E', 'E', 'M', 'E', 'E'], ['E', 'E', 'E', 'E', 'E'], ['E', 'E', 'E', 'E', 'E']]Click : [3,0]\nOutput:\n[['B', '1', 'E', '1', 'B'], ['B', '1', 'M', '1', 'B'], ['B', '1', '1', '1', 'B'], ['B', 'B', 'B', 'B', 'B']]Explanation:\nExample 2:\nInput:\n[['B', '1', 'E', '1', 'B'], ['B', '1', 'M', '1', 'B'], ['B', '1', '1', '1', 'B'], ['B', 'B', 'B', 'B', 'B']]Click : [1,2]\nOutput:\n[['B', '1', 'E', '1', 'B'], ['B', '1', 'X', '1', 'B'], ['B', '1', '1', '1', 'B'], ['B', 'B', 'B', 'B', 'B']]Explanation:\nNote:\nThe range of the input matrix's height and width is [1,50].\nThe click position will only be an unrevealed square ('M' or 'E'), which also means the input board contains at least one clickable square.\nThe input board won't be a stage when game is over (some mines have been revealed).\nFor simplicity, not mentioned rules should be ignored in this problem. For example, you don't need to reveal all the unrevealed mines when the game is over, consider any cases that you will win the game or flag any squares.\n"
   },
   {
     "name": "Minimum Absolute Difference in BST",
     "description": "Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput:\n   1    \\     3    /   2Output:\n1Explanation:\nThe minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).\nNote:\nThere are at least two nodes in this BST.\n"
   },
   {
     "name": "K-diff Pairs in an Array",
     "description": "Given an array of integers and an integer k, you need to find the number of unique k-diff pairs in the array\nHere a k-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their absolute difference is k\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput: [3, 1, 4, 1, 5], k = 2\nOutput: 2\nExplanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).Although we have two 1s in the input, we should only return the number of unique pairs.\nExample 2:\nInput:[1, 2, 3, 4, 5], k = 1\nOutput: 4\nExplanation: There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).\nExample 3:\nInput: [1, 3, 1, 5, 4], k = 0\nOutput: 1\nExplanation: There is one 0-diff pair in the array, (1, 1).\nNote:\nThe pairs (i, j) and (j, i) count as the same pair.\nThe length of the array won't exceed 10,000.\nAll the integers in the given input belong to the range: [-1e7, 1e7].\n"
   },
   {
@@ -2439,7 +2439,7 @@ db.questionmodels.insertMany(
   {
     "name": "Convert BST to Greater Tree",
     "description": "Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: The root of a Binary Search Tree like this:\n              5            /   \\           2     13Output: The root of a Greater Tree like this:\n             18            /   \\          20     13"
   },
   {
@@ -2451,31 +2451,31 @@ db.questionmodels.insertMany(
   {
     "name": "Reverse String II",
     "description": "Given a string and an integer k, you need to reverse the first k characters for every 2k characters counting from the start of the string\nIf there are less than k characters left, reverse all of them\nIf there are less than 2k but greater than or equal to k characters, then reverse the first k characters and left the other as original\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nInput: s = \"abcdefg\", k = 2\nOutput: \"bacdfeg\"\nRestrictions:\n The string consists of lower English letters only.\n Length of the given string and k will in the range [1, 10000]"
   },
   {
     "name": "01 Matrix",
     "description": "Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell\nThe distance between two adjacent cells is 1\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput:\n0 0 00 1 00 0 0Output:\n0 0 00 1 00 0 0Example 2:\nInput:\n0 0 00 1 01 1 1Output:\n0 0 00 1 01 2 1Note:\nThe number of elements of the given matrix will not exceed 10,000.\nThere are at least one 0 in the given matrix.\nThe cells are adjacent in only four directions: up, down, left and right.\n"
   },
   {
     "name": "Diameter of Binary Tree",
     "description": "Given a binary tree, you need to compute the length of the diameter of the tree\nThe diameter of a binary tree is the length of the longest path between any two nodes in a tree\nThis path may or may not pass through the root\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example:\nGiven a binary tree          1         / \\        2   3       / \\      4   5Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].\nNote:\nThe length of path between two nodes is represented by the number of edges between them.\n"
   },
   {
     "name": "Remove Boxes",
     "description": "Given several boxes with different colors represented by different positive numbers\nYou may experience several rounds to remove boxes until there is no box left\nEach time you can choose some continuous boxes with the same color (composed of k boxes, k >= 1), remove them and get k*k points\nFind the maximum points you can get\n",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "Example 1:\nInput:\n[1, 3, 2, 2, 2, 3, 4, 3, 1]Output:\n23Explanation:\n[1, 3, 2, 2, 2, 3, 4, 3, 1]----> [1, 3, 3, 4, 3, 1] (3*3=9 points)----> [1, 3, 3, 3, 1] (1*1=1 points)----> [1, 1] (3*3=9 points)----> [] (2*2=4 points)Note:\nThe number of boxes n would not exceed 100.\n"
   },
   {
     "name": "Friend Circles",
     "description": "Design TinyURL",
-    "difficulty": "difficult",
+    "difficulty": "hard",
     "examples": "There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.\nGiven a N*N matrix M representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.\nExample 1:\nInput:\n[[1,1,0], [1,1,0], [0,0,1]]Output: 2\nExplanation:The 0th and 1st students are direct friends, so they are in a friend circle. The 2nd student himself is in a friend circle. So return 2.\nExample 2:\nInput:\n[[1,1,0], [1,1,1], [0,1,1]]Output: 1\nExplanation:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends, so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.\nNote:\nN is in range [1,200].\nM[i][i] = 1 for all students.\nIf M[i][j] = 1, then M[j][i] = 1.\nDesign TinyURL"
   },
   {

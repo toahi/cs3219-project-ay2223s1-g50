@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+// import { MongoMemoryServer } from 'mongodb-memory-server';
 import 'dotenv/config';
 
 let MONGODB_URI = process.env.DB_CLOUD_URI;
