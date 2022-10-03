@@ -13,7 +13,7 @@ jobs:
   build:
     name: User Service Docker Image to ECR
     runs-on: ubuntu-latest
-    if: ${{ github.owner == 'CS3219-AY2223S1' }}  # build job runs only if merging to master repo
+    if: ${{ github.repository.owner == 'CS3219-AY2223S1' }}  # build job runs only if merging to master repo
     defaults:
        run:
          working-directory: user-service
