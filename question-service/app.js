@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import Question from './model/QuestionModel.js';
 import DIFFICULTY from './const.js';
-import FRONTEND_SERVICE_LOCAL_URL from './url.js';
+import URL from './url.js';
 import cookieParser from "cookie-parser"
 import auth from './auth.js';
 import 'dotenv/config.js';
@@ -12,7 +12,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: [FRONTEND_SERVICE_LOCAL_URL],
+  origin: [URL.FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
@@ -28,6 +28,12 @@ app.get('/get-two-questions-by-diff', async (req, res) => {
     await auth.validateAccessTokenAndRole(req, auth.ROLES.User);
   } catch (e) {
     console.log(`\nAUTH FAILED: ${JSON.stringify(e)}`);
+    if (!e.response) {
+      console.log(
+        `[GET 2 QUESTIONS BY DIFFICULTY][AUTH] Could not call user service! Error:\n ${e}`,
+      );
+      return res.status(500).json({ error: "Had problem calling user service!" });
+    }
     return res.status(e.response.status).json(e.response.data);
   }
 
@@ -78,6 +84,12 @@ app.post('/create-question', async (req, res) => {
     await auth.validateAccessTokenAndRole(req, auth.ROLES.Admin);
   } catch (e) {
     console.log(`\nAUTH FAILED:\n ${JSON.stringify(e)}`);
+    if (!e.response) {
+      console.log(
+        `[GET 2 QUESTIONS BY DIFFICULTY][AUTH] Could not call user service! Error:\n ${e}`,
+      );
+      return res.status(500).json({ error: "Had problem calling user service!" });
+    }
     return res.status(e.response.status).json(e.response.data);
   }
 
