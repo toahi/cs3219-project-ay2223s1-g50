@@ -21,5 +21,5 @@ COPY . .
 
 EXPOSE 8090
 # command below to be updated
-# CMD ["npm", "run", "dev"]
-CMD [ "node", "index.js" ]
+CMD ["npm", "run", "dev"]
+# CMD [ "node", "index.js" ]

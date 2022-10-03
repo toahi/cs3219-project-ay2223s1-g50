@@ -41,8 +41,12 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cs3219-project-ay2223s1-g50-user
         IMAGE_TAG: latest 
+        DB_USERS_CLOUD_URI: ${{ secrets.DB_USERS_CLOUD_URI }}
+        REDIS_USERS_CLOUD_URI: ${{ secrets.REDIS_USERS_CLOUD_URI }}
+        JWT_ACCESS_TOKEN_SECRET: ${{ secrets.JWT_ACCESS_TOKEN_SECRET }}
+        JWT_REFRESH_TOKEN_SECRET: ${{ secrets.JWT_REFRESH_TOKEN_SECRET }}
       run: | 
-        docker build --build-arg DB_USERS_CLOUD_URI=secrets.DB_USERS_CLOUD_URI --build-arg REDIS_USERS_CLOUD_URI=secrets.REDIS_USERS_CLOUD_URI --build-arg JWT_ACCESS_TOKEN_SECRET=secrets.JWT_ACCESS_TOKEN_SECRET --build-arg JWT_REFRESH_TOKEN_SECRET=secrets.JWT_REFRESH_TOKEN_SECRET -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build --build-arg DB_USERS_CLOUD_URI=$DB_USERS_CLOUD_URI --build-arg REDIS_USERS_CLOUD_URI=$REDIS_USERS_CLOUD_URI --build-arg JWT_ACCESS_TOKEN_SECRET=$JWT_ACCESS_TOKEN_SECRET --build-arg JWT_REFRESH_TOKEN_SECRET=$JWT_REFRESH_TOKEN_SECRET -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Success!
