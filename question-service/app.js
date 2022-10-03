@@ -1,16 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 import Question from './model/QuestionModel.js';
+import DIFFICULTY from './const.js';
 import cookieParser from "cookie-parser"
 import auth from './auth.js';
 import 'dotenv/config.js';
+
+const FRONTEND_SERVICE_URL = process.env.NODE_ENV == 'test'
+  ? process.env.FRONTEND_SERVICE_LOCAL_URL
+  : process.env.FRONTEND_SERVICE_PROD_URL;
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.DEPLOY_URL || 'http://localhost:3000'],
+  origin: [FRONTEND_SERVICE_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
@@ -21,6 +26,7 @@ app.get('/', (_, res) => res.send('Question service is running well!'));
 app.get('/get-two-questions-by-diff', async (req, res) => {
   console.log('\nGETTING 2 QUESTIONS BY DIFFICULTY...');
 
+  // TOKEN/ROLE AUTH 
   try {
     await auth.validateAccessTokenAndRole(req, auth.ROLES.User);
   } catch (e) {
@@ -28,6 +34,7 @@ app.get('/get-two-questions-by-diff', async (req, res) => {
     return res.status(e.response.status).json(e.response.data);
   }
 
+  // VALIDATION
   const { difficulty } = req.body;
   if (!difficulty) {
     console.log(
@@ -37,7 +44,16 @@ app.get('/get-two-questions-by-diff', async (req, res) => {
       error: 'Please provide a difficulty level!',
     });
   }
+  if (!Object.values(DIFFICULTY).includes(difficulty)) {
+    console.log(
+      '[GET 2 QUESTIONS BY DIFFICULTY][VALIDATION] Invalid difficulty!',
+    );
+    return res.status(400).json({
+      error: 'Please provide a valid difficulty level (easy, medium, hard)! ',
+    });
+  }
 
+  // RETRIEVE QUESTIONS
   const questions = await Question.getQuestionsByDifficulty(difficulty);
   if (!questions) {
     console.log(`[GET 2 QUESTIONS BY DIFFICULTY][FAILURE] Server could not get questions by difficulty ${difficulty}!`);
@@ -60,6 +76,7 @@ app.get('/get-two-questions-by-diff', async (req, res) => {
 app.post('/create-question', async (req, res) => {
   console.log('\nCREATING QUESTION...');
 
+  // TOKEN/ROLE AUTH
   try {
     await auth.validateAccessTokenAndRole(req, auth.ROLES.Admin);
   } catch (e) {
@@ -67,6 +84,7 @@ app.post('/create-question', async (req, res) => {
     return res.status(e.response.status).json(e.response.data);
   }
 
+  // VALIDATION
   const { name, description, difficulty, examples } = req.body;
   if (!name || !description || !difficulty || !examples) {
     console.log(
@@ -76,7 +94,16 @@ app.post('/create-question', async (req, res) => {
       error: 'Please provide name, description, difficulty, and examples!',
     });
   }
+  if (!Object.values(DIFFICULTY).includes(difficulty)) {
+    console.log(
+      '[GET 2 QUESTIONS BY DIFFICULTY][VALIDATION] Invalid difficulty!',
+    );
+    return res.status(400).json({
+      error: 'Please provide a valid difficulty level (easy, medium, hard)! ',
+    });
+  }
 
+  // CREATE QUESTION
   const newQuestion = await Question.createQuestion(name, description, difficulty, examples);
   if (!newQuestion) {
     console.log(`[CREATE][FAILURE] Server could not create new question ${name}!`);
