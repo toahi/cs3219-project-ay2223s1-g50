@@ -41,8 +41,9 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cs3219-project-ay2223s1-g50-question
         IMAGE_TAG: latest 
+        DB_QUESTIONS_CLOUD_URI: ${{ secrets.DB_QUESTIONS_CLOUD_URI }}
       run: |
-        docker build --build-arg DB_QUESTIONS_CLOUD_URI=secrets.DB_QUESTIONS_CLOUD_URI -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build --build-arg DB_QUESTIONS_CLOUD_URI=$DB_QUESTIONS_CLOUD_URI -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Success!
