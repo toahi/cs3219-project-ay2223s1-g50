@@ -10,9 +10,23 @@ on:
       - "question-service/**"
 
 jobs:
+
+  test:
+    name: Question Service Docker Image to ECR
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: ./question-service
+    steps:
+    - name: Run tests
+      run: |
+        npm ci
+        npm test
+
   build:
     name: Question Service Docker Image to ECR
     runs-on: ubuntu-latest
+    if: ${{ github.owner == CS3219-AY2223S1 }}  # build job runs only if merging to master repo
     defaults:
        run:
          working-directory: ./question-service
@@ -20,11 +34,6 @@ jobs:
 
     - name: Check out repository
       uses: actions/checkout@v3
-
-    - name: Run tests
-      run: |
-        npm ci
-        npm test
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
