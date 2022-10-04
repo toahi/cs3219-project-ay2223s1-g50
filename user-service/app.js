@@ -3,6 +3,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './model/UserModel.js';
+import URL from './url.js';
 import auth from './auth.js';
 import session from "express-session";
 import cookieParser from "cookie-parser"
@@ -16,7 +17,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.DEPLOY_URL || 'http://localhost:8080'],
+  origin: [URL.FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
@@ -123,10 +124,10 @@ app.post('/login', async (req, res) => {
   );
   console.log(`[LOGIN][TOKEN] Created access token '${accessToken}' successfully!`);
 
-  console.log(`[LOGIN][SUCCESS] Server logged in user ${username} successfully!`);
-
   req.session.user = username
   req.session.token = accessToken
+
+  console.log(`[LOGIN][SUCCESS] Server logged in user ${username} successfully!`);
 
   return res.status(200).json({success: 'Logged in successfully!', accessToken}); 
 });
@@ -134,33 +135,35 @@ app.post('/login', async (req, res) => {
 // The API calls below here onwards require authentication
 app.use(auth.validateAccessToken);
 
-app.get('/verify-token-or-role', async (req, res) => {
-  console.log('\nVERIFY TOKEN...');
+app.post('/verify-token-or-role', async (req, res) => {
+  console.log('\nVERIFY TOKEN OR ROLE...');
   console.log(req.body)
 
   const role = req.body.role;
+  const validateRoles = auth.validateRoles([role]);
   if (role) {
-    if (!auth.validateRoles([role])) {
+    if (!validateRoles(req)) {
       console.log('[VERIFY][FAILURE] User has a valid access token but role is not authorized!');
-      return res.status(403).json({ 'error': 'User has a valid access token but role is not authorized!' }); // Forbidden code, user is unauthorized (no privilege for action) 
+      return res.status(403).json({error: 'User has a valid access token but role is not authorized!' }); // Forbidden code, user is unauthorized (no privilege for action) 
     }
     console.log('[VERIFY][SUCCESS] User has a valid access token and a valid role!');
-    return res.status(200).json({success: 'User has a valid access token and a valid role!'});
+    return res.status(200).json({success: 'User has a valid access token and a valid role!', username: req.user});
   }
 
   console.log('[VERIFY][SUCCESS] User has a valid access token!');
-  return res.status(200).json({success: 'User have a valid access token!'});
+  return res.status(200).json({success: 'User have a valid access token!', username: req.user});
 });
 
 app.put('/update', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
   // currently only allow password updates
   console.log('\nUPDATE...');
   console.log(req.body)
+
   const username = req.body.username;
 
   const {newPassword} = req.body;
   if (!newPassword) {
-    console.log('[UPDATE][VALIDATION] Client did not provide  new password!');
+    console.log('[UPDATE][VALIDATION] Client did not provide new password!');
     return res.status(400).json({error: 'Please provide new password!'});
   }
 
@@ -198,10 +201,10 @@ app.post('/logout', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
     if (err) {
       console.log(`[LOGOUT][UNSUCCESSFUL] Server could not log out user ${req.username} successfully!`);
       return res.status(500).json({message: 'Unable to log out'});
-    } else {
-      console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
-      return res.status(200).json({message: 'Successfully logged out!'});
     }
+
+    console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
+    return res.status(200).json({message: 'Successfully logged out!'});
   })
 });
 
@@ -227,3 +230,4 @@ app.delete('/delete', auth.validateRoles([auth.ROLES.User]), async (req, res) =>
 });
 
 export default app;
+

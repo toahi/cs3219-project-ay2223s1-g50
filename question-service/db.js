@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 // import { MongoMemoryServer } from 'mongodb-memory-server';
 import 'dotenv/config';
 
-let MONGODB_URI = process.env.DB_USERS_CLOUD_URI;
+let MONGODB_URI = process.env.DB_QUESTIONS_CLOUD_URI;
 
 const open = async () => {
   // if (process.env.NODE_ENV === 'test') {
