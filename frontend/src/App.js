@@ -4,6 +4,7 @@ import LoginPage from "./components/LoginPage";
 import NavBar from "./components/layouts/Navbar";
 import DashBoard from "./components/Dashboard";
 import RequireAuth from "./components/protected-routes/RequireAuth";
+import ExistingAuth from "./components/protected-routes/ExistingAuth";
 import UserContextProvider from "./components/context/user-context";
 import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
@@ -18,16 +19,19 @@ function App() {
         <UserContextProvider>
         <div className="App">
             <NavBar />
-            {/* <Box display={"flex"} flexDirection={"column"} padding={"4rem"}> */}
                 <Router>
                     <Routes>
-                        {/* <Route element={<ExistingAuth />}> */}
-                            <Route exact path="/" element={<Hero />} />
-                            <Route path="/signup" element={<SignupPage />} />
-                            <Route path="/login" element={<LoginPage />} />
-                        {/* </Route> */}
+
+                        {/** Public routes */}
+                        <Route exact path="/" element={<Hero />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/loading" element={<LoadingPage />} />
+
+                        {/** Check for existing sessions */}
+                        <Route element={<ExistingAuth />}>
+                            <Route path="/signup" element={<SignupPage />} />
+                            <Route path="/login" element={<LoginPage />} />
+                        </Route>
 
                         {/** Protected paths */}
                         <Route element={<RequireAuth />}>
@@ -42,7 +46,6 @@ function App() {
                         <Route path='*' element={<PageNotFound />}/>
                     </Routes>
                 </Router>
-            {/* </Box> */}
         </div>
         </UserContextProvider>
     );
