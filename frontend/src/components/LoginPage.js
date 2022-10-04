@@ -92,11 +92,11 @@ const LoginPage = () => {
     </Dialog>
 
     return (
-        <Box
+        <Box data-testid="login-page"
             display={"flex"}
             flexDirection={"column"}
             width={"50%"}
-            margin={"auto"}
+            margin={"4rem auto auto"}
             border={"solid #e2f0f1 2px"}
             borderRadius={"5%"}
             padding={"50px 100px"}
@@ -106,6 +106,7 @@ const LoginPage = () => {
                 Login to PeerPrep
             </Typography>
             <TextField
+                data-testid="login-page-username"
                 error={usernameIsEmpty}
                 label="Username"
                 helperText={usernameIsEmpty && "Field cannot be empty."}
@@ -114,6 +115,7 @@ const LoginPage = () => {
                 autoFocus
             />
             <TextField
+                data-testid="login-page-password"
                 error={passwordIsEmpty}
                 label="Password"
                 helperText={passwordIsEmpty && "Field cannot be empty."}

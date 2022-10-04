@@ -127,7 +127,7 @@ function SignupPage() {
             display={"flex"}
             flexDirection={"column"}
             width={"50%"}
-            margin={"auto"}
+            margin={"4rem auto auto"}
             border={"solid #e2f0f1 2px"}
             borderRadius={"5%"}
             padding={"50px 100px 100px"}
