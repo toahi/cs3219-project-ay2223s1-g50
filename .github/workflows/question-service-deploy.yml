@@ -48,9 +48,9 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: Download Amazon ECS task definition
-      run: |
-        aws ecs describe-task-definition --task-definition cs3219-project-ay2223s1-g50 --query taskDefinition > cs3219-project-ay2223s1-g50.json
+    # - name: Download Amazon ECS task definition
+    #   run: |
+    #     aws ecs describe-task-definition --task-definition cs3219-project-ay2223s1-g50 --query taskDefinition > cs3219-project-ay2223s1-g50.json
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
