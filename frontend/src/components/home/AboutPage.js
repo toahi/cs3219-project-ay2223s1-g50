@@ -49,7 +49,7 @@ const howDoesPeerPrepWorks =
         (
         <Box sx={{display: "flex", justifyContent: "space-between", background: "cyan", height: "500px", marginTop: "4rem"}}>
             <Box sx={{margin:"auto"}}>
-            <Typography sx ={{width: "300px", backgroundColor: "blue", color:"white", padding: "1rem 2rem", display: "inline-block",
+            <Typography sx ={{width: "300px", backgroundColor: "black", color:"white", padding: "1rem 2rem", display: "inline-block",
                             borderRadius: "10px", verticalAlign: "middle"}} variant="h2">
                 How does PeerPrep works?
             </Typography>
