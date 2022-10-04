@@ -8,7 +8,7 @@ import ExistingAuth from "./components/protected-routes/ExistingAuth";
 import UserContextProvider from "./components/context/user-context";
 import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
-import Hero from "./components/home/Hero";
+import Hero from "./components/home/HeroPage";
 import Profile from "./components/Profile";
 import Interview from "./components/Interview";
 import AboutPage from "./components/home/AboutPage";

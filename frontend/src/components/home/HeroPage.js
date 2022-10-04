@@ -1,5 +1,6 @@
-import classes from "./Hero.module.css";
+import classes from "./HeroPage.module.css";
 import { Button } from "@mui/material";
+
 const Hero = () => {
     return (
         <div className={classes.container}>
