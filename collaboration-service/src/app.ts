@@ -5,9 +5,8 @@ import { RegisterRoutes } from '../build/routes'
 import { errorHandler, requestLogger } from './middleware/logging'
 import { corsWithOptions } from './middleware/cors'
 import cookieParser from 'cookie-parser'
-import { MatchSocket } from './routes/match/match.socket'
+import { CollaborationSocketHandler } from './routes/collaboration/collaboration.socket'
 import { Server } from 'socket.io'
-import { createServer } from 'http'
 import { userServiceClientImpl } from './clients/user-service/user-service.client'
 
 export const app: Application = express()
@@ -25,4 +24,16 @@ RegisterRoutes(app)
 
 app.use(errorHandler)
 
-export const socketIo = new MatchSocket(new Server(), userServiceClientImpl)
+export const io = new Server({
+  cors: {
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  },
+})
+
+const socketPort = Number(process.env.SOCKET_PORT) ?? 3000
+io.listen(socketPort)
+console.log(`Socket live at port ${socketPort}`)
+
+// bind event handler
+new CollaborationSocketHandler(io, userServiceClientImpl)

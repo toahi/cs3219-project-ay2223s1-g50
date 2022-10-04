@@ -2,9 +2,9 @@
 
 version: '3'
 services:
-  service:
-    container_name: service
-    image: nhzaci/service
+  some-service:
+    container_name: some-service
+    image: nhzaci/some-service
     restart: always
     build: .
     ports:

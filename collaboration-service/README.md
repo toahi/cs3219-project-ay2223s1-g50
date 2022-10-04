@@ -1,4 +1,4 @@
-# Matching Service
+# Collaboration Service
 
 ## Setup for development
 
