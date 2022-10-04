@@ -11,6 +11,13 @@ import LoadingPage from "./components/LoadingPage";
 import Onboarding from "./components/home/Onboarding";
 import Profile from "./components/Profile";
 import Interview from "./components/Interview";
+import AboutPage from "./components/home/AboutPage";
+
+const styles = {
+  root: {
+    padding: "10px"
+  }
+};
 
 function App() {
 
@@ -18,7 +25,7 @@ function App() {
         <UserContextProvider>
         <div className="App">
             <NavBar />
-            <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
+            {/* <Box display={"flex"} flexDirection={"column"} padding={"4rem"}> */}
                 <Router>
                     <Routes>
                         {/* <Route element={<ExistingAuth />}> */}
@@ -26,6 +33,7 @@ function App() {
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/login" element={<LoginPage />} />
                         {/* </Route> */}
+                        <Route path="/about" element={<AboutPage />} />
                         <Route path="/loading" element={<LoadingPage />} />
 
                         {/** Protected paths */}
@@ -41,7 +49,7 @@ function App() {
                         <Route path='*' element={<PageNotFound />}/>
                     </Routes>
                 </Router>
-            </Box>
+            {/* </Box> */}
         </div>
         </UserContextProvider>
     );
