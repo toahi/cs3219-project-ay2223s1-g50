@@ -8,7 +8,7 @@ import RequireAuth from "./components/protected-routes/RequireAuth";
 import UserContextProvider from "./components/context/user-context";
 import PageNotFound from "./components/PageNotFound";
 import LoadingPage from "./components/LoadingPage";
-import ExistingAuth from "./components/protected-routes/ExistingAuth";
+import Onboarding from "./components/home/Onboarding";
 import Profile from "./components/Profile";
 import Interview from "./components/Interview";
 
@@ -21,11 +21,11 @@ function App() {
             <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
                 <Router>
                     <Routes>
-                        <Route element={<ExistingAuth />}>
-                            <Route exact path="/" element={<Navigate replace to="/signup" />} />
+                        {/* <Route element={<ExistingAuth />}> */}
+                            <Route exact path="/" element={<Onboarding />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/login" element={<LoginPage />} />
-                        </Route>
+                        {/* </Route> */}
                         <Route path="/loading" element={<LoadingPage />} />
 
                         {/** Protected paths */}
