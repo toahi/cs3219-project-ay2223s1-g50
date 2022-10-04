@@ -31,7 +31,7 @@
     font-size: 25px;
 }
 
-image {
+.image {
     height: 500px;
     border-radius: 50%;
     margin: 3rem auto 0px;
