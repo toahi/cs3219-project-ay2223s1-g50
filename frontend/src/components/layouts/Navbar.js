@@ -14,7 +14,8 @@ const NavBar = () => {
   const userContext = React.useContext(UserContext)
   const username = userContext.username
   const token = userContext.token
-  console.log(token)
+  
+  const logoLink = token ? "/signup" : "/about";
   
   const handleLogout = () => {
       axios.post(URL_LOGOUT_USER_SVC, {},{ headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
@@ -27,7 +28,7 @@ const NavBar = () => {
     <div data-testid="navbar" >
       <Navbar bg="dark" variant="dark" className="py-3">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand href={logoLink}>
             <Logo size="h4"/>
           </Navbar.Brand>
           <Nav className="justify-content-end">
