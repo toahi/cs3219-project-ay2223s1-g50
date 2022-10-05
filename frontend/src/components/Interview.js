@@ -20,7 +20,6 @@ const Interview = () => {
   const [questionTwoTitle, setQuestionTwoTitle] = React.useState("");
   const [questionTwoBody, setQuestionTwoBody] = React.useState("");
   const [questionTwoExample, setQuestionTwoExample] = React.useState("");
-  const test = React.useRef("");
   const token = userContext.token;
 
   const client = new Client(URI_COLLABORATION_SVC, {
