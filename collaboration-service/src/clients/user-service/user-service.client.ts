@@ -21,15 +21,20 @@ export class UserServiceClientImpl extends UserServiceClient {
       role,
     }
 
-    return axios.post(
-      `${process.env.USER_SERVICE_URL}/verify-token-or-role`,
-      body,
-      {
-        headers: {
-          authorization: token,
-        },
-      }
-    )
+    try {
+      return axios.post(
+        `${process.env.USER_SERVICE_URL}/verify-token-or-role`,
+        body,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      )
+    } catch (e) {
+      console.log(e);
+      return { error: e + "" };
+    }
   }
 }
 

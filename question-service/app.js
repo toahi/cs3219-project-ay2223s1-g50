@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.get('/', (_, res) => res.send('Question service is running well!'));
 
-app.get('/get-two-questions-by-diff', async (req, res) => {
+app.post('/get-two-questions-by-diff', async (req, res) => {
   console.log('\nGETTING 2 QUESTIONS BY DIFFICULTY...');
 
   // TOKEN/ROLE AUTH 
