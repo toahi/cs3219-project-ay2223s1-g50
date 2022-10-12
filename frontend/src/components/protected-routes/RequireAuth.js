@@ -4,6 +4,7 @@ import { URL_VALIDATE_SESSION_SVC } from "../../configs";
 import { Navigate, Outlet } from "react-router-dom";
 import { UserContext } from "../context/user-context";
 import LoadingPage from "../LoadingPage"
+import Dashboard from "../Dashboard";
 
 axios.defaults.withCredentials = true;
 
@@ -37,7 +38,7 @@ const RequireAuth = () => {
         return () => {}
     }, [])
 
-    return isLoading ? <LoadingPage /> : isLoggedIn ? <Outlet /> : <Navigate to='/login' />
+    return isLoading ? <LoadingPage /> : isLoggedIn ? <Dashboard /> : <Navigate to='/login' />
 }
 
 export default RequireAuth
