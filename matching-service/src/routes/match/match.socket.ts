@@ -132,7 +132,7 @@ export class MatchSocket {
   cancelFindMatch(socket: Socket) {
     Object.entries(this.queues).forEach(([key, value]) => {
       this.queues[key as Difficulty] = value.filter(
-        (username) => username !== socket.data.username
+        (socketId) => socketId !== socket.id
       )
     })
   }

@@ -2,6 +2,20 @@
 
 This is a template repository for CS3219 project.
 
+## Installing dependencies
+
+```bash
+# from project root
+npm run installAll
+```
+
+## Running all services and frontend
+
+```bash
+# from project root
+npm run dev
+```
+
 ## User and Question Service
 1. Rename `.env.sample` file to `.env`.
 2. Create a Cloud DB URL using Mongo Atlas.

@@ -18,10 +18,9 @@ import { io as Client } from 'socket.io-client'
 function Dashboard() {
   const navigate = useNavigate()
   const userContext = React.useContext(UserContext)
-  const [isDashboardDialogOpen, setIsDashboardDialogOpen] = useState(false)
+  const [isFindingMatch, setIsFindingMatch] = useState(false)
   const [dialogTitle, setDialogTitle] = useState('')
   const [dialogMsg, setDialogMsg] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
 
   const token = userContext.token
   const MatchEvents = {
@@ -45,7 +44,7 @@ function Dashboard() {
       <Button
         variant={'outlined'}
         onClick={() => selectQuestionDifficulty(difficulty)}
-        disabled={isLoading}
+        disabled={isFindingMatch}
       >
         {difficulty}
       </Button>
@@ -62,28 +61,33 @@ function Dashboard() {
   )
 
   const selectQuestionDifficulty = async (difficulty) => {
-    setIsLoading(true)
+    setIsFindingMatch(true)
     client.emit(MatchEvents.FindMatch, {
       difficulty,
     })
   }
 
-  const closeDialog = () => setIsDashboardDialogOpen(false)
+  const closeDialog = () => {
+    client.emit(MatchEvents.CancelFindMatch)
+    setIsFindingMatch(false)
+  }
 
   const dashboardDialog = (
-    <Dialog open={isDashboardDialogOpen} onClose={closeDialog}>
-      <DialogTitle>{dialogTitle}</DialogTitle>
+    <Dialog open={isFindingMatch} onClose={closeDialog}>
+      <DialogTitle>Finding a match...</DialogTitle>
       <DialogContent>
-        <DialogContentText>{dialogMsg}</DialogContentText>
+        <DialogContentText>
+          Please wait while we find you a match
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeDialog}>Done</Button>
+        <Button onClick={closeDialog}>Cancel</Button>
       </DialogActions>
     </Dialog>
   )
 
   const setErrorDialog = (msg) => {
-    setIsDashboardDialogOpen(true)
+    setIsFindingMatch(true)
     setDialogTitle('Error')
     setDialogMsg(msg)
   }
