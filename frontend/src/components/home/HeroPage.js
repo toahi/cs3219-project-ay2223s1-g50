@@ -12,7 +12,6 @@ const Hero = () => {
                 <Button className={classes["button-sign-up"]} variant="contained" href="/signup" style={{fontSize: "1.3rem", width: "45%", height: "4rem"}}>SIGN UP</Button>
             </div>
             </div>
-            {/* <img className={classes.image} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqTCEe8NPl1pHhHt1DFy1OMtldq3P_RQ0qA&usqp=CAU" /> */}
             <div className={classes["image-container"]}>
                 <img className={classes.image} src="https://img.freepik.com/free-vector/man-having-online-job-interview_52683-43379.jpg" />
             </div>
