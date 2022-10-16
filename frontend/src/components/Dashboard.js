@@ -40,15 +40,15 @@ function Dashboard() {
     Hard: 'Hard',
   }
   const difficultyButtons = Object.values(Difficulty).map((difficulty) => (
-    <Box display={'flex'} flexDirection={'column'} key={difficulty}>
       <Button
         variant={'outlined'}
         onClick={() => selectQuestionDifficulty(difficulty)}
         disabled={isFindingMatch}
+        key={difficulty}
+        sx = {{backgroundColor: "white", padding: "20px 0", margin: "2.5px 0"}}
       >
         {difficulty}
       </Button>
-    </Box>
   ))
 
   client.on(
@@ -93,30 +93,32 @@ function Dashboard() {
   }
 
   return (
-    <Box
-      display={'flex'}
-      alignitems={'center'}
-      flexDirection={'column'}
-      flexShrink={'0'}
-      width={'100%'}
-      alignment={'center'}
-      justifyContent={'center'}
-    >
-      <Typography
-        variant={'h3'}
-        marginBottom={'2rem'}
+    <Box>
+      <Box
         display={'flex'}
-        alignitems={'center'}
+        alignItems={'center'}
+        flexDirection={'column'}
+        flexShrink={'0'}
+        width={'100%'}
+        alignment={'center'}
+        justifyContent={'center'}
+        marginTop={'5%'}
       >
-        Welcome
-      </Typography>
-      <Typography variant={'subtitle1'} marginBottom={'2rem'}>
-        Please select your difficulty level
-      </Typography>
-
+        <Typography
+          variant={'h3'}
+          marginBottom={'2rem'}
+        >
+          Welcome
+        </Typography>
+        <Typography variant={'subtitle1'} marginBottom={'2rem'}>
+          Please select your difficulty level
+        </Typography>
+        {dashboardDialog}
+      </Box>
+    <Box display={'flex'} flexDirection={'column'} sx={{padding:" 0 40%"}}>
       {difficultyButtons}
-      {dashboardDialog}
     </Box>
+  </Box>
   )
 }
 

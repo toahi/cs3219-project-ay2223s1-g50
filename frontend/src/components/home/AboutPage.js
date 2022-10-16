@@ -7,7 +7,7 @@ import MyAccordion from '../ui/MyAccordion';
 const whatIsPeerPrep =
      (
     <Box sx={{textAlign: "left", display: "flex", padding: "100px 200px 0", justifyContent: "space-between"}}>
-        <Box component="img" sx={{height: "350px", width: "425px", margin: "auto"}} src="https://www.cointribune.com/app/uploads/2021/08/dogecoin.jpg?nowebp" />
+        <Box component="img" sx={{height: "350px", width: "475px", margin: "auto"}} src="https://www.cointribune.com/app/uploads/2021/08/dogecoin.jpg?nowebp" />
         <Box sx={{margin: "auto"}}>
         <Typography variant="h2">What is PeerPrep?</Typography>
         <Typography variant="h5" sx={{width: "450px", lineHeight: "50px"}}>PeerPrep is Singapore's #1 online platform for users to prepare for online coding interviews. Users can role play as the interviewer or the interviewee in a simulated online coding interview environment.</Typography>
