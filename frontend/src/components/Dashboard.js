@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  LinearProgress
 } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
@@ -76,6 +77,7 @@ function Dashboard() {
     <Dialog open={isFindingMatch} onClose={closeDialog}>
       <DialogTitle>Finding a match...</DialogTitle>
       <DialogContent>
+        <LinearProgress />
         <DialogContentText>
           Please wait while we find you a match
         </DialogContentText>
