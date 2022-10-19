@@ -16,15 +16,15 @@ import { UserContext } from './context/user-context'
 import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
 import Card from "./ui/Card"
+import Timer from './ui/Timer';
 
 function Dashboard() {
   const navigate = useNavigate()
   const userContext = React.useContext(UserContext)
   const [isFindingMatch, setIsFindingMatch] = useState(false)
-  const [dialogTitle, setDialogTitle] = useState('')
-  const [dialogMsg, setDialogMsg] = useState('')
-
+  const [noMatch, setNoMatch] = useState(false)
   const token = userContext.token
+
   const MatchEvents = {
     FindMatch: 'find_match',
     MatchFound: 'match_found',
@@ -36,26 +36,10 @@ function Dashboard() {
     },
   })
 
-  // const Difficulty = {
-  //   Easy: 'Easy',
-  //   Medium: 'Medium',
-  //   Hard: 'Hard',
-  // }
-  // const difficultyButtons = Object.values(Difficulty).map((difficulty) => (
-  //     <Button
-  //       variant={'outlined'}
-  //       onClick={() => selectQuestionDifficulty(difficulty)}
-  //       disabled={isFindingMatch}
-  //       key={difficulty}
-  //       sx = {{backgroundColor: "white", padding: "20px 0", margin: "2.5px 0"}}
-  //     >
-  //       {difficulty}
-  //     </Button>
-  // ))
-
   client.on(
     MatchEvents.MatchFound,
     async ({ roomId, difficulty, questions }) => {
+      clearTimeout(matchmakingTimeout) // remove timeout for matchmaking if match found
       navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
         state: { questions },
       })
@@ -64,6 +48,7 @@ function Dashboard() {
 
   const selectQuestionDifficulty = async (difficulty) => {
     setIsFindingMatch(true)
+    matchmakingTimeout() // add timeout event for matchmaking
     client.emit(MatchEvents.FindMatch, {
       difficulty,
     })
@@ -74,9 +59,19 @@ function Dashboard() {
     setIsFindingMatch(false)
   }
 
+  const matchmakingTimeout = () => {
+    setTimeout(closeDialog, 30000); // 30000 = 30 seconds
+    setTimeout(() => setNoMatch(true), 30000); // 30000 = 30 seconds
+  }
+
   const dashboardDialog = (
     <Dialog open={isFindingMatch} onClose={closeDialog}>
+      <Box sx={{display: "flex"}}>
       <DialogTitle>Finding a match...</DialogTitle>
+      <Box sx={{marginTop:"0.5rem"}}>
+        <Timer />
+      </Box>
+      </Box>
       <DialogContent>
         <LinearProgress />
         <DialogContentText>
@@ -89,11 +84,31 @@ function Dashboard() {
     </Dialog>
   )
 
-  const setErrorDialog = (msg) => {
-    setIsFindingMatch(true)
-    setDialogTitle('Error')
-    setDialogMsg(msg)
+  const closeNoMatchDialog = () => {
+    setNoMatch(false)
   }
+
+  const noMatchDialog = (
+    <Dialog open={noMatch} onClose={closeNoMatchDialog}>
+      <DialogTitle>Unable to find a match</DialogTitle>
+      <DialogContent sx={{display: "flex", flexDirection: "column"}}>
+        <DialogContentText>
+          Sorry, we could not find a peer for you :(
+        </DialogContentText>
+        <Box sx={{
+                  height: "100px",
+                  width: "100px",
+                  margin: "2rem auto 0 auto",
+                  borderRadius: "50%"
+                }}
+            component="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqTCEe8NPl1pHhHt1DFy1OMtldq3P_RQ0qA&usqp=CAU"
+          />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={closeNoMatchDialog}>Cancel</Button>
+      </DialogActions>
+    </Dialog>
+  )
 
   return (
     <Box>
@@ -137,6 +152,7 @@ function Dashboard() {
               disabled={isFindingMatch}/>
         </Box>
         {dashboardDialog}
+        {noMatchDialog}
       </Box>
   </Box>
   )
