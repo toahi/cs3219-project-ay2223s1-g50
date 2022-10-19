@@ -21,7 +21,8 @@ export class MatchSocket {
   private userServiceClient: UserServiceClient
   private questionServiceClient: QuestionServiceClient
 
-  private queues: { [key in Difficulty]: SocketId[] }
+  public queues: { [key in Difficulty]: SocketId[] }
+  public usernameToLastSocketId: Record<string, string>
 
   constructor(
     io: Server,
@@ -34,6 +35,7 @@ export class MatchSocket {
       Medium: [],
       Hard: [],
     }
+    this.usernameToLastSocketId = {}
     this.userServiceClient = userServiceClient
     this.questionServiceClient = questionServiceClient
     this.start()
@@ -67,6 +69,8 @@ export class MatchSocket {
 
   startHandler() {
     this.io.on(SocketEvent.Connection, (socket) => {
+      this.usernameToLastSocketId[socket.data.username] = socket.id
+
       socket.on(MatchSocketEvent.FindMatch, async (payload: FindMatchPayload) =>
         this.findMatch(payload, socket)
       )
@@ -85,7 +89,7 @@ export class MatchSocket {
 
     // if queue empty, return false for match for now
     if (queue.length === 0) {
-      queue.push(socket.id)
+      queue.push(socket.data.username)
       return
     }
 
@@ -93,6 +97,8 @@ export class MatchSocket {
     // return undefined, but in this case we are sure it's not empty
     // @ts-ignore
     const otherSocketUsername: string = queue.shift()
+    const otherSocketId = this.usernameToLastSocketId[otherSocketUsername]
+    delete this.usernameToLastSocketId[otherSocketUsername]
     const newRoomId = v4()
 
     Logger.info(
@@ -122,7 +128,7 @@ export class MatchSocket {
         questions,
       }
       socket
-        .to(otherSocketUsername)
+        .to(otherSocketId)
         .emit(MatchSocketEvent.MatchFound, otherSocketPayload)
     } catch (e) {
       Logger.error(`Error occurred when trying to match sockets: ${e}`)
@@ -130,9 +136,10 @@ export class MatchSocket {
   }
 
   cancelFindMatch(socket: Socket) {
+    Logger.info(`Received cancel from user: ${socket.data.username}`)
     Object.entries(this.queues).forEach(([key, value]) => {
       this.queues[key as Difficulty] = value.filter(
-        (socketId) => socketId !== socket.id
+        (socketUsername) => socketUsername !== socket.data.username
       )
     })
   }

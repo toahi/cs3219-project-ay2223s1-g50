@@ -21,7 +21,7 @@ export class UserServiceClientImpl extends UserServiceClient {
       role,
     }
 
-    return axios.post(
+    const { data } = await axios.post(
       `${process.env.USER_SERVICE_URL}/verify-token-or-role`,
       body,
       {
@@ -30,6 +30,8 @@ export class UserServiceClientImpl extends UserServiceClient {
         },
       }
     )
+
+    return data
   }
 }
 

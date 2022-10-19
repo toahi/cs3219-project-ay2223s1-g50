@@ -18,6 +18,7 @@ import {
 } from '../../src/clients/user-service/user-service.model'
 import { QuestionServiceClient } from '../../src/clients/question-service/question-service.client'
 import { QuestionPairResponse } from '../../src/clients/question-service/question-service.model'
+import { AxiosResponse } from 'axios'
 
 class UserServiceClientMock extends UserServiceClient {
   async validateAccessTokenAndRole(
@@ -35,12 +36,14 @@ class QuestionServiceClientMock extends QuestionServiceClient {
   async getQuestionPairByDifficulty(
     token: string,
     difficulty: Difficulty
-  ): Promise<QuestionPairResponse> {
+  ): Promise<AxiosResponse<QuestionPairResponse>> {
     return {
-      success: 'yes',
-      questionOne: ['hello world'],
-      questionTwo: ['another world'],
-    }
+      data: {
+        success: 'yes',
+        questionOne: ['hello world'],
+        questionTwo: ['another world'],
+      },
+    } as AxiosResponse
   }
 }
 
@@ -50,6 +53,7 @@ describe('match socket tests', () => {
   let address: string
   let client1: ClientSocket
   let client2: ClientSocket
+  let matchSocket: MatchSocket
 
   before(() => {
     const httpServer = createServer()
@@ -62,7 +66,7 @@ describe('match socket tests', () => {
       port = httpServer.address().port
       address = `http://localhost:${port}`
 
-      new MatchSocket(
+      matchSocket = new MatchSocket(
         io,
         new UserServiceClientMock(),
         new QuestionServiceClientMock()
@@ -154,12 +158,16 @@ describe('match socket tests', () => {
 
     client1.emit(MatchSocketEvent.FindMatch, easyDifficultyPayload)
     client1.emit(MatchSocketEvent.CancelFindMatch)
-    client2.emit(MatchSocketEvent.FindMatch, easyDifficultyPayload)
+
+    setTimeout(() => {
+      client2.emit(MatchSocketEvent.FindMatch, easyDifficultyPayload)
+    }, 50)
 
     io.on(SocketEvent.Connection, (socket) => {
       socket.on(MatchSocketEvent.CancelFindMatch, () => {
         assert(socket.id === client1.id)
         assert(socket.data.username === client1Username)
+        assert(!matchSocket.queues.Easy.includes(socket.data.username))
         done()
       })
     })
