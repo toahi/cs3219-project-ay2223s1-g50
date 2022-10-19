@@ -1,17 +1,11 @@
 import React from "react";
 
 const Timer = () => {
-    const [minutes, setMinutes] = React.useState(-1);
     const [seconds, setSeconds] = React.useState(0);
-    const [inc, setInc] = React.useState(false);
 
     React.useEffect(() => {
         const myTimeout = setInterval(() => {setSeconds(prev => {
-            if (prev === 59) {
-                setInc(prev => !prev);
-                return 0;
-            }
-            return prev + 1;
+            return prev + 1
         })}, 1000);
 
         return () => {
@@ -19,11 +13,7 @@ const Timer = () => {
         }
     }, []);
 
-    React.useEffect(() => {
-        setMinutes(prev => prev + 1);
-    }, [inc])
-
-    return <h1>{minutes}:{seconds}</h1>
+    return <h1>{Math.floor((seconds/60))}:{("0" + (seconds % 60)).slice(-2)}</h1>
 }
 
 export default Timer;
