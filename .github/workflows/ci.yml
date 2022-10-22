@@ -1,0 +1,61 @@
+name: tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  user-service-test:
+    name: User Service test 
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: user-service
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Run tests
+      run: |
+        npm ci
+        npm test
+  question-service-test:
+    name: Question Service test 
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: question-service
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Run tests
+      run: |
+        npm ci
+        npm test
+  matching-service-test:
+    name: Matching Service test 
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: matching-service
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Run tests
+      run: |
+        yarn 
+        yarn test
+  collaboration-service-test:
+    name: Collaboration Service test 
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: collaboration-service
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Run tests
+      run: |
+        yarn 
+        yarn test
