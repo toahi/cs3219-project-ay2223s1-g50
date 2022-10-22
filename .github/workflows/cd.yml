@@ -44,7 +44,7 @@ jobs:
       run: | 
         docker build -f Dockerfile.prod --build-arg DB_USERS_CLOUD_URI=$DB_USERS_CLOUD_URI --build-arg REDIS_USERS_CLOUD_URI=$REDIS_USERS_CLOUD_URI --build-arg JWT_ACCESS_TOKEN_SECRET=$JWT_ACCESS_TOKEN_SECRET --build-arg JWT_REFRESH_TOKEN_SECRET=$JWT_REFRESH_TOKEN_SECRET -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   question-service-ecr:
     name: Push Question Service Docker Image to ECR
@@ -81,7 +81,7 @@ jobs:
       run: |
         docker build -f Dockerfile.prod --build-arg DB_QUESTIONS_CLOUD_URI=$DB_QUESTIONS_CLOUD_URI -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   deploy-ecs:
     name: Deploy all ECR images to ECS 

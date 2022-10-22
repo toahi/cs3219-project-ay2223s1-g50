@@ -27,4 +27,3 @@ export const QUESTION_SERVICE_URL = process.env.NODE_ENV == "dev"
 export const FRONTEND_SERVICE_URL = process.env.NODE_ENV == "dev" || process.env.NODE_ENV == "docker-dev"
   ? FRONTEND_SERVICE_LOCAL_URL
   : FRONTEND_SERVICE_PROD_URL;
-
