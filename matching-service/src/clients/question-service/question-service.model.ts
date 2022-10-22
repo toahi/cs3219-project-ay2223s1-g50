@@ -3,3 +3,4 @@ export type QuestionPairResponse = {
   questionOne: string[]
   questionTwo: string[]
 }
+

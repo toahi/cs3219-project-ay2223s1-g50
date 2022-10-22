@@ -38,3 +38,4 @@ console.log(`Socket live at port ${socketPort}`)
 
 // bind event handler
 new CollaborationSocketHandler(io, userServiceClientImpl)
+
