@@ -180,6 +180,7 @@ jobs:
     # - name: Download Amazon ECS task definition
     #   run: |
     #     aws ecs describe-task-definition --task-definition cs3219-project-ay2223s1-g50 --query taskDefinition > cs3219-project-ay2223s1-g50.json
+
     - name: Fill in the new User Service image ID in the Amazon ECS task definition
       id: render-user-service-container 
       uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
@@ -194,6 +195,21 @@ jobs:
         task-definition: ${{ steps.render-user-service-container.outputs.task-definition }}
         container-name: question-service
         image: ${{ needs.question-service-ecr.outputs.image }}
+    - name: Fill in the new Matching Service image ID in the Amazon ECS task definition
+      id: render-matching-service-container 
+      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
+      with:
+        task-definition: ${{ steps.render-question-service-container.outputs.task-definition }}
+        container-name: matching-service
+        image: ${{ needs.matching-service-ecr.outputs.image }}
+    - name: Fill in the new Collaboration Service image ID in the Amazon ECS task definition
+      id: render-collaboration-service-container 
+      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
+      with:
+        task-definition: ${{ steps.render-matching-service-container.outputs.task-definition }}
+        container-name: collaboration-service
+        image: ${{ needs.collaboration-service-ecr.outputs.image }}
+
     - name: Deploy updated Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1.4.10
       with:
