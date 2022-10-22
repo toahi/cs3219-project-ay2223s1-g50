@@ -4,6 +4,7 @@ import {
   ValidateTokenBody,
   ValidateTokenResponse,
 } from './user-service.model'
+import { USER_SERVICE_URL } from '../../url';
 
 export abstract class UserServiceClient {
   abstract validateAccessTokenAndRole(
@@ -22,7 +23,7 @@ export class UserServiceClientImpl extends UserServiceClient {
     }
 
     const { data } = await axios.post(
-      `${process.env.USER_SERVICE_URL}/verify-token-or-role`,
+      `${USER_SERVICE_URL}/verify-token-or-role`,
       body,
       {
         headers: {

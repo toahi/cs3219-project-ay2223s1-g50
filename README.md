@@ -16,6 +16,13 @@ npm run installAll
 npm run dev
 ```
 
+## Running all services in Docker
+
+```bash
+# from project root
+docker-compose up --build
+```
+
 ## User and Question Service
 1. Rename `.env.sample` file to `.env`.
 2. Create a Cloud DB URL using Mongo Atlas.

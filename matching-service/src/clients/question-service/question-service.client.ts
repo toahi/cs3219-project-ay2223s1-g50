@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { Difficulty } from '../../shared/rooms.model'
 import { QuestionPairResponse } from './question-service.model'
+import { QUESTION_SERVICE_URL } from '../../url';
 
 export abstract class QuestionServiceClient {
   abstract getQuestionPairByDifficulty(
@@ -16,7 +17,7 @@ export class QuestionServiceClientImpl extends QuestionServiceClient {
   ): Promise<AxiosResponse<QuestionPairResponse>> {
     const body = { difficulty }
     return axios.post(
-      `${process.env.QUESTION_SERVICE_URL}/get-two-questions-by-diff`,
+      `${QUESTION_SERVICE_URL}/get-two-questions-by-diff`,
       body,
       {
         headers: {

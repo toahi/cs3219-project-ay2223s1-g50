@@ -10,6 +10,7 @@ import { Server } from 'socket.io'
 import { createServer } from 'http'
 import { userServiceClientImpl } from './clients/user-service/user-service.client'
 import { questionServiceClientImpl } from './clients/question-service/question-service.client'
+import { FRONTEND_SERVICE_LOCAL_URL } from './url';
 
 export const app: Application = express()
 
@@ -28,7 +29,7 @@ app.use(errorHandler)
 
 export const io = new Server({
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin: FRONTEND_SERVICE_LOCAL_URL,
     credentials: true,
   },
 })

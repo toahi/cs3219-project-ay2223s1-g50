@@ -3,7 +3,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './model/UserModel.js';
-import URL from './url.js';
+import { FRONTEND_SERVICE_LOCAL_URL } from './url.js';
 import auth from './auth.js';
 import session from "express-session";
 import cookieParser from "cookie-parser"
@@ -17,7 +17,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({
-  origin: [URL.FRONTEND_SERVICE_LOCAL_URL],
+  origin: [FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
 app.options('*', cors());
