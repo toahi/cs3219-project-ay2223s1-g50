@@ -12,6 +12,8 @@ jobs:
   # This will speed up CI in pull requests
   # https://github.com/dorny/paths-filter
 
+  # can add frontend tests also
+
   user-service-test:
     name: User Service test 
     runs-on: ubuntu-latest

@@ -5,7 +5,7 @@
           "name": "question-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:becd4de38e7768101665749ad4f5de856f1fdc35",
           "cpu": 0,
-          "memory": 125,
+          "memory": 500,
           "portMappings": [
               {
                   "containerPort": 8090,
@@ -30,7 +30,7 @@
           "name": "user-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:becd4de38e7768101665749ad4f5de856f1fdc35",
           "cpu": 0,
-          "memory": 125,
+          "memory": 500,
           "portMappings": [
               {
                   "containerPort": 8080,
@@ -55,7 +55,7 @@
           "name": "collaboration-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memory": 125,
+          "memory": 500,
           "portMappings": [
               {
                   "containerPort": 5001,
@@ -80,8 +80,14 @@
           "name": "matching-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memory": 125,
-          "portMappings": [],
+          "memory": 500,
+          "portMappings": [
+            {
+              "containerPort": 5003,
+              "hostPort": 5003,
+              "protocol": "tcp"
+            }
+          ],
           "essential": true,
           "environment": [],
           "mountPoints": [],
