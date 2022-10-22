@@ -1,11 +1,11 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:15",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:19",
   "containerDefinitions": [
       {
           "name": "question-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:becd4de38e7768101665749ad4f5de856f1fdc35",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:dd07bc6f3791c6113b0aaafa2089069ffe36916a",
           "cpu": 0,
-          "memory": 500,
+          "memoryReservation": 230,
           "portMappings": [
               {
                   "containerPort": 8090,
@@ -28,9 +28,9 @@
       },
       {
           "name": "user-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:becd4de38e7768101665749ad4f5de856f1fdc35",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:dd07bc6f3791c6113b0aaafa2089069ffe36916a",
           "cpu": 0,
-          "memory": 500,
+          "memoryReservation": 230,
           "portMappings": [
               {
                   "containerPort": 8080,
@@ -55,7 +55,7 @@
           "name": "collaboration-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memory": 500,
+          "memoryReservation": 230,
           "portMappings": [
               {
                   "containerPort": 5001,
@@ -80,13 +80,13 @@
           "name": "matching-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memory": 500,
+          "memoryReservation": 230,
           "portMappings": [
-            {
-              "containerPort": 5003,
-              "hostPort": 5003,
-              "protocol": "tcp"
-            }
+              {
+                  "containerPort": 5003,
+                  "hostPort": 5003,
+                  "protocol": "tcp"
+              }
           ],
           "essential": true,
           "environment": [],
@@ -104,7 +104,7 @@
   ],
   "family": "cs3219-project-ay2223s1-g50",
   "networkMode": "host",
-  "revision": 15,
+  "revision": 19,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -118,6 +118,9 @@
           "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
       },
       {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      },
+      {
           "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
       }
   ],
@@ -129,8 +132,8 @@
   "requiresCompatibilities": [
       "EC2"
   ],
-  "cpu": "1024",
-  "memory": "2500",
-  "registeredAt": "2022-10-23T03:04:59.546000+08:00",
+  "cpu": "2048",
+  "memory": "960",
+  "registeredAt": "2022-10-23T03:49:24.541000+08:00",
   "registeredBy": "arn:aws:iam::582969597664:root"
 }
