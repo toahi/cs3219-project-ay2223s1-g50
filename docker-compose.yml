@@ -7,29 +7,31 @@ services:
     build:
       context: ./user-service 
       dockerfile: Dockerfile.dev
-    # ports:
-    #   - "8080:8080"
-    network_mode: host
+    ports:
+      - "8080:8080"
+    # network_mode: host
   question-service:
     build:
       context: ./question-service
       dockerfile: Dockerfile.dev
-    # ports:
-    #   - "8090:8090"
-    network_mode: host
+    ports:
+      - "8090:8090"
+    # network_mode: host
   matching-service:
     build: 
       context: ./matching-service
-    # ports:
-    #   - "5003:5003"
-    network_mode: host
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5003:5003"
+    # network_mode: host
   collaboration-service:
     build: 
       context: ./collaboration-service
-    # ports:
-    #   - "5001:5001"
-    network_mode: host
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5001:5001"
+    # network_mode: host
 
-# We use network_mode host to allow communication BETWEEN service containers via localhost
-# However, this currently doesn't work on MacOS, will work on Windows
+# uSe network_mode host to allow communication BETWEEN service containers via localhost
+# However, this currently doesn't work on MacOS, will work on Linux 
 # https://github.com/docker/for-mac/issues/2716

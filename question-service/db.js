@@ -5,7 +5,7 @@ import 'dotenv/config';
 let MONGODB_URI = process.env.DB_QUESTIONS_CLOUD_URI;
 
 const open = async () => {
-  // if (process.env.NODE_ENV === 'test') {
+  // if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'docker-dev') {
   //   // use memory server for now for ease of dev
   //   const mongod = await MongoMemoryServer.create();
   //   MONGODB_URI = mongod.getUri();

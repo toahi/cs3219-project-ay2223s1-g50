@@ -1,3 +1,5 @@
+# This dockerfile is used for actual deployment (via GitHub workflow)
+
 # requires Node 16+
 FROM node:16
 
@@ -13,8 +15,9 @@ COPY . ./
 # Install app deps without amending lock file
 RUN yarn install --frozen-lockfile
 
-# set production
-ENV NODE_ENV production
+# set environment 
+ENV NODE_ENV prod
+
 # set port
 ENV PORT 5000
 
