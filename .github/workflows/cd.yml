@@ -100,14 +100,14 @@ jobs:
     #     aws ecs describe-task-definition --task-definition cs3219-project-ay2223s1-g50 --query taskDefinition > cs3219-project-ay2223s1-g50.json
     - name: Fill in the new User Service image ID in the Amazon ECS task definition
       id: render-user-service-container 
-      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
+      uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
       with:
         task-definition: cs3219-project-ay2223s1-g50.json
         container-name: user-service
         image: ${{ needs.user-service-ecr.outputs.image }}
     - name: Fill in the new Question Service image ID in the Amazon ECS task definition
       id: render-question-service-container 
-      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
+      uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
       with:
         task-definition: ${{ steps.render-user-service-container.outputs.task-definition }}
         container-name: question-service
