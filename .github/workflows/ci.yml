@@ -7,6 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
+
+  # Consider using paths filter to only trigger jobs when there are changes in the working directory
+  # This will speed up CI in pull requests
+  # https://github.com/dorny/paths-filter
+
   user-service-test:
     name: User Service test 
     runs-on: ubuntu-latest
