@@ -1,0 +1,22 @@
+# Base image
+FROM node:16
+
+# Dev Dockerfile doesn't take in arguments, it has access to local .env file 
+
+# Working directory
+WORKDIR /usr/src/app
+
+# Copy package json for dependencies
+COPY package*.json ./
+
+# Install prod dependencies
+RUN npm ci
+# RUN npm ci --omit=dev
+
+# Copy everything to container
+COPY . .
+
+EXPOSE 8090
+
+CMD ["npm", "run", "dev"]
+# CMD [ "npm", "run", "start" ]

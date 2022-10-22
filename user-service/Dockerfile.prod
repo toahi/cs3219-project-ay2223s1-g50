@@ -1,6 +1,8 @@
 # Base image
 FROM node:16
 
+# Taking in env variables argument from GitHub secrets
+
 # Arg for env variables 
 ARG DB_USERS_CLOUD_URI
 ARG REDIS_USERS_CLOUD_URI
@@ -27,6 +29,6 @@ RUN npm ci
 COPY . .
 
 EXPOSE 8080
-# command below to be updated
+
 CMD ["npm", "run", "dev"]
-# CMD [ "node", "index.js" ]
+# CMD [ "npm", "run", "start" ]

@@ -1,13 +1,9 @@
 # Base image
 FROM node:16
 
-# Arguments for env variables
-ARG DB_QUESTIONS_CLOUD_URI
+# Dev Dockerfile doesn't take in arguments, it has access to local .env file 
 
-# Env variables
-ENV DB_QUESTIONS_CLOUD_URI $DB_QUESTIONS_CLOUD_URI
-
-# Working directory
+# Working directory 
 WORKDIR /usr/src/app
 
 # Copy package json for dependencies
@@ -20,7 +16,7 @@ RUN npm ci
 # Copy everything to container
 COPY . .
 
-EXPOSE 8090
-# command below to be updated
+EXPOSE 8080
+
 CMD ["npm", "run", "dev"]
-# CMD [ "node", "index.js" ]
+# CMD [ "npm", "run", "start" ]

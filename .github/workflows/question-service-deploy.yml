@@ -41,10 +41,10 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cs3219-project-ay2223s1-g50-question
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: ${{ github.sha }} # will go out of sync with user service image tag since it's git commit hash, out of sync w local task definition json, maybe just use "latest"
         DB_QUESTIONS_CLOUD_URI: ${{ secrets.DB_QUESTIONS_CLOUD_URI }}
       run: |
-        docker build --build-arg DB_QUESTIONS_CLOUD_URI=$DB_QUESTIONS_CLOUD_URI -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build -f Dockerfile.prod --build-arg DB_QUESTIONS_CLOUD_URI=$DB_QUESTIONS_CLOUD_URI -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
