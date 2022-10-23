@@ -24,7 +24,7 @@ function Dashboard() {
   const [isFindingMatch, setIsFindingMatch] = useState(false)
   const [timeoutIds, setTimeoutIds] = React.useState([]);
   const [noMatch, setNoMatch] = useState(false)
-  const MATCHMAKING_TIME = 30000;
+  const MATCHMAKING_TIME = 2000;
   const token = userContext.token
 
   const MatchEvents = {
@@ -41,7 +41,7 @@ function Dashboard() {
   client.on(
     MatchEvents.MatchFound,
     async ({ roomId, difficulty, questions }) => {
-      //clearTimeout(matchmakingTimeout) // remove timeout for matchmaking if match found
+      clearMatchMakingTimeouts()
       navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
         state: { questions },
       })
@@ -58,8 +58,7 @@ function Dashboard() {
   }
 
   const closeDialog = () => {
-    clearTimeout(timeoutIds[0])
-    clearTimeout(timeoutIds[1]);
+    clearMatchMakingTimeouts()
     client.emit(MatchEvents.CancelFindMatch)
     setIsFindingMatch(false)
   }
@@ -68,6 +67,11 @@ function Dashboard() {
     const id = setTimeout(closeDialog, MATCHMAKING_TIME); // 30000 = 30 seconds
     const id2 = setTimeout(() => setNoMatch(true), MATCHMAKING_TIME); // 30000 = 30 seconds
     return [id, id2];
+  }
+
+  const clearMatchMakingTimeouts = () => {
+    clearTimeout(timeoutIds[0])
+    clearTimeout(timeoutIds[1])
   }
 
   const dashboardDialog = (
