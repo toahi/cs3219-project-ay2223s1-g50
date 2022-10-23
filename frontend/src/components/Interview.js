@@ -66,9 +66,11 @@ const Interview = () => {
       sx={{
         border: 'solid black 2px',
         borderRadius: '1%',
-        minWidth: '100%',
+        maxWidth: "500px",
         padding: 5,
-        marginBottom: "1rem"
+        marginBottom: "1rem",
+        height: "400px",
+        overflow: "scroll"
       }}
     >
       <Typography sx={{ whiteSpace: 'pre-line' }}>
@@ -144,30 +146,28 @@ const Interview = () => {
       <Box
         sx={{ display: 'flex', flexDirection: 'row', padding: '0 0 2rem 0' }}
       >
-        <Typography variant={'h4'} sx={{ padding: '0 1rem 0 0' }}>
-          Coding Question
-        </Typography>
         {/* getNextQuestionButton was here */}
         {questionTimer}
         {leaveRoomButton}
       </Box>
       {/* TODO: Try to figure out why this doesn't change when questionsShown changes */}
-      {questionsBox(questionsShown)}
-      <Typography variant={'h4'} sx={{ padding: '2rem 0 0 0' }}>
-        Code Editor
-      </Typography>
-      <TextareaAutosize
-        onChange={(e) => {
-          client.emit(CollaborationEvent.RoomMessage, {
-            roomId,
-            message: e.target.value,
-          })
-        }}
-        aria-label="empty textarea"
-        placeholder="Type your code here"
-        value={editorText}
-        style={{ minWidth: '100%', minHeight: 500, marginTop: '1rem' }}
-      />
+      <Box sx={{display: "flex"}}>
+      <Box>
+        {questionsBox(questionsShown)}
+      </Box>
+        <TextareaAutosize
+          onChange={(e) => {
+            client.emit(CollaborationEvent.RoomMessage, {
+              roomId,
+              message: e.target.value,
+            })
+          }}
+          aria-label="empty textarea"
+          placeholder="Type your code here"
+          value={editorText}
+          style={{ flexGrow :'1', minHeight: '816px', margin: "0 1rem" }}
+        />
+      </Box>
     </Box>
   )
 }
