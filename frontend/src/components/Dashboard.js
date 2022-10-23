@@ -24,7 +24,7 @@ function Dashboard() {
   const [isFindingMatch, setIsFindingMatch] = useState(false)
   const [timeoutIds, setTimeoutIds] = React.useState([]);
   const [noMatch, setNoMatch] = useState(false)
-  const MATCHMAKING_TIME = 2000;
+  const MATCHMAKING_TIME = 30000;
   const token = userContext.token
 
   const MatchEvents = {
