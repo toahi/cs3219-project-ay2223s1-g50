@@ -165,7 +165,7 @@ const Interview = () => {
           aria-label="empty textarea"
           placeholder="Type your code here"
           value={editorText}
-          style={{ flexGrow :'1', minHeight: '816px', margin: "0 1rem" }}
+          style={{ flexGrow :'1', minHeight: '816px', margin: "0 1rem", padding: "1rem" }}
         />
       </Box>
     </Box>
