@@ -10,7 +10,9 @@ import axios from 'axios'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { io as Client } from 'socket.io-client'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { COOKIE_INTERVIEW_SESSION } from '../configs'
 
 const Interview = () => {
   const userContext = useContext(UserContext)
@@ -24,7 +26,7 @@ const Interview = () => {
   const {
     state: { questions },
   } = useLocation()
-
+  console.log(useLocation())
   const CollaborationEvent = {
     RoomMessage: 'collaboration:room_message',
     JoinRoom: 'collaboration:join_room',
@@ -105,6 +107,7 @@ const Interview = () => {
   }
 
   const leaveRoom = () => {
+    Cookies.remove(COOKIE_INTERVIEW_SESSION, { path: '' })
     navigate("/dashboard", { replace: true })
     client.emit(CollaborationEvent.LeaveRoom, {
       roomId,

@@ -5,6 +5,7 @@ import NavBar from './components/layouts/Navbar'
 import DashBoard from './components/Dashboard'
 import RequireAuth from './components/protected-routes/RequireAuth'
 import ExistingAuth from './components/protected-routes/ExistingAuth'
+import ExistingSession from './components/protected-routes/ExistingSession'
 import UserContextProvider from './components/context/user-context'
 import PageNotFound from './components/PageNotFound'
 import LoadingPage from './components/LoadingPage'
@@ -38,8 +39,10 @@ function App() {
                 path="/interview/:difficulty/:roomId"
                 element={<Interview />}
               />
-              <Route path="/dashboard" element={<DashBoard />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route element={<ExistingSession />}>
+                <Route path="/dashboard" element={<DashBoard />} />
+                <Route path="/profile" element={<Profile />} />
+              </Route>
             </Route>
 
             {/** TODO  */}

@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
 import Card from "./ui/Card"
 import Timer from './ui/Timer';
+import Cookies from 'js-cookie';
+import { COOKIE_INTERVIEW_SESSION } from '../configs'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -41,6 +43,8 @@ function Dashboard() {
   client.on(
     MatchEvents.MatchFound,
     async ({ roomId, difficulty, questions }) => {
+      Cookies.set(COOKIE_INTERVIEW_SESSION, JSON.stringify({ roomId, difficulty, questions }))
+
       clearMatchMakingTimeouts()
       navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
         state: { questions },
@@ -51,7 +55,7 @@ function Dashboard() {
   const selectQuestionDifficulty = async (difficulty) => {
     setIsFindingMatch(true)
     setTimeoutIds(prev => [...matchmakingTimeout()])
-    console.log(timeoutIds)
+    
     client.emit(MatchEvents.FindMatch, {
       difficulty,
     })
