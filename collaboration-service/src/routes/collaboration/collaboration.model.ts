@@ -15,8 +15,12 @@ export type SocketIdPayload = {
   socketId: SocketId
 }
 
-export type LeaveRoomPayload = {
+export type UsernamePayload = {
   username: string
+}
+
+export type UsersPayload = {
+  users: string[]
 }
 
 export type SendRoomMessagePayload = {

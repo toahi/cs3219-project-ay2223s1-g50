@@ -13,6 +13,7 @@ import {
   UserRole,
   ValidateTokenResponse,
 } from '../../clients/user-service/user-service.model'
+import { Logger } from '../../utils/logger'
 
 export class ChatSocketHandler {
   private io: Server
@@ -35,16 +36,15 @@ export class ChatSocketHandler {
 
       if (token === undefined) return next(new Error('Authentication error'))
 
-      const response: ValidateTokenResponse =
+      let { error, username }: ValidateTokenResponse =
         await this.userServiceClient.validateAccessTokenAndRole(
           token,
           UserRole.User
         )
 
-      if (response.error)
-        return next(new Error(`Error validating token: ${response.error}`))
+      if (error) return next(new Error(`Error validating token: ${error}`))
 
-      socket.data.username = response.username
+      socket.data.username = username
 
       return next()
     })
@@ -52,6 +52,10 @@ export class ChatSocketHandler {
 
   startHandler() {
     this.io.on(SocketEvent.Connection, (socket) => {
+      socket.onAny((event: any, ...args: any[]) => {
+        Logger.info(`Received event: ${event}`, args)
+      })
+
       socket.on(ChatSocketEvent.JoinRoom, (payload: RoomIdPayload) =>
         this.joinRoom(payload, socket)
       )
@@ -73,10 +77,14 @@ export class ChatSocketHandler {
   }
 
   joinRoom({ roomId }: RoomIdPayload, socket: Socket) {
+    Logger.info(`User: ${socket.data.username}, joined room: ${roomId}`)
     socket.join(roomId)
   }
 
   leaveAllRooms(socket: Socket) {
+    Logger.info(
+      `User ${socket.data.username} leaving room, emitting leave room to all rooms`
+    )
     const leaveRoomPayload: LeaveRoomPayload = {
       username: socket.data.username,
     }
@@ -87,14 +95,17 @@ export class ChatSocketHandler {
 
   async newRoomMessage(
     { message, roomId }: SendRoomMessagePayload,
-    sendingSocket: Socket
+    socket: Socket
   ) {
     const roomMessagePayload: ReceiveRoomMessagePayload = {
-      from: sendingSocket.data.username,
+      from: socket.data.username,
       message,
     }
-    sendingSocket
-      .to(roomId)
-      .emit(ChatSocketEvent.RoomMessage, roomMessagePayload)
+    socket.to(roomId).emit(ChatSocketEvent.RoomMessage, roomMessagePayload)
+
+    Logger.info(
+      `Received new message, emitting to room: ${roomId}`,
+      roomMessagePayload
+    )
   }
 }

@@ -4,7 +4,7 @@ import {
   ValidateTokenBody,
   ValidateTokenResponse,
 } from './user-service.model'
-import { USER_SERVICE_URL } from '../../url';
+import { USER_SERVICE_URL } from '../../url'
 
 export abstract class UserServiceClient {
   abstract validateAccessTokenAndRole(
@@ -23,18 +23,16 @@ export class UserServiceClientImpl extends UserServiceClient {
     }
 
     try {
-      return axios.post(
-        `${USER_SERVICE_URL}/verify-token-or-role`,
-        body,
-        {
+      return axios
+        .post(`${USER_SERVICE_URL}/verify-token-or-role`, body, {
           headers: {
             authorization: token,
           },
-        }
-      )
+        })
+        .then((resp) => resp.data)
     } catch (e) {
-      console.log(e);
-      return { error: e + "" };
+      console.log(e)
+      return { error: e + '' }
     }
   }
 }

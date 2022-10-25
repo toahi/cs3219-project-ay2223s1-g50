@@ -39,10 +39,8 @@ function App() {
                 path="/interview/:difficulty/:roomId"
                 element={<Interview />}
               />
-              <Route element={<ExistingSession />}>
-                <Route path="/dashboard" element={<DashBoard />} />
-                <Route path="/profile" element={<Profile />} />
-              </Route>
+              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
 
             {/** TODO  */}
