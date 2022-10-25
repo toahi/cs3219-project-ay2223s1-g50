@@ -8,8 +8,10 @@
 
 .login {
     padding-top: 1rem;
+    width: 300px;
 }
 
 .signup {
     padding-top: 2rem;
+    width: 300px;
 }

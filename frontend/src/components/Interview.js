@@ -18,6 +18,8 @@ import {
   TextField,
   IconButton,
 } from '@mui/material'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { UserContext } from './context/user-context'
 import {
   URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
@@ -40,6 +42,7 @@ const Interview = () => {
   const userContext = useContext(UserContext)
   const token = userContext.token
   const navigate = useNavigate()
+  const [swap, setSwap] = useState(true)
 
   const { difficulty, roomId } = useParams()
   const {
@@ -69,25 +72,36 @@ const Interview = () => {
   collabClient.on(CollaborationEvent.LeaveRoom, setNewUsers)
 
   /// Question boxes
-  const questionsBox = (questions) => (
-    <>
-      {questions?.questionOne?.map((question) =>
-        questionBox(question.name, question.description, question.examples)
-      )}
-      {questions?.questionTwo?.map((question) =>
-        questionBox(question.name, question.description, question.examples)
-      )}
-    </>
-  )
+  const questionsBox = (questions) => {
+    return (
+      <Tabs
+        defaultActiveKey="Question 1"
+        id="questions-tab"
+        className="mb-3"
+      >
+        {questions?.questionOne?.map((question) =>
+          <Tab eventKey="Question 1" title="Question 1">
+            {questionBox(question.name, question.description, question.examples)}
+          </Tab>
+        )}
+
+        {questions?.questionTwo?.map((question) =>
+          <Tab eventKey="Question 2" title="Question 2">
+            {questionBox(question.name, question.description, question.examples)}
+          </Tab>
+        )}
+      </Tabs>
+    );
+  }
+
   const questionBox = (title, body, example) => (
     <Box
       sx={{
         border: 'solid black 2px',
         borderRadius: '1%',
-        maxWidth: '500px',
         padding: 5,
         marginBottom: '1rem',
-        height: '400px',
+        height: '800px',
         overflow: 'scroll',
       }}
       key={`${title}${body}`}
@@ -133,6 +147,28 @@ const Interview = () => {
       <AccessTimeIcon sx={{ fontSize: '3rem', margin: '0 0.5rem 0 1rem' }} />
       <Timer />
     </>
+  )
+
+  /// Code editor
+  const codeEditor = (
+    <TextareaAutosize
+      onChange={(e) => {
+        collabClient.emit(CollaborationEvent.RoomMessage, {
+          roomId,
+          message: e.target.value,
+        })
+      }}
+      aria-label="empty textarea"
+      placeholder="Type your code here"
+      value={editorText}
+      style={{
+        flexGrow: '1',
+        minHeight: '765px',
+        margin: '4rem 1rem',
+        padding: '1rem',
+        resize: 'horizontal',
+      }}
+    />
   )
 
   // Removed this until we add syncing up of questions through collab service
@@ -267,28 +303,17 @@ const Interview = () => {
         {/* getNextQuestionButton was here */}
         {questionTimer}
         {chatButton}
+        <Button sx={{ fontSize: '1rem', marginLeft: 'auto', backgroundColor: 'black' }}
+                variant="contained"
+                onClick={() => setSwap(prev => !prev)}>
+                SWAP DISPLAY
+        </Button>
         {leaveRoomButton}
       </Box>
       {/* TODO: Try to figure out why this doesn't change when questionsShown changes */}
       <Box sx={{ display: 'flex' }}>
-        <Box>{questionsBox(questionsShown)}</Box>
-        <TextareaAutosize
-          onChange={(e) => {
-            collabClient.emit(CollaborationEvent.RoomMessage, {
-              roomId,
-              message: e.target.value,
-            })
-          }}
-          aria-label="empty textarea"
-          placeholder="Type your code here"
-          value={editorText}
-          style={{
-            flexGrow: '1',
-            minHeight: '816px',
-            margin: '0 1rem',
-            padding: '1rem',
-          }}
-        />
+        {swap && <>{codeEditor}<Box>{questionsBox(questionsShown)}</Box></>}
+        {!swap && <><Box>{questionsBox(questionsShown)}</Box>{codeEditor}</>}
       </Box>
       {chatDialog}
     </Box>
