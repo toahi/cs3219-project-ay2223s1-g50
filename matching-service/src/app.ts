@@ -34,7 +34,7 @@ export const io = new Server({
   },
 })
 
-const socketPort = 5003;
+const socketPort = Number(process.env.SOCKET_PORT) ?? 3000
 io.listen(socketPort)
 console.log(`Socket live at port ${socketPort}`)
 
