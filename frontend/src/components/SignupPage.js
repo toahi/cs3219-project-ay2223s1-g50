@@ -23,8 +23,6 @@ import { STATUS_CODE_CREATED, MIN_USERNAME_LEN, MIN_PASSWORD_LEN } from "../cons
 import classes from './LoginSignUpPage.module.css';
 import Logo from "./ui/Logo"
 
-axios.defaults.withCredentials = true;
-
 function SignupPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
