@@ -3,10 +3,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './model/UserModel.js';
-import { FRONTEND_SERVICE_LOCAL_URL } from './url.js';
 import auth from './auth.js';
-import session from "express-session";
-import cookieParser from "cookie-parser"
 import 'dotenv/config';
 
 const MIN_USERNAME_LEN = 6;
@@ -14,34 +11,14 @@ const MIN_PASSWORD_LEN = 6;
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
   origin: [FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
-// app.options('*', cors());
-app.use(cookieParser());
-app.use(session({
-  key: "user-id",
-  secret: process.env.JWT_ACCESS_TOKEN_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    expires: 60 * 60 * 24 * 1000 // 24 hrs
-  }
-}))
 
 app.get('/', (_, res) => res.send('User service is running well!'));
-
-// Used to persist data in frontend if have existing session
-app.get('/validate-session', (req, res) => {
-  if (req.session.user) {
-    res.send({loggedIn: true, username: req.session.user, token: req.session.token});
-  } else {
-    res.send({loggedIn: false});
-  }
-})
 
 app.post('/register', async (req, res) => {
   console.log('\nREGISTER...');
@@ -56,7 +33,7 @@ app.post('/register', async (req, res) => {
     });
   }
 
-  // Validation by server in case users try to modify the HTML file or use API to register.
+  // Validation by server incase users try to modify the HTML file or use API to register.
   if (username.length < MIN_USERNAME_LEN || password.length < MIN_PASSWORD_LEN) {
     let message = "";
     let log = "[REGISTER][VALIDATION] ";
@@ -123,10 +100,6 @@ app.post('/login', async (req, res) => {
       },
   );
   console.log(`[LOGIN][TOKEN] Created access token '${accessToken}' successfully!`);
-
-  req.session.user = username
-  req.session.token = accessToken
-
   console.log(`[LOGIN][SUCCESS] Server logged in user ${username} successfully!`);
 
   return res.status(200).json({success: 'Logged in successfully!', accessToken}); 
@@ -197,15 +170,9 @@ app.post('/logout', auth.validateRoles([auth.ROLES.User]), async (req, res) => {
     return res.status(500).json({error: 'Could not logout user!'});
   }
 
-  req.session.destroy(err => {
-    if (err) {
-      console.log(`[LOGOUT][UNSUCCESSFUL] Server could not log out user ${req.username} successfully!`);
-      return res.status(500).json({message: 'Unable to log out'});
-    }
-
-    console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
-    return res.status(200).json({message: 'Successfully logged out!'});
-  })
+  console.log(`[LOGOUT][SUCCESS] Server logged out user ${req.username} successfully!`);
+  return res.status(200).json({message: 'Successfully logged out!'});
+  
 });
 
 app.delete('/delete', auth.validateRoles([auth.ROLES.User]), async (req, res) => {

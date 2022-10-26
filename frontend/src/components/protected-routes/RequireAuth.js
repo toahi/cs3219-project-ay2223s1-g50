@@ -4,8 +4,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 import LoadingPage from '../LoadingPage'
 import ValidateAuth from '../hooks/ValidateAuth'
 
-axios.defaults.withCredentials = true
-
 const RequireAuth = () => {
   const firstRender = React.useRef(true)
   const [isLoggedIn, setIsLoggedIn] = React.useState(null)
