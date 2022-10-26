@@ -109,11 +109,19 @@ export class MatchSocket {
       const token = socket.request.headers.authorization
       if (token === undefined) throw Error('Unable to get token from socket')
 
+      Logger.info(
+        `Retrieving questions from question service`
+      )
+
       const { data: questions } =
         await this.questionServiceClient.getQuestionPairByDifficulty(
           token,
           difficulty
         )
+      
+      Logger.info(
+        `Retrieved questions from question service`
+      )
 
       const currSocketPayload: FindMatchResult = {
         roomId: newRoomId,
@@ -121,6 +129,10 @@ export class MatchSocket {
         questions,
       }
       socket.emit(MatchSocketEvent.MatchFound, currSocketPayload)
+
+      Logger.info(
+        `emitted`
+      )
 
       const otherSocketPayload: FindMatchResult = {
         roomId: newRoomId,
@@ -130,6 +142,10 @@ export class MatchSocket {
       socket
         .to(otherSocketId)
         .emit(MatchSocketEvent.MatchFound, otherSocketPayload)
+
+      Logger.info(
+        `emitted to other`
+      )
     } catch (e) {
       Logger.error(`Error occurred when trying to match sockets: ${e}`)
     }
