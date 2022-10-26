@@ -66,3 +66,16 @@ jobs:
       run: |
         yarn 
         yarn test
+  chat-service-test:
+    name: Chat Service test 
+    runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: chat-service
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Run tests
+      run: |
+        yarn 
+        yarn test

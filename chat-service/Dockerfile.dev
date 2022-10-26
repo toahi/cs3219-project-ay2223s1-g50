@@ -19,10 +19,10 @@ RUN yarn install --frozen-lockfile
 ENV NODE_ENV docker-dev 
 
 # set port
-ENV PORT 5000
+ENV PORT 5005
 
 # expose port 5000, default for aws ebs for api calls
-EXPOSE 5000
+EXPOSE 5005
 
 # build yarn proj into dist output files
 RUN yarn build

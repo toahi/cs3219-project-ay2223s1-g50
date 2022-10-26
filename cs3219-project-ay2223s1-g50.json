@@ -1,11 +1,11 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:19",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:28",
   "containerDefinitions": [
       {
           "name": "question-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:dd07bc6f3791c6113b0aaafa2089069ffe36916a",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:56970e48c3f76b976abc8e7807f6a05e890e4847",
           "cpu": 0,
-          "memoryReservation": 230,
+          "memoryReservation": 190,
           "portMappings": [
               {
                   "containerPort": 8090,
@@ -28,9 +28,9 @@
       },
       {
           "name": "user-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:dd07bc6f3791c6113b0aaafa2089069ffe36916a",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:56970e48c3f76b976abc8e7807f6a05e890e4847",
           "cpu": 0,
-          "memoryReservation": 230,
+          "memoryReservation": 190,
           "portMappings": [
               {
                   "containerPort": 8080,
@@ -55,7 +55,7 @@
           "name": "collaboration-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memoryReservation": 230,
+          "memoryReservation": 190,
           "portMappings": [
               {
                   "containerPort": 5001,
@@ -80,7 +80,7 @@
           "name": "matching-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memoryReservation": 230,
+          "memoryReservation": 190,
           "portMappings": [
               {
                   "containerPort": 5003,
@@ -100,11 +100,36 @@
                   "awslogs-stream-prefix": "ecs"
               }
           }
+      },
+      {
+          "name": "chat-service",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-chat:2a383f32c9eeb0b1883760c7a0120ddeec254381",
+          "cpu": 0,
+          "memoryReservation": 190,
+          "portMappings": [
+              {
+                  "containerPort": 5005,
+                  "hostPort": 5005,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "environment": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-group": "/ecs/cs3219-project-ay2223s1-g50",
+                  "awslogs-region": "ap-southeast-1",
+                  "awslogs-stream-prefix": "ecs"
+              }
+          }
       }
   ],
   "family": "cs3219-project-ay2223s1-g50",
   "networkMode": "host",
-  "revision": 19,
+  "revision": 28,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -134,6 +159,6 @@
   ],
   "cpu": "2048",
   "memory": "960",
-  "registeredAt": "2022-10-23T03:49:24.541000+08:00",
+  "registeredAt": "2022-10-26T07:19:10.718000+08:00",
   "registeredBy": "arn:aws:iam::582969597664:root"
 }
