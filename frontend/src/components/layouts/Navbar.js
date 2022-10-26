@@ -2,8 +2,10 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { UserContext } from '../context/user-context';
 import axios from 'axios';
+import Cookies from 'js-cookie'
+
+import { UserContext } from '../context/user-context';
 import { URL_LOGOUT_USER_SVC } from '../../configs';
 import Logo from '../ui/Logo';
 import Badge from 'react-bootstrap/Badge';
@@ -22,6 +24,7 @@ const NavBar = () => {
       axios.post(URL_LOGOUT_USER_SVC, {},{ headers: { authorization: `Bearer ${userContext.token}` } }).then(res => {
         userContext.setUsername(null)
         userContext.setToken(null)
+        Cookies.remove('token')
       })
   }
 
