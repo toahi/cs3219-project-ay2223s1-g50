@@ -6,11 +6,11 @@ const USER_SERVICE_PROD_URL = "http://localhost:8080";
 const QUESTION_SERVICE_LOCAL_URL = "http://localhost:8090";
 const QUESTION_SERVICE_DOCKER_URL = "http://host.docker.internal:8090";
 
-const QUESTION_SERVICE_PROD_URL = "http://localhost:8080";
+const QUESTION_SERVICE_PROD_URL = "http://localhost:8090";
 
 export const FRONTEND_SERVICE_LOCAL_URL = "http://localhost:3000";
 
-const FRONTEND_SERVICE_PROD_URL = "http://localhost:8080";
+const FRONTEND_SERVICE_PROD_URL = "http://localhost:3000";
 
 export const USER_SERVICE_URL = process.env.NODE_ENV == "dev"
   ? USER_SERVICE_LOCAL_URL
