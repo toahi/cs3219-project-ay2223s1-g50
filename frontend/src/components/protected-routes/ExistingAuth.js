@@ -5,8 +5,6 @@ import {UserContext} from "../context/user-context"
 import LoadingPage from "../LoadingPage"
 import ValidateAuth from '../hooks/ValidateAuth'
 
-axios.defaults.withCredentials = true;
-
 const ExistingAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(true)

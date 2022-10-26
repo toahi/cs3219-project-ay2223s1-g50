@@ -11,8 +11,6 @@ import Logo from '../ui/Logo';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 
-axios.defaults.withCredentials = true;
-
 const NavBar = () => {
   const userContext = React.useContext(UserContext)
   const username = userContext.username
