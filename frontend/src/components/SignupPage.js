@@ -10,11 +10,16 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
+
+import { UserContext } from "./context/user-context";
+import { STATUS_CODE_SUCCESS } from "../constants";
 import { URL_REGISTER_USER_SVC, URL_LOGIN_USER_SVC } from "../configs";
 import { STATUS_CODE_CREATED, MIN_USERNAME_LEN, MIN_PASSWORD_LEN } from "../constants";
-import { Link } from "react-router-dom";
 import classes from './LoginSignUpPage.module.css';
 import Logo from "./ui/Logo"
 
@@ -31,6 +36,9 @@ function SignupPage() {
     const [dialogTitle, setDialogTitle] = useState("");
     const [dialogMsg, setDialogMsg] = useState("");
     const [isSignupSuccess, setIsSignupSuccess] = useState(false);
+
+    const userContext = useContext(UserContext)
+    const navigate = useNavigate;
 
     const validateUsername = (username) => {
         return String(username).length >= MIN_USERNAME_LEN;
@@ -89,12 +97,17 @@ function SignupPage() {
             setSuccessDialog("Account successfully created");
             setIsSignupSuccess(true);
 
-            // Create session
-            axios.post(URL_LOGIN_USER_SVC, { username, password })
-                .catch(err => {
-                    setErrorDialog(err.response.data.error);
-                })
-
+            const res = await axios
+            .post(URL_LOGIN_USER_SVC, { username, password})
+            .catch(err => {
+                setErrorDialog(err.response.data.error);
+            })
+            if (res?.status == STATUS_CODE_SUCCESS) {
+                userContext.setUsername(username)
+                userContext.setToken(res.data.accessToken)
+                Cookies.set('token', res.data.accessToken)
+                navigate('/dashboard')
+            }
         }
     };
 
