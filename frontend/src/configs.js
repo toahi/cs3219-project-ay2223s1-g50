@@ -1,10 +1,10 @@
-const URI_USER_SVC = process.env.URI_USER_SVC ?? 'http://localhost:8080'
-const URI_QUESTION_SVC = process.env.URI_QUESTION_SVC ?? 'http://localhost:8090'
+const URI_USER_SVC = process.env.REACT_APP_URI_USER_SVC ?? 'http://localhost:8080'
+const URI_QUESTION_SVC = process.env.REACT_APP_URI_QUESTION_SVC ?? 'http://localhost:8090'
 export const URI_COLLABORATION_SVC =
-  process.env.URI_COLLABORATION_SVC ?? 'ws://localhost:5001'
+  process.env.REACT_APP_URI_COLLABORATION_SVC ?? 'ws://localhost:5001'
 export const URI_MATCHING_SVC =
-  process.env.URI_MATCHING_SVC ?? 'ws://localhost:5003'
-export const URI_CHAT_SVC = process.env.URI_CHAT_SVC ?? 'ws://localhost:5005'
+  process.env.REACT_APP_URI_MATCHING_SVC ?? 'ws://localhost:5003'
+export const URI_CHAT_SVC = process.env.REACT_APP_URI_CHAT_SVC ?? 'ws://localhost:5005'
 
 const PREFIX_REGISTER_USER_SVC = '/register'
 const PREFIX_LOGIN_USER_SVC = '/login'
