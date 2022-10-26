@@ -16,16 +16,16 @@ const ValidateAuth = (setIsLoggedIn) => {
         },
         }
         const validateToken = async () => {
-        axios.post(URL_VALIDATE_SESSION_SVC, {}, config)
-            .then((res) => {
-            userContext.setUsername(res.data.username)
-            userContext.setToken(token)
-            setIsLoggedIn(true)
-            })
-            .catch((error) => {
-            console.error(error.message)
-            setIsLoggedIn(false)
-            })
+            axios.post(URL_VALIDATE_SESSION_SVC, {}, config)
+                .then((res) => {
+                userContext.setUsername(res.data.username)
+                userContext.setToken(token)
+                setIsLoggedIn(true)
+                })
+                .catch((error) => {
+                console.error(error.message)
+                setIsLoggedIn(false)
+                })
         }
         
         validateToken()
