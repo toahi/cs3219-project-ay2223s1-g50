@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
 import { UserContext } from "./context/user-context";
 import Logo from "./ui/Logo";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
     const userContext = React.useContext(UserContext)
@@ -58,6 +59,7 @@ const LoginPage = () => {
         if (res?.status == STATUS_CODE_SUCCESS) {
             userContext.setUsername(username)
             userContext.setToken(res.data.accessToken)
+            Cookies.set('token', res.data.accessToken)
             navigate('/dashboard')
         }
         setIsLoading(false)

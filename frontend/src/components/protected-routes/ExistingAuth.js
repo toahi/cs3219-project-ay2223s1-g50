@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import {Navigate, Outlet} from "react-router-dom"
 import {UserContext} from "../context/user-context"
-import {URL_VALIDATE_SESSION_SVC} from "../../configs"
 import LoadingPage from "../LoadingPage"
+import ValidateAuth from '../hooks/ValidateAuth'
 
 axios.defaults.withCredentials = true;
 
@@ -21,21 +21,7 @@ const ExistingAuth = () => {
         }
     } , [isLoggedIn])
 
-    React.useEffect(() => {
-        const checkSession = async () => { 
-            axios.get(URL_VALIDATE_SESSION_SVC).
-            then(res => {
-                if(res.data.loggedIn) {
-                    userContext.setUsername(res.data.username)
-                    userContext.setToken(res.data.token)
-                    setIsLoggedIn(true)
-                } else {
-                    setIsLoggedIn(false);
-                }
-            })
-        }
-        checkSession()
-    }, [])
+    ValidateAuth(isLoggedIn => setIsLoggedIn(isLoggedIn))
 
     return isLoading ? <LoadingPage /> : isLoggedIn ? <Navigate replace to='/dashboard' /> : <Outlet />
 
