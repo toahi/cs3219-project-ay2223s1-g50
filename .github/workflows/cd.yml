@@ -259,7 +259,7 @@ jobs:
     - name: Deploy updated Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1.4.10
       with:
-        task-definition: ${{ steps.render-question-service-container.outputs.task-definition }}
+        task-definition: ${{ steps.render-chat-service-container.outputs.task-definition }}
         service: cs3219-project-ay2223s1-g50-service
         cluster: cs3219-project-ay2223s1-g50-cluster 
         wait-for-service-stability: true
