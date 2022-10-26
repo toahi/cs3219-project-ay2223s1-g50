@@ -20,7 +20,7 @@ app.use(cors({
   origin: [FRONTEND_SERVICE_LOCAL_URL],
   credentials: true
 })); // config cors so that front-end can use
-app.options('*', cors());
+// app.options('*', cors());
 app.use(cookieParser());
 app.use(session({
   key: "user-id",
