@@ -5,7 +5,7 @@
           "name": "question-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:56970e48c3f76b976abc8e7807f6a05e890e4847",
           "cpu": 0,
-          "memoryReservation": 80,
+          "memoryReservation": 300,
           "portMappings": [
               {
                   "containerPort": 8090,
@@ -30,7 +30,7 @@
           "name": "user-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:56970e48c3f76b976abc8e7807f6a05e890e4847",
           "cpu": 0,
-          "memoryReservation": 100,
+          "memoryReservation": 1000,
           "portMappings": [
               {
                   "containerPort": 8080,
@@ -55,7 +55,7 @@
           "name": "collaboration-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memoryReservation": 500,
+          "memoryReservation": 1500,
           "portMappings": [
               {
                   "containerPort": 5001,
@@ -80,7 +80,7 @@
           "name": "matching-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:057124877cea52934357bffb54a7b8f13ef0fc01",
           "cpu": 0,
-          "memoryReservation": 110,
+          "memoryReservation": 500,
           "portMappings": [
               {
                   "containerPort": 5003,
@@ -105,7 +105,7 @@
           "name": "chat-service",
           "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-chat:2a383f32c9eeb0b1883760c7a0120ddeec254381",
           "cpu": 0,
-          "memoryReservation": 150,
+          "memoryReservation": 500,
           "portMappings": [
               {
                   "containerPort": 5005,
@@ -158,7 +158,7 @@
       "EC2"
   ],
   "cpu": "2048",
-  "memory": "960",
+  "memory": "3895",
   "registeredAt": "2022-10-26T07:19:10.718000+08:00",
   "registeredBy": "arn:aws:iam::582969597664:root"
 }

@@ -260,8 +260,8 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1.4.10
       with:
         task-definition: ${{ steps.render-chat-service-container.outputs.task-definition }}
-        service: cs3219-project-ay2223s1-g50-service
-        cluster: cs3219-project-ay2223s1-g50-cluster 
+        service: cs3219-project-ay2223s1-g50-service-new
+        cluster: cs3219-project-ay2223s1-g50-cluster-new
         wait-for-service-stability: true
     - name: Echo Success
       run: echo Successfully deployed microservice images to ECS! 
