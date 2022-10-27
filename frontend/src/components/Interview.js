@@ -113,6 +113,8 @@ const Interview = () => {
         padding: 5,
         marginBottom: '1rem',
         height: '800px',
+        minWidth: '400px',
+        maxWidth: '700px',
         overflow: 'scroll',
       }}
       key={`${title}${body}`}
