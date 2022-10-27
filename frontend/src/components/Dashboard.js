@@ -9,7 +9,7 @@ import {
   DialogTitle,
   LinearProgress,
 } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { URI_MATCHING_SVC } from '../configs'
 import { UserContext } from './context/user-context'
@@ -34,39 +34,47 @@ function Dashboard() {
     MatchFound: 'match_found',
     CancelFindMatch: 'cancel_find_match',
   }
-  const client = new Client(URI_MATCHING_SVC, {
-    extraHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  const [matchingClient, setMatchingClient] = useState(undefined)
+  useEffect(() => {
+    const tempMatchingClient = new Client(URI_MATCHING_SVC, {
+      extraHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setMatchingClient(tempMatchingClient)
 
-  client.on(
-    MatchEvents.MatchFound,
-    async ({ roomId, difficulty, questions }) => {
-      Cookies.set(
-        COOKIE_INTERVIEW_SESSION,
-        JSON.stringify({ roomId, difficulty, questions })
-      )
+    tempMatchingClient.on(
+      MatchEvents.MatchFound,
+      async ({ roomId, difficulty, questions }) => {
+        Cookies.set(
+          COOKIE_INTERVIEW_SESSION,
+          JSON.stringify({ roomId, difficulty, questions })
+        )
 
-      clearMatchMakingTimeouts()
-      navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
-        state: { questions },
-      })
+        clearMatchMakingTimeouts()
+        navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
+          state: { questions },
+        })
+      }
+    )
+
+    return () => {
+      tempMatchingClient.close()
     }
-  )
+  }, [])
 
   const selectQuestionDifficulty = async (difficulty) => {
     setIsFindingMatch(true)
     setTimeoutIds((prev) => [...matchmakingTimeout()])
 
-    client.emit(MatchEvents.FindMatch, {
+    matchingClient?.emit(MatchEvents.FindMatch, {
       difficulty,
     })
   }
 
   const closeDialog = () => {
     clearMatchMakingTimeouts()
-    client.emit(MatchEvents.CancelFindMatch)
+    matchingClient?.emit(MatchEvents.CancelFindMatch)
     setIsFindingMatch(false)
   }
 

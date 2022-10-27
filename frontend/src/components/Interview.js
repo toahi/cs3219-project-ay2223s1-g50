@@ -18,8 +18,8 @@ import {
   TextField,
   IconButton,
 } from '@mui/material'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
 import { UserContext } from './context/user-context'
 import {
   URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
@@ -51,47 +51,58 @@ const Interview = () => {
 
   /// Collab client stuff
   const [usersInRoom, setUsersInRoom] = useState([])
-  const collabClient = new Client(URI_COLLABORATION_SVC, {
-    extraHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  const [collabClient, setCollabClient] = useState(undefined)
   const CollaborationEvent = {
     RoomMessage: 'collaboration:room_message',
     JoinRoom: 'collaboration:join_room',
     LeaveRoom: 'collaboration:leave_room',
   }
   useEffect(() => {
-    collabClient.emit(CollaborationEvent.JoinRoom, { roomId })
+    const tempCollabClient = new Client(URI_COLLABORATION_SVC, {
+      extraHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setCollabClient(tempCollabClient)
+    tempCollabClient.emit(CollaborationEvent.JoinRoom, { roomId })
+    tempCollabClient.on(CollaborationEvent.RoomMessage, ({ from, message }) => {
+      console.log('New message', { message })
+      setEditorText(message)
+    })
+    const setNewUsers = ({ users }) => setUsersInRoom(users)
+    tempCollabClient.on(CollaborationEvent.JoinRoom, setNewUsers)
+    tempCollabClient.on(CollaborationEvent.LeaveRoom, setNewUsers)
+
+    return () => {
+      tempCollabClient.close()
+    }
   }, [])
-  collabClient.on(CollaborationEvent.RoomMessage, ({ from, message }) => {
-    setEditorText(message)
-  })
-  const setNewUsers = ({ users }) => setUsersInRoom(users)
-  collabClient.on(CollaborationEvent.JoinRoom, setNewUsers)
-  collabClient.on(CollaborationEvent.LeaveRoom, setNewUsers)
 
   /// Question boxes
   const questionsBox = (questions) => {
     return (
-      <Tabs
-        defaultActiveKey="Question 1"
-        id="questions-tab"
-        className="mb-3"
-      >
-        {questions?.questionOne?.map((question) =>
+      <Tabs defaultActiveKey="Question 1" id="questions-tab" className="mb-3">
+        {questions?.questionOne?.map((question) => (
           <Tab eventKey="Question 1" title="Question 1">
-            {questionBox(question.name, question.description, question.examples)}
+            {questionBox(
+              question.name,
+              question.description,
+              question.examples
+            )}
           </Tab>
-        )}
+        ))}
 
-        {questions?.questionTwo?.map((question) =>
+        {questions?.questionTwo?.map((question) => (
           <Tab eventKey="Question 2" title="Question 2">
-            {questionBox(question.name, question.description, question.examples)}
+            {questionBox(
+              question.name,
+              question.description,
+              question.examples
+            )}
           </Tab>
-        )}
+        ))}
       </Tabs>
-    );
+    )
   }
 
   const questionBox = (title, body, example) => (
@@ -152,11 +163,12 @@ const Interview = () => {
   /// Code editor
   const codeEditor = (
     <TextareaAutosize
-      onChange={(e) => {
-        collabClient.emit(CollaborationEvent.RoomMessage, {
+      onChange={({ target: { value } }) => {
+        collabClient?.emit(CollaborationEvent.RoomMessage, {
           roomId,
-          message: e.target.value,
+          message: value,
         })
+        setEditorText(value)
       }}
       aria-label="empty textarea"
       placeholder="Type your code here"
@@ -204,18 +216,24 @@ const Interview = () => {
     JoinRoom: 'chat:join_room',
     LeaveRoom: 'chat:leave_room',
   }
-  const chatClient = new Client(URI_CHAT_SVC, {
-    extraHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  const [chatClient, setChatClient] = useState(undefined)
   useEffect(() => {
-    chatClient.emit(ChatEvents.JoinRoom, { roomId })
+    const tempChatClient = new Client(URI_CHAT_SVC, {
+      extraHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setChatClient(tempChatClient)
+    tempChatClient.emit(ChatEvents.JoinRoom, { roomId })
+    tempChatClient.on(ChatEvents.RoomMessage, (msg) => {
+      setMessages((currMessages) => [...currMessages, msg])
+      setIsChatUnread(true)
+    })
+
+    return () => {
+      tempChatClient.close()
+    }
   }, [])
-  chatClient.on(ChatEvents.RoomMessage, (msg) => {
-    setMessages((currMessages) => [...currMessages, msg])
-    setIsChatUnread(true)
-  })
 
   /// Chat dialog stuff
   const [message, setMessage] = useState('')
@@ -223,7 +241,7 @@ const Interview = () => {
   const [isChatUnread, setIsChatUnread] = useState(false)
   const sendMessage = () => {
     if (message.length === 0) return
-    chatClient.emit(ChatEvents.RoomMessage, {
+    chatClient?.emit(ChatEvents.RoomMessage, {
       roomId,
       message,
     })
@@ -278,8 +296,6 @@ const Interview = () => {
   /// Cleaning up
   const leaveRoom = () => {
     Cookies.remove(COOKIE_INTERVIEW_SESSION, { path: '' })
-    collabClient.close()
-    chatClient.close()
     navigate('/dashboard', { replace: true })
   }
   const leaveRoomButton = (
@@ -303,17 +319,33 @@ const Interview = () => {
         {/* getNextQuestionButton was here */}
         {questionTimer}
         {chatButton}
-        <Button sx={{ fontSize: '1rem', marginLeft: 'auto', backgroundColor: 'black' }}
-                variant="contained"
-                onClick={() => setSwap(prev => !prev)}>
-                SWAP DISPLAY
+        <Button
+          sx={{
+            fontSize: '1rem',
+            marginLeft: 'auto',
+            backgroundColor: 'black',
+          }}
+          variant="contained"
+          onClick={() => setSwap((prev) => !prev)}
+        >
+          SWAP DISPLAY
         </Button>
         {leaveRoomButton}
       </Box>
       {/* TODO: Try to figure out why this doesn't change when questionsShown changes */}
       <Box sx={{ display: 'flex' }}>
-        {swap && <>{codeEditor}<Box>{questionsBox(questionsShown)}</Box></>}
-        {!swap && <><Box>{questionsBox(questionsShown)}</Box>{codeEditor}</>}
+        {swap && (
+          <>
+            {codeEditor}
+            <Box>{questionsBox(questionsShown)}</Box>
+          </>
+        )}
+        {!swap && (
+          <>
+            <Box>{questionsBox(questionsShown)}</Box>
+            {codeEditor}
+          </>
+        )}
       </Box>
       {chatDialog}
     </Box>
