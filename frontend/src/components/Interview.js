@@ -122,6 +122,15 @@ const Interview = () => {
       <Typography sx={{ whiteSpace: 'pre-line' }}>
         <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>
           {title}
+          <Button sx={{
+            fontSize: '1rem',
+            marginLeft: '2rem',
+            backgroundColor: 'black',
+          }}
+          variant="contained"
+          onClick={() => window.open(`https://www.google.com/search?q=leetcode+${title}+solution`, '_blank')}>
+            SOLUTION
+          </Button>
         </Typography>
         <Typography sx={{ width: '80%', margin: '1.5rem 0' }}>
           {body}
