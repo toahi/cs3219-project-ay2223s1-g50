@@ -18,19 +18,16 @@ const NavBar = () => {
 
   const logoLink = token ? '/signup' : '/about'
 
-  const handleLogout = () => {
-    axios
-      .post(
-        URL_LOGOUT_USER_SVC,
-        {},
-        { headers: { authorization: `Bearer ${userContext.token}` } }
-      )
-      .then((res) => {
-        userContext.setUsername(null)
-        userContext.setToken(null)
-        Cookies.remove('token')
-        Cookies.remove(COOKIE_INTERVIEW_SESSION)
-      })
+  const handleLogout = async () => {
+    Cookies.remove('token')
+    Cookies.remove(COOKIE_INTERVIEW_SESSION)
+    userContext.setUsername(null)
+    userContext.setToken(null)
+    await axios.post(
+      URL_LOGOUT_USER_SVC,
+      {},
+      { headers: { authorization: `Bearer ${userContext.token}` } }
+    )
   }
 
   return (
