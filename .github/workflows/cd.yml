@@ -238,7 +238,7 @@ jobs:
     name: Deploy all ECR images to ECS 
     runs-on: ubuntu-latest
 
-    needs: [ user-service-ecr, question-service-ecr, matching-service-ecr, collaboration-service-ecr, chat-service-ecr ]
+    needs: [ frontend-ecr, user-service-ecr, question-service-ecr, matching-service-ecr, collaboration-service-ecr, chat-service-ecr ]
 
     if: ${{ github.repository_owner == 'CS3219-AY2223S1' }}
     environment: cs3219-project-ay2223s1-g50
@@ -257,11 +257,18 @@ jobs:
     #   run: |
     #     aws ecs describe-task-definition --task-definition cs3219-project-ay2223s1-g50 --query taskDefinition > cs3219-project-ay2223s1-g50.json
 
+    - name: Fill in the new Frontend image ID in the Amazon ECS task definition
+      id: render-frontend-container 
+      uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
+      with:
+        task-definition: cs3219-project-ay2223s1-g50.json
+        container-name: frontend 
+        image: ${{ needs.frontend-ecr.outputs.image }}
     - name: Fill in the new User Service image ID in the Amazon ECS task definition
       id: render-user-service-container 
       uses: aws-actions/amazon-ecs-render-task-definition@v1.1.1
       with:
-        task-definition: cs3219-project-ay2223s1-g50.json
+        task-definition: ${{ steps.render-frontend-container.outputs.task-definition }}
         container-name: user-service
         image: ${{ needs.user-service-ecr.outputs.image }}
     - name: Fill in the new Question Service image ID in the Amazon ECS task definition
