@@ -13,7 +13,7 @@ COPY package*.json .
 RUN npm ci
 
 # set environment 
-ENV REACT_APP_ENV docker-dev
+ENV REACT_APP_ENV prod 
 
 # Copy everything to container
 COPY . .
