@@ -48,7 +48,12 @@ function Dashboard() {
       async ({ roomId, difficulty, questions }) => {
         Cookies.set(
           COOKIE_INTERVIEW_SESSION,
-          JSON.stringify({ roomId, difficulty, questions })
+          JSON.stringify({
+            roomId,
+            difficulty,
+            questions,
+            startTime: Math.floor(Date.now() / 1000),
+          })
         )
 
         clearMatchMakingTimeouts()
@@ -63,7 +68,7 @@ function Dashboard() {
     }
   }, [])
 
-  const selectQuestionDifficulty = async (difficulty) => {
+  const findMatchWithDifficulty = async (difficulty) => {
     setIsFindingMatch(true)
     setTimeoutIds((prev) => [...matchmakingTimeout()])
 
@@ -184,21 +189,21 @@ function Dashboard() {
             difficulty="Easy"
             description="This difficulty is suitable for those who are getting started"
             img="https://cdn-icons-png.flaticon.com/512/2641/2641391.png"
-            onClick={() => selectQuestionDifficulty('Easy')}
+            onClick={() => findMatchWithDifficulty('Easy')}
             disabled={isFindingMatch}
           />
           <Card
             difficulty="Medium"
             description="This difficulty is suitable for those who wants to ramp up their skills"
             img="https://en.scratch-wiki.info/w/images/thumb/ScratchCat-Small.png/200px-ScratchCat-Small.png"
-            onClick={() => selectQuestionDifficulty('Medium')}
+            onClick={() => findMatchWithDifficulty('Medium')}
             disabled={isFindingMatch}
           />
           <Card
             difficulty="Hard"
             description="This difficulty is for those who wants to work in FAANG"
             img="https://assets.entrepreneur.com/content/3x2/2000/20150224165308-jeff-bezos-amazon.jpeg?crop=4:3"
-            onClick={() => selectQuestionDifficulty('Hard')}
+            onClick={() => findMatchWithDifficulty('Hard')}
             disabled={isFindingMatch}
           />
         </Box>
