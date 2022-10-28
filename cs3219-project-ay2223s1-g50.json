@@ -1,11 +1,11 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:28",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:582969597664:task-definition/cs3219-project-ay2223s1-g50:47",
   "containerDefinitions": [
       {
           "name": "question-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:56970e48c3f76b976abc8e7807f6a05e890e4847",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-question:c49209ab0d2433654147dfacad3197fb13d9fa6d",
           "cpu": 0,
-          "memoryReservation": 300,
+          "memoryReservation": 200,
           "portMappings": [
               {
                   "containerPort": 8090,
@@ -28,7 +28,7 @@
       },
       {
           "name": "user-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:56970e48c3f76b976abc8e7807f6a05e890e4847",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-user:c49209ab0d2433654147dfacad3197fb13d9fa6d",
           "cpu": 0,
           "memoryReservation": 1000,
           "portMappings": [
@@ -53,7 +53,7 @@
       },
       {
           "name": "collaboration-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:057124877cea52934357bffb54a7b8f13ef0fc01",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-collaboration:c49209ab0d2433654147dfacad3197fb13d9fa6d",
           "cpu": 0,
           "memoryReservation": 1500,
           "portMappings": [
@@ -78,9 +78,9 @@
       },
       {
           "name": "matching-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:057124877cea52934357bffb54a7b8f13ef0fc01",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-matching:c49209ab0d2433654147dfacad3197fb13d9fa6d",
           "cpu": 0,
-          "memoryReservation": 500,
+          "memoryReservation": 400,
           "portMappings": [
               {
                   "containerPort": 5003,
@@ -103,7 +103,7 @@
       },
       {
           "name": "chat-service",
-          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-chat:2a383f32c9eeb0b1883760c7a0120ddeec254381",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-chat:c49209ab0d2433654147dfacad3197fb13d9fa6d",
           "cpu": 0,
           "memoryReservation": 500,
           "portMappings": [
@@ -125,11 +125,36 @@
                   "awslogs-stream-prefix": "ecs"
               }
           }
+      },
+      {
+          "name": "frontend",
+          "image": "582969597664.dkr.ecr.ap-southeast-1.amazonaws.com/cs3219-project-ay2223s1-g50-frontend:c49209ab0d2433654147dfacad3197fb13d9fa6d",
+          "cpu": 0,
+          "memoryReservation": 200,
+          "portMappings": [
+              {
+                  "containerPort": 3000,
+                  "hostPort": 3000,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "environment": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-group": "/ecs/cs3219-project-ay2223s1-g50",
+                  "awslogs-region": "ap-southeast-1",
+                  "awslogs-stream-prefix": "ecs"
+              }
+          }
       }
   ],
   "family": "cs3219-project-ay2223s1-g50",
   "networkMode": "host",
-  "revision": 28,
+  "revision": 47,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -159,6 +184,6 @@
   ],
   "cpu": "2047",
   "memory": "3894",
-  "registeredAt": "2022-10-26T07:19:10.718000+08:00",
+  "registeredAt": "2022-10-29T04:20:13.333000+08:00",
   "registeredBy": "arn:aws:iam::582969597664:root"
 }
