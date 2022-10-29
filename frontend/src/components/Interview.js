@@ -39,8 +39,7 @@ import { COOKIE_INTERVIEW_SESSION } from '../configs'
 import MarkChatUnread from '@mui/icons-material/MarkChatUnread'
 
 const Interview = () => {
-  const userContext = useContext(UserContext)
-  const token = userContext.token
+  let { username, token } = useContext(UserContext)
   const navigate = useNavigate()
   const [swap, setSwap] = useState(true)
 
@@ -271,7 +270,7 @@ const Interview = () => {
       roomId,
       message,
     })
-    setMessages((prev) => [...prev, message])
+    setMessages((prev) => [...prev, { from: username, message }])
     setMessage('')
   }
   const chatButton = (
