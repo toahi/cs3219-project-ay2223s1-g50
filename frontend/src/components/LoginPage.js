@@ -17,7 +17,7 @@ import { URL_LOGIN_USER_SVC } from "../configs";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
 import { UserContext } from "./context/user-context";
-import { USER_SERVICE_NETWORK_ERROR_MESSAGE } from "../constants";
+import { USER_SERVICE_NETWORK_ERROR_MESSAGE,STATUS_CODE_UNAUTHORIZED } from "../constants";
 import Logo from "./ui/Logo";
 import Cookies from "js-cookie";
 
@@ -35,6 +35,7 @@ const LoginPage = () => {
     const [isLoginSuccess, setIsLoginSuccess] = React.useState(false);
     const [setIsDialogOpen] = React.useState(false);
 
+    /// Method for logging in a user
     const handleLogin = async () => {
         setIsLoginSuccess(false);
         setUsernameIsEmpty(false);
@@ -63,12 +64,15 @@ const LoginPage = () => {
                 navigate('/dashboard')
             } 
         } catch (err) {
-            setErrorDialog(err.message, USER_SERVICE_NETWORK_ERROR_MESSAGE)
+            if (err.response.status == STATUS_CODE_UNAUTHORIZED) {
+                setErrorDialog(err.message, "Either username or password is wrong")
+            } else {
+                setErrorDialog(err.message, USER_SERVICE_NETWORK_ERROR_MESSAGE)
+            }
         }
         setIsLoading(false)
     };
 
-    /** Start of methods for login dialog */
     const closeDialog = () => setIsDialogOpen(false);
 
     const setErrorDialog = (title, msg) => {
@@ -78,7 +82,6 @@ const LoginPage = () => {
     };
 
     const closeLoginDialog = () => setIsLoginDialogOpen(false);
-    /** End of methods for login dialog */
 
     const loginDialog = <Dialog open={isLoginDialogOpen} onClose={closeDialog}>
         <DialogTitle>{dialogTitle}</DialogTitle>
