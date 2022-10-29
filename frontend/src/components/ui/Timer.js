@@ -1,19 +1,27 @@
-import React from "react";
+import React from 'react'
 
-const Timer = () => {
-    const [seconds, setSeconds] = React.useState(0);
+const Timer = ({ startTime = 0 }) => {
+  const [seconds, setSeconds] = React.useState(
+    startTime === 0 ? 0 : Math.floor(Date.now() / 1000) - Number(startTime)
+  )
 
-    React.useEffect(() => {
-        const myTimeout = setInterval(() => {setSeconds(prev => {
-            return prev + 1
-        })}, 1000);
+  React.useEffect(() => {
+    const myTimeout = setInterval(() => {
+      setSeconds((prev) => {
+        return prev + 1
+      })
+    }, 1000)
 
-        return () => {
-            clearInterval(myTimeout)
-        }
-    }, []);
+    return () => {
+      clearInterval(myTimeout)
+    }
+  }, [])
 
-    return <h1>{Math.floor((seconds/60))}:{("0" + (seconds % 60)).slice(-2)}</h1>
+  return (
+    <h1>
+      {Math.floor(seconds / 60)}:{('0' + (seconds % 60)).slice(-2)}
+    </h1>
+  )
 }
 
-export default Timer;
+export default Timer

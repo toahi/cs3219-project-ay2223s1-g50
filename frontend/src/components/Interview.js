@@ -66,7 +66,6 @@ const Interview = () => {
     setCollabClient(tempCollabClient)
     tempCollabClient.emit(CollaborationEvent.JoinRoom, { roomId })
     tempCollabClient.on(CollaborationEvent.RoomMessage, ({ from, message }) => {
-      console.log('New message', { message })
       setEditorText(message)
     })
     const setNewUsers = ({ users }) => setUsersInRoom(users)
@@ -164,12 +163,21 @@ const Interview = () => {
       console.error({ error })
     }
   }
-  const questionTimer = (
-    <>
-      <AccessTimeIcon sx={{ fontSize: '3rem', margin: '0 0.5rem 0 1rem' }} />
-      <Timer />
-    </>
-  )
+  const questionTimer = () => {
+    const session = Cookies.get(COOKIE_INTERVIEW_SESSION)
+    let startTime
+
+    if (session) {
+      startTime = JSON.parse(session).startTime
+    }
+
+    return (
+      <>
+        <AccessTimeIcon sx={{ fontSize: '3rem', margin: '0 0.5rem 0 1rem' }} />
+        <Timer startTime={startTime} />
+      </>
+    )
+  }
 
   /// Code editor
   const codeEditor = (
@@ -306,7 +314,7 @@ const Interview = () => {
 
   /// Cleaning up
   const leaveRoom = () => {
-    Cookies.remove(COOKIE_INTERVIEW_SESSION, { path: '' })
+    Cookies.remove(COOKIE_INTERVIEW_SESSION)
     navigate('/dashboard', { replace: true })
   }
   const leaveRoomButton = (
@@ -328,7 +336,7 @@ const Interview = () => {
       >
         {userAvatars}
         {/* getNextQuestionButton was here */}
-        {questionTimer}
+        {questionTimer()}
         {chatButton}
         <Button
           sx={{
