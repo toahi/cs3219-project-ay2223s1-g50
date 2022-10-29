@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import Dropdown from 'react-bootstrap/Dropdown';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { UserContext } from '../context/user-context'
 import { COOKIE_INTERVIEW_SESSION, URL_LOGOUT_USER_SVC } from '../../configs'
@@ -30,6 +32,20 @@ const NavBar = () => {
     )
   }
 
+  const dropDown = (
+    <Dropdown>
+      <Dropdown.Toggle size="lg" variant="primary" id="dropdown-basic">
+        {username}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="/profile">Change Password</Dropdown.Item>
+        <NavDropdown.Divider />
+        <Dropdown.Item href="/" onClick={handleLogout}>Logout</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  )
+
   return (
     <div data-testid="navbar">
       <Navbar bg="dark" variant="dark" className="py-3">
@@ -38,31 +54,20 @@ const NavBar = () => {
             <Logo size="h4" />
           </Navbar.Brand>
           <Nav className="justify-content-end">
-            {username && (
-              <Nav.Link href="/profile">
-                <Badge bg="info">
-                  <h5>{username}</h5>
-                </Badge>
-              </Nav.Link>
-            )}
+            {username && dropDown}
             {!username && (
+              <>
               <Nav.Link href="/login">
                 <Button variant="outline-light">
                   <h4>Login</h4>
                 </Button>
               </Nav.Link>
-            )}
-            {!username && (
               <Nav.Link href="/signup">
-                <Button variant="light">
-                  <h4>Sign Up</h4>
-                </Button>
-              </Nav.Link>
-            )}
-            {username && (
-              <Nav.Link href="/" onClick={handleLogout}>
-                <h4>Logout</h4>
-              </Nav.Link>
+              <Button variant="light">
+                <h4>Sign Up</h4>
+              </Button>
+            </Nav.Link>
+            </>
             )}
           </Nav>
         </Container>
