@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser'
 import { CollaborationSocketHandler } from './routes/collaboration/collaboration.socket'
 import { Server } from 'socket.io'
 import { userServiceClientImpl } from './clients/user-service/user-service.client'
-import { FRONTEND_SERVICE_LOCAL_URL } from './url';
+import { FRONTEND_SERVICE_LOCAL_URL, FRONTEND_SERVICE_PROD_URL } from './url';
 
 export const app: Application = express()
 
@@ -27,7 +27,7 @@ app.use(errorHandler)
 
 export const io = new Server({
   cors: {
-    origin: FRONTEND_SERVICE_LOCAL_URL,
+    origin: [ FRONTEND_SERVICE_LOCAL_URL, FRONTEND_SERVICE_PROD_URL ],
     credentials: true,
   },
 })
