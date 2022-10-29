@@ -2,6 +2,7 @@ import React from "react";
 import {
     Box,
     Button,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
@@ -16,6 +17,7 @@ import { Link } from "react-router-dom";
 import Cookies from 'js-cookie'
 import { useNavigate } from "react-router-dom";
 
+import { USER_SERVICE_NETWORK_ERROR_MESSAGE } from "../constants";
 import { UserContext } from "./context/user-context";
 import { STATUS_CODE_SUCCESS } from "../constants";
 import { URL_REGISTER_USER_SVC, URL_LOGIN_USER_SVC } from "../configs";
@@ -34,6 +36,7 @@ function SignupPage() {
     const [dialogTitle, setDialogTitle] = useState("");
     const [dialogMsg, setDialogMsg] = useState("");
     const [isSignupSuccess, setIsSignupSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const userContext = useContext(UserContext)
     const navigate = useNavigate;
@@ -85,28 +88,30 @@ function SignupPage() {
         if (!validateForm()) {
             return;
         }
-    
-        const res = await axios
-            .post(URL_REGISTER_USER_SVC, { username, password })
-            .catch((err) => {
-                setErrorDialog(err.response.data.error);
-            });
-        if (res?.status === STATUS_CODE_CREATED) {
-            setSuccessDialog("Account successfully created");
-            setIsSignupSuccess(true);
-
+        
+        setIsLoading(true)
+        try {
             const res = await axios
-            .post(URL_LOGIN_USER_SVC, { username, password})
-            .catch(err => {
-                setErrorDialog(err.response.data.error);
-            })
-            if (res?.status == STATUS_CODE_SUCCESS) {
-                userContext.setUsername(username)
-                userContext.setToken(res.data.accessToken)
-                Cookies.set('token', res.data.accessToken)
-                navigate('/dashboard')
+                .post(URL_REGISTER_USER_SVC, { username, password })
+                
+            if (res?.status === STATUS_CODE_CREATED) {
+                setSuccessDialog("Account successfully created");
+                setIsSignupSuccess(true);
+
+                const res = await axios
+                .post(URL_LOGIN_USER_SVC, { username, password})
+                
+                if (res?.status == STATUS_CODE_SUCCESS) {
+                    userContext.setUsername(username)
+                    userContext.setToken(res.data.accessToken)
+                    Cookies.set('token', res.data.accessToken)
+                    navigate('/dashboard')
+                }
             }
+        } catch (err) {
+            setErrorDialog(err.message, USER_SERVICE_NETWORK_ERROR_MESSAGE)
         }
+        setIsLoading(false)
     };
 
     const handleUsernameChange = (event) => {
@@ -127,9 +132,9 @@ function SignupPage() {
         setDialogMsg(msg);
     };
 
-    const setErrorDialog = (msg) => {
+    const setErrorDialog = (title, msg) => {
         setIsDialogOpen(true);
-        setDialogTitle("Error");
+        setDialogTitle(title);
         setDialogMsg(msg);
     };
 
@@ -181,9 +186,10 @@ function SignupPage() {
                 justifyContent={"flex-end"}
                 marginTop={"2rem"}
             >
-                <Button variant={"outlined"} onClick={handleSignup}>
-                    Sign up
-                </Button>
+                { isLoading ? <CircularProgress />
+                            : <Button variant={"outlined"} onClick={handleSignup}>
+                                 Sign up
+                              </Button>}
             </Box>
 
             <Dialog open={isDialogOpen} onClose={closeDialog}>
