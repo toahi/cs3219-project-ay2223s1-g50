@@ -12,11 +12,12 @@ import {
     DialogTitle,
 } from "@mui/material";
 import axios from "axios";
-import { STATUS_CODE_SUCCESS } from "../constants"
+import { STATUS_CODE_SUCCESS } from "../constants";
 import { URL_LOGIN_USER_SVC } from "../configs";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginSignUpPage.module.css";
 import { UserContext } from "./context/user-context";
+import { USER_SERVICE_NETWORK_ERROR_MESSAGE } from "../constants";
 import Logo from "./ui/Logo";
 import Cookies from "js-cookie";
 
@@ -50,17 +51,19 @@ const LoginPage = () => {
         }
 
         setIsLoading(true);
-
-        const res = await axios
-            .post(URL_LOGIN_USER_SVC, { username, password})
-            .catch(err => {
-                setErrorDialog(err.response.data.error);
-            })
-        if (res?.status == STATUS_CODE_SUCCESS) {
-            userContext.setUsername(username)
-            userContext.setToken(res.data.accessToken)
-            Cookies.set('token', res.data.accessToken)
-            navigate('/dashboard')
+        try {
+            const res = await axios
+                .post(URL_LOGIN_USER_SVC, { username, password})
+                
+        
+            if (res?.status == STATUS_CODE_SUCCESS) {
+                userContext.setUsername(username)
+                userContext.setToken(res.data.accessToken)
+                Cookies.set('token', res.data.accessToken)
+                navigate('/dashboard')
+            } 
+        } catch (err) {
+            setErrorDialog(err.message, USER_SERVICE_NETWORK_ERROR_MESSAGE)
         }
         setIsLoading(false)
     };
@@ -68,9 +71,9 @@ const LoginPage = () => {
     /** Start of methods for login dialog */
     const closeDialog = () => setIsDialogOpen(false);
 
-    const setErrorDialog = (msg) => {
+    const setErrorDialog = (title, msg) => {
         setIsLoginDialogOpen(true);
-        setDialogTitle("Error");
+        setDialogTitle(title);
         setDialogMsg(msg);
     };
 
