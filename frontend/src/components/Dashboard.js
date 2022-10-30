@@ -208,7 +208,7 @@ function Dashboard() {
         {dashboardDialog}
         {noMatchDialog}
       </Box>
-    </Box>
+  </Box>
   )
 }
 
