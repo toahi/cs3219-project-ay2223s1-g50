@@ -9,6 +9,7 @@ import {
   DialogTitle,
   LinearProgress,
 } from '@mui/material'
+import Badge from 'react-bootstrap/Badge';
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { URI_MATCHING_SVC } from '../configs'
@@ -148,10 +149,9 @@ function Dashboard() {
     let { roomId, difficulty, questions } = JSON.parse(session)
 
     return (
-      <Box display={'flex'} sx={{ padding: ' 0 40%' }}>
         <Button
           variant={'contained'}
-          sx={{ marginTop: '2rem', width: '80%' }}
+          sx={{ margin: '2rem', width: '30%' }}
           onClick={() =>
             navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
               state: { questions },
@@ -160,7 +160,6 @@ function Dashboard() {
         >
           Return to your previous interview
         </Button>
-      </Box>
     )
   }
 
@@ -179,27 +178,27 @@ function Dashboard() {
         <Typography variant={'h3'} marginBottom={'2rem'}>
           Welcome
         </Typography>
-        {returnToInterviewButton()}
         <Typography variant={'subtitle1'} marginBottom={'2rem'}>
           Please select your difficulty level
         </Typography>
+        {returnToInterviewButton()}
         <Box display={'flex'} sx={{ padding: ' 0 40%' }}>
           <Card
-            difficulty="Easy"
+            difficulty={<Badge bg="success">Easy</Badge>}
             description="This difficulty is suitable for those who are getting started"
             img="https://cdn-icons-png.flaticon.com/512/2641/2641391.png"
             onClick={() => findMatchWithDifficulty('Easy')}
             disabled={isFindingMatch}
           />
           <Card
-            difficulty="Medium"
+            difficulty={<Badge bg="warning">Medium</Badge>}
             description="This difficulty is suitable for those who wants to ramp up their skills"
             img="https://en.scratch-wiki.info/w/images/thumb/ScratchCat-Small.png/200px-ScratchCat-Small.png"
             onClick={() => findMatchWithDifficulty('Medium')}
             disabled={isFindingMatch}
           />
           <Card
-            difficulty="Hard"
+            difficulty={<Badge bg="danger">Hard</Badge>}
             description="This difficulty is for those who wants to work in FAANG"
             img="https://assets.entrepreneur.com/content/3x2/2000/20150224165308-jeff-bezos-amazon.jpeg?crop=4:3"
             onClick={() => findMatchWithDifficulty('Hard')}
