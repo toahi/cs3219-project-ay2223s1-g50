@@ -9,7 +9,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Tooltip,
   Avatar,
@@ -20,23 +19,22 @@ import {
   TextField,
   IconButton,
 } from '@mui/material'
-import MailIcon from '@mui/icons-material/Mail';
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Badge_bs from 'react-bootstrap/Badge'
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import Cookies from 'js-cookie'
+
 import { UserContext } from './context/user-context'
 import {
-  URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
   URI_COLLABORATION_SVC,
   URI_CHAT_SVC,
 } from '../configs'
 import Timer from './ui/Timer'
-import axios from 'axios'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { io as Client } from 'socket.io-client'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import Cookies from 'js-cookie'
 import { COOKIE_INTERVIEW_SESSION } from '../configs'
 
 const Interview = () => {
@@ -285,7 +283,7 @@ const Interview = () => {
       }}
     >
     <Badge sx={{marginRight: "10px"}} color="primary" badgeContent={messagesCount}>
-        <MailIcon />
+        <ChatBubbleIcon />
     </Badge>
       Chat
     </Button>
