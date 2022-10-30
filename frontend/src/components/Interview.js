@@ -9,6 +9,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   Tooltip,
   Avatar,
@@ -42,6 +43,7 @@ const Interview = () => {
   const navigate = useNavigate()
   const [swap, setSwap] = useState(true)
   const [messagesCount, setMessageCount] = useState(0)
+  const [isUserLeft, setIsUserLeft] = useState(false)
 
   const { difficulty, roomId } = useParams()
   const {
@@ -75,6 +77,30 @@ const Interview = () => {
       tempCollabClient.close()
     }
   }, [])
+
+  /// Check if the other user has left
+  const userLeftDialog = (
+    <Dialog open={isUserLeft} onClose={() => setIsUserLeft(false)}>
+        <DialogContent>
+            <DialogContentText>Looks like the other person has navigated away from this page </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button>Okay</Button>
+        </DialogActions>
+    </Dialog>
+  )
+
+  useEffect(() => {
+    if (usersInRoom.length === 1 && usersInRoom[0] === username) {
+      setIsUserLeft(true)
+    }
+
+    if (usersInRoom.length === 2) {
+      setIsUserLeft(false)
+    }
+
+    return () => {}
+  }, [usersInRoom])
 
   /// Difficulty badge
   const difficultyBadge = () => {
@@ -385,6 +411,7 @@ const Interview = () => {
         )}
       </Box>
       {chatDialog}
+      {userLeftDialog}
     </Box>
   )
 }
