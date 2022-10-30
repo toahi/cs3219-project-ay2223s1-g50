@@ -90,8 +90,7 @@ function Dashboard() {
   }
 
   const clearMatchMakingTimeouts = () => {
-    clearTimeout(timeoutIds[0])
-    clearTimeout(timeoutIds[1])
+    timeoutIds.map(id => clearTimeout(id))
   }
 
   const dashboardDialog = (
