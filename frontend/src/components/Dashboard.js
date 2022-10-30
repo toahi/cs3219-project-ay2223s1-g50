@@ -12,13 +12,14 @@ import {
 import Badge from 'react-bootstrap/Badge';
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
+
 import { URI_MATCHING_SVC } from '../configs'
 import { UserContext } from './context/user-context'
 import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
 import Card from './ui/Card'
 import Timer from './ui/Timer'
-import Cookies from 'js-cookie'
 import { COOKIE_INTERVIEW_SESSION } from '../configs'
 
 function Dashboard() {
