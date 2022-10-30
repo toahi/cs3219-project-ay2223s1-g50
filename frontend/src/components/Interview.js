@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import {
   Box,
+  Badge,
   Button,
   Typography,
   TextareaAutosize,
@@ -18,9 +19,10 @@ import {
   TextField,
   IconButton,
 } from '@mui/material'
+import MailIcon from '@mui/icons-material/Mail';
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import Badge from 'react-bootstrap/Badge'
+import Badge_bs from 'react-bootstrap/Badge'
 import { UserContext } from './context/user-context'
 import {
   URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
@@ -43,6 +45,7 @@ const Interview = () => {
   let { username, token } = useContext(UserContext)
   const navigate = useNavigate()
   const [swap, setSwap] = useState(true)
+  const [messagesCount, setMessageCount] = useState(0)
 
   const { difficulty, roomId } = useParams()
   const {
@@ -95,7 +98,7 @@ const Interview = () => {
         variant = "dark"
     }
 
-    return <Badge bg={variant}>{difficulty ?? "unknown"}</Badge>
+    return <Badge_bs bg={variant}>{difficulty ?? "unknown"}</Badge_bs>
   }
   
   /// Solution button
@@ -254,7 +257,7 @@ const Interview = () => {
     tempChatClient.emit(ChatEvents.JoinRoom, { roomId })
     tempChatClient.on(ChatEvents.RoomMessage, (msg) => {
       setMessages((currMessages) => [...currMessages, msg])
-      setIsChatUnread(true)
+      setMessageCount(prev => prev + 1)
     })
 
     return () => {
@@ -281,21 +284,19 @@ const Interview = () => {
       variant="contained"
       onClick={() => {
         setIsChatOpen(true)
-        setIsChatUnread(false)
+        setMessageCount(0)
       }}
     >
-      {isChatUnread ? (
-        <MarkChatUnread sx={{ margin: '0 5px 0 -5px' }} />
-      ) : (
-        <ChatBubbleIcon sx={{ margin: '0 5px 0 -5px' }} />
-      )}
+    <Badge sx={{marginRight: "10px"}} color="secondary" badgeContent={messagesCount}>
+        <MailIcon />
+    </Badge>
       Chat
     </Button>
   )
   const chatMessage = ({ from, message }) => (
     <Card key={`${from}${message}`} sx={{display: "flex", margin: "0.5rem 0"}}>
       {from === username && <CardHeader avatar={userAvatar(from)} />}
-      <CardContent sx={{margin: "auto", width: "400px", overflowWrap: "break-word"}}>{message}</CardContent>
+      <CardContent sx={{margin: "auto", width: "300px", overflowWrap: "break-word"}}>{message}</CardContent>
       {from !== username && <CardHeader avatar={userAvatar(from)} />} {/* Flip icon pos if not sender */}
     </Card>
   )
