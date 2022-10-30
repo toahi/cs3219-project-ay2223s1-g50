@@ -152,23 +152,6 @@ const Interview = () => {
     setQuestionsShown(questions)
   }, [questions])
 
-  const getNewQuestion = async () => {
-    const config = {
-      headers: {
-        authorization: 'Bearer ' + token,
-      },
-    }
-    try {
-      const { data: res } = await axios.post(
-        URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
-        { difficulty },
-        config
-      )
-      setQuestionsShown(res)
-    } catch (error) {
-      console.error({ error })
-    }
-  }
   const questionTimer = () => {
     const session = Cookies.get(COOKIE_INTERVIEW_SESSION)
     let startTime
@@ -206,18 +189,6 @@ const Interview = () => {
         resize: 'horizontal',
       }}
     />
-  )
-
-  // Removed this until we add syncing up of questions through collab service
-  // technology is not there yet :') LOL
-  const getNextQuestionButton = (
-    <Button
-      sx={{ fontSize: '1rem' }}
-      variant="outlined"
-      onClick={() => getNewQuestion()}
-    >
-      NEXT QUESTION
-    </Button>
   )
 
   /// User Avatar stuff
@@ -342,7 +313,6 @@ const Interview = () => {
         sx={{ display: 'flex', flexDirection: 'row', padding: '0 0 2rem 0' }}
       >
         {userAvatars}
-        {/* getNextQuestionButton was here */}
         {questionTimer()}
         {chatButton}
         <Button
