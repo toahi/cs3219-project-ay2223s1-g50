@@ -94,7 +94,7 @@ function Dashboard() {
   }
 
   const dashboardDialog = (
-    <Dialog open={isFindingMatch} onClose={closeDialog}>
+    <Dialog open={isFindingMatch}>
       <Box sx={{ display: 'flex' }}>
         <DialogTitle>Finding a match...</DialogTitle>
         <Box sx={{ marginTop: '0.5rem' }}>
