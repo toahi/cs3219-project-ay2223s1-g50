@@ -20,6 +20,7 @@ import {
 } from '@mui/material'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
+import Badge from 'react-bootstrap/Badge'
 import { UserContext } from './context/user-context'
 import {
   URL_GET_TWO_QUESTIONS_BY_DIFF_QUESTION_SVC,
@@ -76,6 +77,49 @@ const Interview = () => {
     }
   }, [])
 
+  /// Difficulty badge
+  const difficultyBadge = () => {
+    let variant
+
+    switch (difficulty) {
+      case ("easy"):
+        variant = "success"
+        break
+      case ("medium"):
+        variant = "warning"
+        break
+      case ("hard"):
+        variant = "danger"
+        break
+      default:
+        variant = "dark"
+    }
+
+    return <Badge bg={variant}>{difficulty ?? "unknown"}</Badge>
+  }
+  
+  /// Solution button
+  const solutionButton = (title) => {
+    return (
+    <Button
+      sx={{
+        fontSize: '1rem',
+        marginLeft: '2rem',
+        backgroundColor: 'black',
+      }}
+      variant="contained"
+      onClick={() =>
+        window.open(
+          `https://www.google.com/search?q=leetcode+${title}+solution`,
+          '_blank'
+        )
+      }
+    >
+      SOLUTION
+    </Button>
+    )
+  }
+
   /// Question boxes
   const questionsBox = (questions) => {
     return (
@@ -103,6 +147,7 @@ const Interview = () => {
     )
   }
 
+  /// Layout for question
   const questionBox = (title, body, example) => (
     <Box
       sx={{
@@ -117,25 +162,11 @@ const Interview = () => {
       }}
       key={`${title}${body}`}
     >
+      {difficultyBadge()}
       <Typography sx={{ whiteSpace: 'pre-line' }}>
         <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>
           {title}
-          <Button
-            sx={{
-              fontSize: '1rem',
-              marginLeft: '2rem',
-              backgroundColor: 'black',
-            }}
-            variant="contained"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/search?q=leetcode+${title}+solution`,
-                '_blank'
-              )
-            }
-          >
-            SOLUTION
-          </Button>
+          {solutionButton(title)}
         </Typography>
         <Typography sx={{ width: '80%', margin: '1.5rem 0' }}>
           {body}

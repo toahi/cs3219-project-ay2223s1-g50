@@ -90,12 +90,11 @@ function Dashboard() {
   }
 
   const clearMatchMakingTimeouts = () => {
-    clearTimeout(timeoutIds[0])
-    clearTimeout(timeoutIds[1])
+    timeoutIds.map(id => clearTimeout(id))
   }
 
   const dashboardDialog = (
-    <Dialog open={isFindingMatch} onClose={closeDialog}>
+    <Dialog open={isFindingMatch}>
       <Box sx={{ display: 'flex' }}>
         <DialogTitle>Finding a match...</DialogTitle>
         <Box sx={{ marginTop: '0.5rem' }}>
