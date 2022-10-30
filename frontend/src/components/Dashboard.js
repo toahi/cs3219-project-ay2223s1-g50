@@ -148,10 +148,9 @@ function Dashboard() {
     let { roomId, difficulty, questions } = JSON.parse(session)
 
     return (
-      <Box display={'flex'} sx={{ padding: ' 0 40%' }}>
         <Button
           variant={'contained'}
-          sx={{ marginTop: '2rem', width: '80%' }}
+          sx={{ margin: '2rem', width: '30%' }}
           onClick={() =>
             navigate(`/interview/${difficulty.toLowerCase()}/${roomId}`, {
               state: { questions },
@@ -160,7 +159,6 @@ function Dashboard() {
         >
           Return to your previous interview
         </Button>
-      </Box>
     )
   }
 
@@ -179,10 +177,10 @@ function Dashboard() {
         <Typography variant={'h3'} marginBottom={'2rem'}>
           Welcome
         </Typography>
-        {returnToInterviewButton()}
         <Typography variant={'subtitle1'} marginBottom={'2rem'}>
           Please select your difficulty level
         </Typography>
+        {returnToInterviewButton()}
         <Box display={'flex'} sx={{ padding: ' 0 40%' }}>
           <Card
             difficulty="Easy"
