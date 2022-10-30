@@ -293,11 +293,13 @@ const Interview = () => {
     </Button>
   )
   const chatMessage = ({ from, message }) => (
-    <Card key={`${from}${message}`}>
-      <CardHeader avatar={userAvatar(from)} />
-      <CardContent>{message}</CardContent>
+    <Card key={`${from}${message}`} sx={{display: "flex", margin: "0.5rem 0"}}>
+      {from === username && <CardHeader avatar={userAvatar(from)} />}
+      <CardContent sx={{margin: "auto", width: "400px", overflowWrap: "break-word"}}>{message}</CardContent>
+      {from !== username && <CardHeader avatar={userAvatar(from)} />} {/* Flip icon pos if not sender */}
     </Card>
   )
+
   const chatDialog = (
     <Dialog
       open={isChatOpen}
@@ -307,16 +309,23 @@ const Interview = () => {
         setIsChatUnread(false)
       }}
     >
-      <DialogTitle>Chat</DialogTitle>
+      <DialogTitle sx={{textAlign: "center"}}>Chat</DialogTitle>
       <DialogContent dividers>{messages.map(chatMessage)}</DialogContent>
       <DialogActions>
         <TextField
+          sx={{flexGrow: "1"}}
           multiline
           aria-multiline
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button onClick={() => sendMessage()}>Send</Button>
+        <Button 
+          sx={{margin:"0 0.5rem"}}
+          onClick={() => sendMessage()}
+          variant="contained"
+        >
+          Send
+        </Button>
       </DialogActions>
     </Dialog>
   )
