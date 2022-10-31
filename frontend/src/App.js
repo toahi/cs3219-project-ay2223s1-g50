@@ -14,6 +14,10 @@ import Interview from './components/Interview'
 import AboutPage from './components/home/AboutPage'
 
 function App() {
+  
+  const isCookieEnabled = window.navigator.cookieEnabled
+  if (!isCookieEnabled) alert('Please enable cookies for best user experience!')
+  
   return (
     <UserContextProvider>
       <div className="App">
