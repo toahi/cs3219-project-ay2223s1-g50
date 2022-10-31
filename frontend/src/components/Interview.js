@@ -44,6 +44,7 @@ const Interview = () => {
   const [swap, setSwap] = useState(true)
   const [messagesCount, setMessageCount] = useState(0)
   const [isUserLeft, setIsUserLeft] = useState(false)
+  const [confirmLeave, setConfirmLeave] = useState(false)
 
   const { difficulty, roomId } = useParams()
   const {
@@ -351,21 +352,35 @@ const Interview = () => {
       </DialogActions>
     </Dialog>
   )
-
+  
+  /// Leave room stuff
   /// Cleaning up
   const leaveRoom = () => {
     Cookies.remove(COOKIE_INTERVIEW_SESSION)
     navigate('/dashboard', { replace: true })
   }
+
   const leaveRoomButton = (
     <Button
       sx={{ fontSize: '1rem', marginLeft: 'auto', backgroundColor: 'black' }}
       variant="contained"
-      onClick={() => leaveRoom()}
+      onClick={() => setConfirmLeave(true)}
     >
       <ExitToAppIcon sx={{ margin: '0 5px 0 -5px' }} />
       LEAVE
     </Button>
+  )
+
+  const leaveRoomDialog = (
+    <Dialog open={confirmLeave} onClose={() => setConfirmLeave(false)}>
+        <DialogContent>
+            <DialogContentText>Confirm leave room?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setConfirmLeave(false)}>No</Button>
+          <Button onClick={() => leaveRoom()}>Yes</Button>
+        </DialogActions>
+    </Dialog>
   )
 
   const swapDisplayButton = (
@@ -412,6 +427,7 @@ const Interview = () => {
       </Box>
       {chatDialog}
       {userLeftDialog}
+      {leaveRoomDialog}
     </Box>
   )
 }
