@@ -83,7 +83,11 @@ const Interview = () => {
   const userLeftDialog = (
     <Dialog open={isUserLeft} onClose={() => setIsUserLeft(false)}>
         <DialogContent>
-            <DialogContentText>Looks like the other person has navigated away from this page </DialogContentText>
+            <DialogContentText>
+              Looks like the other person has navigated away or had left this page.
+              <br/>
+              This window will automatically close if he/she has returned to this page.
+            </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setIsUserLeft(false)}>Okay</Button>
