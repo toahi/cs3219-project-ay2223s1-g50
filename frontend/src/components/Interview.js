@@ -23,20 +23,21 @@ import {
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Badge_bs from 'react-bootstrap/Badge'
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import Cookies from 'js-cookie'
 
 import { UserContext } from './context/user-context'
-import {
-  URI_COLLABORATION_SVC,
-  URI_CHAT_SVC,
-} from '../configs'
+import { URI_COLLABORATION_SVC, URI_CHAT_SVC } from '../configs'
 import Timer from './ui/Timer'
 import { io as Client } from 'socket.io-client'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import { COOKIE_INTERVIEW_SESSION, PREFIX_COOKIE_MESSAGES, PREFIX_COOKIE_MESSAGES_COUNT } from '../constants'
+import {
+  COOKIE_INTERVIEW_SESSION,
+  PREFIX_COOKIE_MESSAGES,
+  PREFIX_COOKIE_MESSAGES_COUNT,
+} from '../constants'
 
 const Interview = () => {
   let { username, token } = useContext(UserContext)
@@ -56,7 +57,6 @@ const Interview = () => {
   const {
     state: { questions },
   } = useLocation()
-
 
   /// Collab client stuff
   const [usersInRoom, setUsersInRoom] = useState([])
@@ -89,16 +89,17 @@ const Interview = () => {
   /// Check if the other user has left
   const userLeftDialog = (
     <Dialog open={isUserLeft} onClose={() => setIsUserLeft(false)}>
-        <DialogContent>
-            <DialogContentText>
-              Looks like the other person has navigated away or had left this page.
-              <br/>
-              This window will automatically close if he/she has returned to this page.
-            </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsUserLeft(false)}>Okay</Button>
-        </DialogActions>
+      <DialogContent>
+        <DialogContentText>
+          Looks like the other person has navigated away or had left this page.
+          <br />
+          This window will automatically close if he/she has returned to this
+          page.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setIsUserLeft(false)}>Okay</Button>
+      </DialogActions>
     </Dialog>
   )
 
@@ -119,41 +120,41 @@ const Interview = () => {
     let variant
 
     switch (difficulty) {
-      case ("easy"):
-        variant = "success"
+      case 'easy':
+        variant = 'success'
         break
-      case ("medium"):
-        variant = "warning"
+      case 'medium':
+        variant = 'warning'
         break
-      case ("hard"):
-        variant = "danger"
+      case 'hard':
+        variant = 'danger'
         break
       default:
-        variant = "dark"
+        variant = 'dark'
     }
 
-    return <Badge_bs bg={variant}>{difficulty ?? "unknown"}</Badge_bs>
+    return <Badge_bs bg={variant}>{difficulty ?? 'unknown'}</Badge_bs>
   }
-  
+
   /// Solution button
   const solutionButton = (title) => {
     return (
-    <Button
-      sx={{
-        fontSize: '1rem',
-        marginLeft: '2rem',
-        backgroundColor: 'black',
-      }}
-      variant="contained"
-      onClick={() =>
-        window.open(
-          `https://www.google.com/search?q=leetcode+${title}+solution`,
-          '_blank'
-        )
-      }
-    >
-      SOLUTION
-    </Button>
+      <Button
+        sx={{
+          fontSize: '1rem',
+          marginLeft: '2rem',
+          backgroundColor: 'black',
+        }}
+        variant="contained"
+        onClick={() =>
+          window.open(
+            `https://www.google.com/search?q=leetcode+${title}+solution`,
+            '_blank'
+          )
+        }
+      >
+        SOLUTION
+      </Button>
     )
   }
 
@@ -299,7 +300,7 @@ const Interview = () => {
         return newMessages
       })
 
-      setMessageCount(prev => {
+      setMessageCount((prev) => {
         const newCount = prev + 1
         Cookies.set(PREFIX_COOKIE_MESSAGES_COUNT, JSON.stringify(newCount))
         return newCount
@@ -336,17 +337,29 @@ const Interview = () => {
         setMessageCount(0)
       }}
     >
-    <Badge sx={{marginRight: "10px"}} color="primary" badgeContent={messagesCount}>
+      <Badge
+        sx={{ marginRight: '10px' }}
+        color="primary"
+        badgeContent={messagesCount}
+      >
         <ChatBubbleIcon />
-    </Badge>
+      </Badge>
       Chat
     </Button>
   )
   const chatMessage = ({ from, message }) => (
-    <Card key={`${from}${message}`} sx={{display: "flex", margin: "0.5rem 0"}}>
+    <Card
+      key={`${from}${message}`}
+      sx={{ display: 'flex', margin: '0.5rem 0' }}
+    >
       {from === username && <CardHeader avatar={userAvatar(from)} />}
-      <CardContent sx={{margin: "auto", width: "300px", overflowWrap: "break-word"}}>{message}</CardContent>
-      {from !== username && <CardHeader avatar={userAvatar(from)} />} {/* Flip icon pos if not sender */}
+      <CardContent
+        sx={{ margin: 'auto', width: '300px', overflowWrap: 'break-word' }}
+      >
+        {message}
+      </CardContent>
+      {from !== username && <CardHeader avatar={userAvatar(from)} />}{' '}
+      {/* Flip icon pos if not sender */}
     </Card>
   )
 
@@ -360,18 +373,18 @@ const Interview = () => {
         Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
       }}
     >
-      <DialogTitle sx={{textAlign: "center"}}>Chat</DialogTitle>
+      <DialogTitle sx={{ textAlign: 'center' }}>Chat</DialogTitle>
       <DialogContent dividers>{messages.map(chatMessage)}</DialogContent>
       <DialogActions>
         <TextField
-          sx={{flexGrow: "1"}}
+          sx={{ flexGrow: '1' }}
           multiline
           aria-multiline
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button 
-          sx={{margin:"0 0.5rem"}}
+        <Button
+          sx={{ margin: '0 0.5rem' }}
           onClick={() => sendMessage()}
           variant="contained"
         >
@@ -380,7 +393,7 @@ const Interview = () => {
       </DialogActions>
     </Dialog>
   )
-  
+
   /// Leave room stuff
   /// Cleaning up
   const leaveRoom = () => {
@@ -403,13 +416,13 @@ const Interview = () => {
 
   const leaveRoomDialog = (
     <Dialog open={confirmLeave} onClose={() => setConfirmLeave(false)}>
-        <DialogContent>
-            <DialogContentText>Confirm leave room?</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setConfirmLeave(false)}>No</Button>
-          <Button onClick={() => leaveRoom()}>Yes</Button>
-        </DialogActions>
+      <DialogContent>
+        <DialogContentText>Confirm leave room?</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setConfirmLeave(false)}>No</Button>
+        <Button onClick={() => leaveRoom()}>Yes</Button>
+      </DialogActions>
     </Dialog>
   )
 
@@ -417,7 +430,7 @@ const Interview = () => {
     <Button
       sx={{
         backgroundColor: 'black',
-        margin: "0 20px"
+        margin: '0 20px',
       }}
       variant="contained"
       onClick={() => setSwap((prev) => !prev)}
@@ -434,7 +447,11 @@ const Interview = () => {
       >
         {userAvatars}
         {questionTimer()}
-        <ButtonGroup sx ={{marginLeft: "auto"}}variant="text" aria-label="text button group">
+        <ButtonGroup
+          sx={{ marginLeft: 'auto' }}
+          variant="text"
+          aria-label="text button group"
+        >
           {chatButton}
           {swapDisplayButton}
           {leaveRoomButton}
