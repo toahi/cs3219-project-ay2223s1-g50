@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
 import Card from './ui/Card'
 import Timer from './ui/Timer'
-import { COOKIE_INTERVIEW_SESSION } from '../constants'
+import { COOKIE_INTERVIEW_SESSION, PREFIX_COOKIE_MESSAGES, PREFIX_COOKIE_MESSAGES_COUNT } from '../constants'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -28,6 +28,8 @@ function Dashboard() {
   const [isFindingMatch, setIsFindingMatch] = useState(false)
   const [timeoutIds, setTimeoutIds] = React.useState([])
   const [noMatch, setNoMatch] = useState(false)
+  const [confirmLeave, setConfirmLeave] = useState(false)
+  const [selectedDifficulty, setSelectedDifficulty] = useState(null)
   const MATCHMAKING_TIME = 30000
   const token = userContext.token
 
@@ -77,6 +79,17 @@ function Dashboard() {
     matchingClient?.emit(MatchEvents.FindMatch, {
       difficulty,
     })
+  }
+
+  const findMatchWithExistingSession = async (difficulty) => {
+    setSelectedDifficulty(difficulty)
+    const session = Cookies.get(COOKIE_INTERVIEW_SESSION)
+    
+    if (session) {
+      setConfirmLeave(true)
+    } else {
+      findMatchWithDifficulty(difficulty)
+    }
   }
 
   const closeDialog = () => {
@@ -164,6 +177,30 @@ function Dashboard() {
     )
   }
 
+  const existingSessionDialog = (
+    <Dialog open={confirmLeave} onClose={() => setConfirmLeave(false)}>
+        <DialogContent>
+            <DialogContentText>
+              Looks like you already have an existing interview session.
+              <br/>
+              Confirm leave and find a new match?
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setConfirmLeave(false)}>No</Button>
+          <Button onClick={() => {
+            Cookies.remove(COOKIE_INTERVIEW_SESSION)
+            Cookies.remove(PREFIX_COOKIE_MESSAGES)
+            Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
+            findMatchWithDifficulty(selectedDifficulty)
+            }
+          }>
+              Yes
+            </Button>
+        </DialogActions>
+    </Dialog>
+  )
+
   return (
     <Box>
       <Box
@@ -188,26 +225,27 @@ function Dashboard() {
             difficulty={<Badge bg="success">Easy</Badge>}
             description="This difficulty is suitable for those who are getting started"
             img="https://cdn-icons-png.flaticon.com/512/2641/2641391.png"
-            onClick={() => findMatchWithDifficulty('Easy')}
+            onClick={() => findMatchWithExistingSession("Easy")}
             disabled={isFindingMatch}
           />
           <Card
             difficulty={<Badge bg="warning">Medium</Badge>}
             description="This difficulty is suitable for those who wants to ramp up their skills"
             img="https://en.scratch-wiki.info/w/images/thumb/ScratchCat-Small.png/200px-ScratchCat-Small.png"
-            onClick={() => findMatchWithDifficulty('Medium')}
+            onClick={() => findMatchWithExistingSession("Medium")}
             disabled={isFindingMatch}
           />
           <Card
             difficulty={<Badge bg="danger">Hard</Badge>}
             description="This difficulty is for those who wants to work in FAANG"
             img="https://assets.entrepreneur.com/content/3x2/2000/20150224165308-jeff-bezos-amazon.jpeg?crop=4:3"
-            onClick={() => findMatchWithDifficulty('Hard')}
+            onClick={() => findMatchWithExistingSession("Hard")}
             disabled={isFindingMatch}
           />
         </Box>
         {dashboardDialog}
         {noMatchDialog}
+        {existingSessionDialog}
       </Box>
   </Box>
   )
