@@ -85,7 +85,7 @@ const Interview = () => {
             <DialogContentText>Looks like the other person has navigated away from this page </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button>Okay</Button>
+          <Button onClick={() => setIsUserLeft(false)}>Okay</Button>
         </DialogActions>
     </Dialog>
   )
