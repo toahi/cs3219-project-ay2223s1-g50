@@ -14,10 +14,9 @@ import Interview from './components/Interview'
 import AboutPage from './components/home/AboutPage'
 
 function App() {
-  
   const isCookieEnabled = window.navigator.cookieEnabled
   if (!isCookieEnabled) alert('Please enable cookies for best user experience!')
-  
+
   return (
     <UserContextProvider>
       <div className="App">
@@ -41,7 +40,7 @@ function App() {
               <Route
                 path="/interview/:difficulty/:roomId"
                 element={<Interview />}
-                onLeave={()=>alert('est')}
+                onLeave={() => alert('est')}
               />
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/profile" element={<Profile />} />

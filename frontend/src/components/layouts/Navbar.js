@@ -4,8 +4,8 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import Dropdown from 'react-bootstrap/Dropdown';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import { UserContext } from '../context/user-context'
 import { URL_LOGOUT_USER_SVC } from '../../configs'
@@ -42,7 +42,9 @@ const NavBar = () => {
       <Dropdown.Menu>
         <Dropdown.Item href="/profile">Change Password</Dropdown.Item>
         <NavDropdown.Divider />
-        <Dropdown.Item href="/" onClick={handleLogout}>Logout</Dropdown.Item>
+        <Dropdown.Item href="/" onClick={handleLogout}>
+          Logout
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   )
@@ -58,17 +60,17 @@ const NavBar = () => {
             {username && dropDown}
             {!username && (
               <>
-              <Nav.Link href="/login">
-                <Button variant="outline-light">
-                  <h4>Login</h4>
-                </Button>
-              </Nav.Link>
-              <Nav.Link href="/signup">
-              <Button variant="light">
-                <h4>Sign Up</h4>
-              </Button>
-            </Nav.Link>
-            </>
+                <Nav.Link href="/login">
+                  <Button variant="outline-light">
+                    <h4>Login</h4>
+                  </Button>
+                </Nav.Link>
+                <Nav.Link href="/signup">
+                  <Button variant="light">
+                    <h4>Sign Up</h4>
+                  </Button>
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </Container>
