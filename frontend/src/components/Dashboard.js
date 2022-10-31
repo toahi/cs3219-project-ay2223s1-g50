@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
 import Card from './ui/Card'
 import Timer from './ui/Timer'
-import { COOKIE_INTERVIEW_SESSION } from '../configs'
+import { COOKIE_INTERVIEW_SESSION } from '../constants'
 
 function Dashboard() {
   const navigate = useNavigate()
