@@ -36,20 +36,27 @@ import {
 import Timer from './ui/Timer'
 import { io as Client } from 'socket.io-client'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import { COOKIE_INTERVIEW_SESSION } from '../configs'
+import { COOKIE_INTERVIEW_SESSION, PREFIX_COOKIE_MESSAGES, PREFIX_COOKIE_MESSAGES_COUNT } from '../constants'
 
 const Interview = () => {
   let { username, token } = useContext(UserContext)
   const navigate = useNavigate()
   const [swap, setSwap] = useState(true)
-  const [messagesCount, setMessageCount] = useState(0)
   const [isUserLeft, setIsUserLeft] = useState(false)
   const [confirmLeave, setConfirmLeave] = useState(false)
+
+  /// Check for previous message count from cookie
+  const [messagesCount, setMessageCount] = useState(() => {
+    const prevCount = Cookies.get(PREFIX_COOKIE_MESSAGES_COUNT)
+    if (!prevCount) return 0
+    return +prevCount
+  })
 
   const { difficulty, roomId } = useParams()
   const {
     state: { questions },
   } = useLocation()
+
 
   /// Collab client stuff
   const [usersInRoom, setUsersInRoom] = useState([])
@@ -267,7 +274,10 @@ const Interview = () => {
   )
 
   /// Chat client stuff
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState(() => {
+    const prevMessages = Cookies.get(PREFIX_COOKIE_MESSAGES)
+    return prevMessages ? JSON.parse(prevMessages) : []
+  })
   const ChatEvents = {
     RoomMessage: 'chat:room_message',
     JoinRoom: 'chat:join_room',
@@ -283,8 +293,17 @@ const Interview = () => {
     setChatClient(tempChatClient)
     tempChatClient.emit(ChatEvents.JoinRoom, { roomId })
     tempChatClient.on(ChatEvents.RoomMessage, (msg) => {
-      setMessages((currMessages) => [...currMessages, msg])
-      setMessageCount(prev => prev + 1)
+      setMessages((currMessages) => {
+        const newMessages = [...currMessages, msg]
+        Cookies.set(PREFIX_COOKIE_MESSAGES, JSON.stringify(newMessages))
+        return newMessages
+      })
+
+      setMessageCount(prev => {
+        const newCount = prev + 1
+        Cookies.set(PREFIX_COOKIE_MESSAGES_COUNT, JSON.stringify(newCount))
+        return newCount
+      })
     })
 
     return () => {
@@ -301,7 +320,11 @@ const Interview = () => {
       roomId,
       message,
     })
-    setMessages((prev) => [...prev, { from: username, message }])
+    setMessages((prev) => {
+      const newMessages = [...prev, { from: username, message }]
+      Cookies.set(PREFIX_COOKIE_MESSAGES, JSON.stringify(newMessages))
+      return newMessages
+    })
     setMessage('')
   }
   const chatButton = (
@@ -334,6 +357,7 @@ const Interview = () => {
       onClose={() => {
         setIsChatOpen(false)
         setMessageCount(0)
+        Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
       }}
     >
       <DialogTitle sx={{textAlign: "center"}}>Chat</DialogTitle>
@@ -361,6 +385,8 @@ const Interview = () => {
   /// Cleaning up
   const leaveRoom = () => {
     Cookies.remove(COOKIE_INTERVIEW_SESSION)
+    Cookies.remove(PREFIX_COOKIE_MESSAGES)
+    Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
     navigate('/dashboard', { replace: true })
   }
 

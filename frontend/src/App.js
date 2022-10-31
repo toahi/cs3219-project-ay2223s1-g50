@@ -37,6 +37,7 @@ function App() {
               <Route
                 path="/interview/:difficulty/:roomId"
                 element={<Interview />}
+                onLeave={()=>alert('est')}
               />
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/profile" element={<Profile />} />

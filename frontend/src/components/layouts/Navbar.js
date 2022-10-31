@@ -8,7 +8,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { UserContext } from '../context/user-context'
-import { COOKIE_INTERVIEW_SESSION, URL_LOGOUT_USER_SVC } from '../../configs'
+import { URL_LOGOUT_USER_SVC } from '../../configs'
+import { COOKIE_INTERVIEW_SESSION } from '../../constants'
 import Logo from '../ui/Logo'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
