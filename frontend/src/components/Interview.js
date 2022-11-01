@@ -419,6 +419,7 @@ const Interview = () => {
     Cookies.remove(COOKIE_INTERVIEW_SESSION)
     Cookies.remove(PREFIX_COOKIE_MESSAGES)
     Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
+    Cookies.remove(PREFIX_COOKIE_EDITOR_TEXT)
     navigate('/dashboard', { replace: true })
   }
 
