@@ -1,4 +1,4 @@
-import classes from './PageNotFound.module.css'
+import classes from './404.module.css'
 
 const PageNotFound = () => {
   return (

@@ -11,11 +11,12 @@ import {
   DialogTitle,
   LinearProgress,
 } from '@mui/material'
-import { UserContext } from './context/user-context'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import axios from 'axios'
-import { URL_UPDATE_PASSWORD_USER_SVC } from '../configs'
-import { STATUS_CODE_SUCCESS } from '../constants'
+
+import { UserContext } from '../context/user-context'
+import { URL_UPDATE_PASSWORD_USER_SVC } from '../../configs'
+import { STATUS_CODE_SUCCESS } from '../../constants'
 
 const Profile = () => {
   const userContext = React.useContext(UserContext)

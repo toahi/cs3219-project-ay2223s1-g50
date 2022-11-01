@@ -1,14 +1,12 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { UserContext } from '../context/user-context'
-import LoadingPage from '../LoadingPage'
+import LoadingPage from '../pages/LoadingPage'
 import ValidateAuth from '../hooks/ValidateAuth'
 
-const ExistingAuth = () => {
+const RequireAuth = () => {
+  const firstRender = React.useRef(true)
   const [isLoggedIn, setIsLoggedIn] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(true)
-  const firstRender = React.useRef(true)
-  const userContext = React.useContext(UserContext)
 
   React.useEffect(() => {
     if (firstRender.current) {
@@ -23,10 +21,10 @@ const ExistingAuth = () => {
   return isLoading ? (
     <LoadingPage />
   ) : isLoggedIn ? (
-    <Navigate replace to="/dashboard" />
-  ) : (
     <Outlet />
+  ) : (
+    <Navigate to="/login" />
   )
 }
 
-export default ExistingAuth
+export default RequireAuth
