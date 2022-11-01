@@ -37,7 +37,7 @@ import {
   COOKIE_INTERVIEW_SESSION,
   PREFIX_COOKIE_MESSAGES,
   PREFIX_COOKIE_MESSAGES_COUNT,
-  PREFIX_COOKIE_EDITOR_TEXT
+  PREFIX_COOKIE_EDITOR_TEXT,
 } from '../constants'
 
 const Interview = () => {
@@ -87,13 +87,13 @@ const Interview = () => {
     const setNewUsers = ({ users }) => {
       _setIsUserLeft(false)
       setIsUserLeft(false)
-      return setUsersInRoom(users) 
+      return setUsersInRoom(users)
     }
 
     const setRemoveUsers = ({ users }) => {
       _setIsUserLeft(true) // trigger event to emit code editor
       setIsUserLeft(true) // trigger event to open dialog
-      return setUsersInRoom(users) 
+      return setUsersInRoom(users)
     }
     tempCollabClient.on(CollaborationEvent.JoinRoom, setNewUsers)
     tempCollabClient.on(CollaborationEvent.LeaveRoom, setRemoveUsers)
@@ -102,15 +102,15 @@ const Interview = () => {
       tempCollabClient.close()
     }
   }, [])
-  
+
   /// Re-emit code editor if the other user joins back
   useEffect(() => {
     if (!_isUserLeft) {
-    collabClient?.emit(CollaborationEvent.RoomMessage, {
-      roomId,
-      message: editorText
-    })
-  }
+      collabClient?.emit(CollaborationEvent.RoomMessage, {
+        roomId,
+        message: editorText,
+      })
+    }
   }, [_isUserLeft])
 
   /// Save state of editortext in browser as cookies

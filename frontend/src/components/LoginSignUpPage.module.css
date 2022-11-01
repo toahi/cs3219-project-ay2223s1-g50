@@ -1,17 +1,17 @@
 .box-text {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .box-text:hover {
-    color: blue;
+  color: blue;
 }
 
 .login {
-    padding-top: 1rem;
-    width: 300px;
+  padding-top: 1rem;
+  width: 300px;
 }
 
 .signup {
-    padding-top: 2rem;
-    width: 300px;
+  padding-top: 2rem;
+  width: 300px;
 }
