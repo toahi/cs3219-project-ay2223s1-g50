@@ -37,14 +37,20 @@ import {
   COOKIE_INTERVIEW_SESSION,
   PREFIX_COOKIE_MESSAGES,
   PREFIX_COOKIE_MESSAGES_COUNT,
+  PREFIX_COOKIE_EDITOR_TEXT
 } from '../constants'
 
 const Interview = () => {
   let { username, token } = useContext(UserContext)
   const navigate = useNavigate()
   const [swap, setSwap] = useState(true)
-  const [isUserLeft, setIsUserLeft] = useState(false)
+  const [isUserLeft, setIsUserLeft] = useState(false) // This state is used to trigger open/close dialog
+  const [_isUserLeft, _setIsUserLeft] = useState(false) // This state is used to trigger join/leave event
   const [confirmLeave, setConfirmLeave] = useState(false)
+  const [editorText, setEditorText] = useState(() => {
+    const text = Cookies.get(PREFIX_COOKIE_EDITOR_TEXT)
+    return text ? text : ''
+  })
 
   /// Check for previous message count from cookie
   const [messagesCount, setMessageCount] = useState(() => {
@@ -72,21 +78,47 @@ const Interview = () => {
         Authorization: `Bearer ${token}`,
       },
     })
+
     setCollabClient(tempCollabClient)
     tempCollabClient.emit(CollaborationEvent.JoinRoom, { roomId })
     tempCollabClient.on(CollaborationEvent.RoomMessage, ({ from, message }) => {
       setEditorText(message)
     })
-    const setNewUsers = ({ users }) => setUsersInRoom(users)
+    const setNewUsers = ({ users }) => {
+      _setIsUserLeft(false)
+      setIsUserLeft(false)
+      return setUsersInRoom(users) 
+    }
+
+    const setRemoveUsers = ({ users }) => {
+      _setIsUserLeft(true) // trigger event to emit code editor
+      setIsUserLeft(true) // trigger event to open dialog
+      return setUsersInRoom(users) 
+    }
     tempCollabClient.on(CollaborationEvent.JoinRoom, setNewUsers)
-    tempCollabClient.on(CollaborationEvent.LeaveRoom, setNewUsers)
+    tempCollabClient.on(CollaborationEvent.LeaveRoom, setRemoveUsers)
 
     return () => {
       tempCollabClient.close()
     }
   }, [])
+  
+  /// Re-emit code editor if the other user joins back
+  useEffect(() => {
+    if (!_isUserLeft) {
+    collabClient?.emit(CollaborationEvent.RoomMessage, {
+      roomId,
+      message: editorText
+    })
+  }
+  }, [_isUserLeft])
 
-  /// Check if the other user has left
+  /// Save state of editortext in browser as cookies
+  useEffect(() => {
+    Cookies.set(PREFIX_COOKIE_EDITOR_TEXT, editorText)
+  }, [editorText])
+
+  /// Dialog to notify if other user has left/ navigated away
   const userLeftDialog = (
     <Dialog open={isUserLeft} onClose={() => setIsUserLeft(false)}>
       <DialogContent>
@@ -102,18 +134,6 @@ const Interview = () => {
       </DialogActions>
     </Dialog>
   )
-
-  useEffect(() => {
-    if (usersInRoom.length === 1 && usersInRoom[0] === username) {
-      setIsUserLeft(true)
-    }
-
-    if (usersInRoom.length === 2) {
-      setIsUserLeft(false)
-    }
-
-    return () => {}
-  }, [usersInRoom])
 
   /// Difficulty badge
   const difficultyBadge = () => {
@@ -216,7 +236,6 @@ const Interview = () => {
 
   /// Getting a new question stuff
   const [questionsShown, setQuestionsShown] = useState({})
-  const [editorText, setEditorText] = useState('')
   useEffect(() => {
     setQuestionsShown(questions)
   }, [questions])

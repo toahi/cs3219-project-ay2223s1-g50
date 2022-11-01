@@ -6,6 +6,7 @@ export const PREFIX_COOKIE_TOKEN = 'access_token'
 export const COOKIE_INTERVIEW_SESSION = 'interview-session'
 export const PREFIX_COOKIE_MESSAGES = 'chat-messages'
 export const PREFIX_COOKIE_MESSAGES_COUNT = 'messages-count'
+export const PREFIX_COOKIE_EDITOR_TEXT = 'editor-text'
 export const MIN_USERNAME_LEN = 6
 export const MIN_PASSWORD_LEN = 6
 export const USER_SERVICE_NETWORK_ERROR_MESSAGE =
