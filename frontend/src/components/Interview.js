@@ -37,6 +37,7 @@ import {
   COOKIE_INTERVIEW_SESSION,
   PREFIX_COOKIE_MESSAGES,
   PREFIX_COOKIE_MESSAGES_COUNT,
+  PREFIX_COOKIE_EDITOR_TEXT
 } from '../constants'
 
 const Interview = () => {
@@ -46,7 +47,10 @@ const Interview = () => {
   const [isUserLeft, setIsUserLeft] = useState(false) // This state is used to trigger open/close dialog
   const [_isUserLeft, _setIsUserLeft] = useState(false) // This state is used to trigger join/leave event
   const [confirmLeave, setConfirmLeave] = useState(false)
-  const [editorText, setEditorText] = useState('')
+  const [editorText, setEditorText] = useState(() => {
+    const text = Cookies.get(PREFIX_COOKIE_EDITOR_TEXT)
+    return text ? text : ''
+  })
 
   /// Check for previous message count from cookie
   const [messagesCount, setMessageCount] = useState(() => {
@@ -99,6 +103,7 @@ const Interview = () => {
     }
   }, [])
   
+  /// Re-emit code editor if the other user joins back
   useEffect(() => {
     if (!_isUserLeft) {
     collabClient?.emit(CollaborationEvent.RoomMessage, {
@@ -107,6 +112,11 @@ const Interview = () => {
     })
   }
   }, [_isUserLeft])
+
+  /// Save state of editortext in browser as cookies
+  useEffect(() => {
+    Cookies.set(PREFIX_COOKIE_EDITOR_TEXT, editorText)
+  }, [editorText])
 
   /// Dialog to notify if other user has left/ navigated away
   const userLeftDialog = (
