@@ -28,9 +28,9 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import Cookies from 'js-cookie'
 
-import { UserContext } from './context/user-context'
-import { URI_COLLABORATION_SVC, URI_CHAT_SVC } from '../configs'
-import Timer from './ui/Timer'
+import { UserContext } from '../context/user-context'
+import { URI_COLLABORATION_SVC, URI_CHAT_SVC } from '../../configs'
+import Timer from '../ui/Timer'
 import { io as Client } from 'socket.io-client'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import {
@@ -38,7 +38,7 @@ import {
   PREFIX_COOKIE_MESSAGES,
   PREFIX_COOKIE_MESSAGES_COUNT,
   PREFIX_COOKIE_EDITOR_TEXT,
-} from '../constants'
+} from '../../constants'
 
 const Interview = () => {
   let { username, token } = useContext(UserContext)

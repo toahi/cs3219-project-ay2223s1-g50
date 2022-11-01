@@ -17,17 +17,17 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
-import { USER_SERVICE_NETWORK_ERROR_MESSAGE } from '../constants'
-import { UserContext } from './context/user-context'
-import { STATUS_CODE_SUCCESS } from '../constants'
-import { URL_REGISTER_USER_SVC, URL_LOGIN_USER_SVC } from '../configs'
+import { USER_SERVICE_NETWORK_ERROR_MESSAGE } from '../../constants'
+import { UserContext } from '../context/user-context'
+import { URL_REGISTER_USER_SVC, URL_LOGIN_USER_SVC } from '../../configs'
 import {
   STATUS_CODE_CREATED,
   MIN_USERNAME_LEN,
   MIN_PASSWORD_LEN,
-} from '../constants'
+  STATUS_CODE_SUCCESS,
+} from '../../constants'
 import classes from './LoginSignUpPage.module.css'
-import Logo from './ui/Logo'
+import Logo from '../ui/Logo'
 
 function SignupPage() {
   const [username, setUsername] = useState('')

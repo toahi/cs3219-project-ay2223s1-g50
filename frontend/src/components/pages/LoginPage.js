@@ -12,17 +12,18 @@ import {
   DialogTitle,
 } from '@mui/material'
 import axios from 'axios'
-import { STATUS_CODE_SUCCESS } from '../constants'
-import { URL_LOGIN_USER_SVC } from '../configs'
+import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { STATUS_CODE_SUCCESS } from '../../constants'
+import { URL_LOGIN_USER_SVC } from '../../configs'
 import classes from './LoginSignUpPage.module.css'
-import { UserContext } from './context/user-context'
+import { UserContext } from '../context/user-context'
 import {
   USER_SERVICE_NETWORK_ERROR_MESSAGE,
   STATUS_CODE_UNAUTHORIZED,
-} from '../constants'
-import Logo from './ui/Logo'
-import Cookies from 'js-cookie'
+} from '../../constants'
+import Logo from '../ui/Logo'
 
 const LoginPage = () => {
   const userContext = React.useContext(UserContext)

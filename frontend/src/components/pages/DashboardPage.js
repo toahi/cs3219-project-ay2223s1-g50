@@ -1,3 +1,12 @@
+import { URI_MATCHING_SVC } from '../../configs'
+import {
+  COOKIE_INTERVIEW_SESSION,
+  PREFIX_COOKIE_MESSAGES,
+  PREFIX_COOKIE_MESSAGES_COUNT,
+} from '../../constants'
+import { UserContext } from '../context/user-context'
+import Card from '../ui/Card'
+import Timer from '../ui/Timer'
 import {
   Box,
   Button,
@@ -9,33 +18,25 @@ import {
   DialogTitle,
   LinearProgress,
 } from '@mui/material'
-import Badge from 'react-bootstrap/Badge'
+import Cookies from 'js-cookie'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Cookies from 'js-cookie'
-
-import { URI_MATCHING_SVC } from '../configs'
-import { UserContext } from './context/user-context'
+import Badge from 'react-bootstrap/Badge'
 import { useNavigate } from 'react-router-dom'
 import { io as Client } from 'socket.io-client'
-import Card from './ui/Card'
-import Timer from './ui/Timer'
-import {
-  COOKIE_INTERVIEW_SESSION,
-  PREFIX_COOKIE_MESSAGES,
-  PREFIX_COOKIE_MESSAGES_COUNT,
-} from '../constants'
 
 function Dashboard() {
   const navigate = useNavigate()
   const userContext = React.useContext(UserContext)
+  const token = userContext.token
+
   const [isFindingMatch, setIsFindingMatch] = useState(false)
   const [timeoutIds, setTimeoutIds] = React.useState([])
   const [noMatch, setNoMatch] = useState(false)
   const [confirmLeave, setConfirmLeave] = useState(false)
   const [selectedDifficulty, setSelectedDifficulty] = useState(null)
-  const MATCHMAKING_TIME = 30000
-  const token = userContext.token
+
+  const MATCHMAKING_TIME = 30000 // 30 seconds
 
   const MatchEvents = {
     FindMatch: 'find_match',

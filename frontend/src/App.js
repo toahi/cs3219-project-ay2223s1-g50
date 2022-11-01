@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import SignupPage from './components/SignupPage'
-import LoginPage from './components/LoginPage'
-import NavBar from './components/layouts/Navbar'
-import DashBoard from './components/Dashboard'
-import RequireAuth from './components/protected-routes/RequireAuth'
-import ExistingAuth from './components/protected-routes/ExistingAuth'
+import Interview from './components/pages/InterviewPage'
+import LoadingPage from './components/pages/LoadingPage'
+import LoginPage from './components/pages/LoginPage'
+import PageNotFound from './components/pages/404'
+import Profile from './components/pages/ProfilePage'
+import SignupPage from './components/pages/SignupPage'
 import UserContextProvider from './components/context/user-context'
-import PageNotFound from './components/PageNotFound'
-import LoadingPage from './components/LoadingPage'
-import Hero from './components/home/HeroPage'
-import Profile from './components/Profile'
-import Interview from './components/Interview'
 import AboutPage from './components/home/AboutPage'
+import Hero from './components/home/HeroPage'
+import NavBar from './components/layouts/Navbar'
+import DashBoard from './components/pages/DashboardPage'
+import ExistingAuth from './components/routes/ExistingAuth'
+import RequireAuth from './components/routes/RequireAuth'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   const isCookieEnabled = window.navigator.cookieEnabled
@@ -45,9 +45,6 @@ function App() {
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
-
-            {/** TODO  */}
-            {/** CHECK WHY VALUES IN CONTEXT IS REMOVED WHEN PATH="*"  */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
