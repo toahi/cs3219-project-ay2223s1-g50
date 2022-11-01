@@ -1,18 +1,28 @@
-const URI_USER_SVC = process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'docker-dev'
-  ? 'http://localhost:8080'
-  : 'http://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:8080';
-const URI_QUESTION_SVC = process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'docker-dev'
-  ? 'http://localhost:8090'
-  : 'http://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:8090';
-export const URI_COLLABORATION_SVC = process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'docker-dev'
-  ? 'ws://localhost:5001'
-  : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5001';
-export const URI_MATCHING_SVC = process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'docker-dev'
-  ? 'ws://localhost:5003'
-  : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5003';
-export const URI_CHAT_SVC = process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'docker-dev'
-  ? 'ws://localhost:5005'
-  : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5005';
+const URI_USER_SVC =
+  process.env.REACT_APP_ENV === 'dev' ||
+  process.env.REACT_APP_ENV === 'docker-dev'
+    ? 'http://localhost:8080'
+    : 'http://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:8080'
+const URI_QUESTION_SVC =
+  process.env.REACT_APP_ENV === 'dev' ||
+  process.env.REACT_APP_ENV === 'docker-dev'
+    ? 'http://localhost:8090'
+    : 'http://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:8090'
+export const URI_COLLABORATION_SVC =
+  process.env.REACT_APP_ENV === 'dev' ||
+  process.env.REACT_APP_ENV === 'docker-dev'
+    ? 'ws://localhost:5001'
+    : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5001'
+export const URI_MATCHING_SVC =
+  process.env.REACT_APP_ENV === 'dev' ||
+  process.env.REACT_APP_ENV === 'docker-dev'
+    ? 'ws://localhost:5003'
+    : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5003'
+export const URI_CHAT_SVC =
+  process.env.REACT_APP_ENV === 'dev' ||
+  process.env.REACT_APP_ENV === 'docker-dev'
+    ? 'ws://localhost:5005'
+    : 'ws://ec2-13-214-194-165.ap-southeast-1.compute.amazonaws.com:5005'
 
 const PREFIX_REGISTER_USER_SVC = '/register'
 const PREFIX_LOGIN_USER_SVC = '/login'
