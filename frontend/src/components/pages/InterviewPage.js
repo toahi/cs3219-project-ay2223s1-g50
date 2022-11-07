@@ -23,7 +23,6 @@ import {
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Badge_bs from 'react-bootstrap/Badge'
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import Cookies from 'js-cookie'
@@ -50,13 +49,6 @@ const Interview = () => {
   const [editorText, setEditorText] = useState(() => {
     const text = Cookies.get(PREFIX_COOKIE_EDITOR_TEXT)
     return text ? text : ''
-  })
-
-  /// Check for previous message count from cookie
-  const [messagesCount, setMessageCount] = useState(() => {
-    const prevCount = Cookies.get(PREFIX_COOKIE_MESSAGES_COUNT)
-    if (!prevCount) return 0
-    return +prevCount
   })
 
   const { difficulty, roomId } = useParams()
@@ -213,9 +205,7 @@ const Interview = () => {
         borderRadius: '1%',
         padding: 5,
         marginBottom: '1rem',
-        height: '800px',
-        minWidth: '400px',
-        maxWidth: '700px',
+        maxHeight: '340px',
         overflow: 'scroll',
       }}
       key={`${title}${body}`}
@@ -271,7 +261,7 @@ const Interview = () => {
       value={editorText}
       style={{
         flexGrow: '1',
-        minHeight: '765px',
+        minHeight: '600px',
         margin: '4rem 1rem',
         padding: '1rem',
         resize: 'horizontal',
@@ -318,12 +308,6 @@ const Interview = () => {
         Cookies.set(PREFIX_COOKIE_MESSAGES, JSON.stringify(newMessages))
         return newMessages
       })
-
-      setMessageCount((prev) => {
-        const newCount = prev + 1
-        Cookies.set(PREFIX_COOKIE_MESSAGES_COUNT, JSON.stringify(newCount))
-        return newCount
-      })
     })
 
     return () => {
@@ -333,7 +317,6 @@ const Interview = () => {
 
   /// Chat dialog stuff
   const [message, setMessage] = useState('')
-  const [isChatOpen, setIsChatOpen] = useState(false)
   const sendMessage = () => {
     if (message.length === 0) return
     chatClient?.emit(ChatEvents.RoomMessage, {
@@ -347,70 +330,52 @@ const Interview = () => {
     })
     setMessage('')
   }
-  const chatButton = (
-    <Button
-      sx={{ fontSize: '1rem', marginLeft: 'auto', backgroundColor: 'black' }}
-      variant="contained"
-      onClick={() => {
-        setIsChatOpen(true)
-        setMessageCount(0)
-      }}
-    >
-      <Badge
-        sx={{ marginRight: '10px' }}
-        color="primary"
-        badgeContent={messagesCount}
-      >
-        <ChatBubbleIcon />
-      </Badge>
-      Chat
-    </Button>
-  )
+
   const chatMessage = ({ from, message }) => (
     <Card
       key={`${from}${message}`}
       sx={{ display: 'flex', margin: '0.5rem 0' }}
     >
-      {from === username && <CardHeader avatar={userAvatar(from)} />}
+      {/* Message sent by user */}
+      {from !== username && <CardHeader avatar={userAvatar(from)} />}
       <CardContent
         sx={{ margin: 'auto', width: '300px', overflowWrap: 'break-word' }}
       >
         {message}
       </CardContent>
-      {from !== username && <CardHeader avatar={userAvatar(from)} />}{' '}
+      {from === username && <CardHeader avatar={userAvatar(from)} />}{' '}
       {/* Flip icon pos if not sender */}
     </Card>
   )
 
-  const chatDialog = (
-    <Dialog
-      open={isChatOpen}
-      scroll="paper"
-      onClose={() => {
-        setIsChatOpen(false)
-        setMessageCount(0)
-        Cookies.remove(PREFIX_COOKIE_MESSAGES_COUNT)
-      }}
-    >
-      <DialogTitle sx={{ textAlign: 'center' }}>Chat</DialogTitle>
-      <DialogContent dividers>{messages.map(chatMessage)}</DialogContent>
-      <DialogActions>
+  const chatBox = (
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box
+        sx={{
+          maxHeight: '230px',
+          overflow: 'auto',
+          border: 'black 2px solid',
+          borderRadius: '0.3rem',
+          height: '230px',
+        }}
+      >
+        {messages.map(chatMessage)}
+      </Box>
+      <Box sx={{ display: 'flex' }}>
         <TextField
           sx={{ flexGrow: '1' }}
-          multiline
-          aria-multiline
-          value={message}
           onChange={(e) => setMessage(e.target.value)}
-        />
+          value={message}
+        ></TextField>
         <Button
-          sx={{ margin: '0 0.5rem' }}
+          sx={{ marginLeft: '1rem' }}
           onClick={() => sendMessage()}
           variant="contained"
         >
           Send
         </Button>
-      </DialogActions>
-    </Dialog>
+      </Box>
+    </Box>
   )
 
   /// Leave room stuff
@@ -472,7 +437,6 @@ const Interview = () => {
           variant="text"
           aria-label="text button group"
         >
-          {chatButton}
           {swapDisplayButton}
           {leaveRoomButton}
         </ButtonGroup>
@@ -482,17 +446,22 @@ const Interview = () => {
         {swap && (
           <>
             {codeEditor}
-            <Box>{questionsBox(questionsShown)}</Box>
+            <Box sx={{ minWidth: '30%', maxWidth: '50%' }}>
+              {questionsBox(questionsShown)}
+              {chatBox}
+            </Box>
           </>
         )}
         {!swap && (
           <>
-            <Box>{questionsBox(questionsShown)}</Box>
+            <Box sx={{ minWidth: '400px', maxWidth: '700px' }}>
+              {questionsBox(questionsShown)}
+              {chatBox}
+            </Box>
             {codeEditor}
           </>
         )}
       </Box>
-      {chatDialog}
       {userLeftDialog}
       {leaveRoomDialog}
     </Box>
