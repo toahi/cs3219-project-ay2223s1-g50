@@ -216,7 +216,7 @@ const Interview = () => {
           {title}
           {solutionButton(title)}
         </Typography>
-        <Typography sx={{ width: '80%', margin: '1.5rem 0' }}>
+        <Typography sx={{ width: '100%', margin: '1.5rem 0' }}>
           {body}
         </Typography>
         {example}
@@ -446,7 +446,7 @@ const Interview = () => {
         {swap && (
           <>
             {codeEditor}
-            <Box sx={{ minWidth: '30%', maxWidth: '50%' }}>
+            <Box sx={{ width: "50%", minWidth: "30%" }}>
               {questionsBox(questionsShown)}
               {chatBox}
             </Box>
@@ -454,7 +454,7 @@ const Interview = () => {
         )}
         {!swap && (
           <>
-            <Box sx={{ minWidth: '400px', maxWidth: '700px' }}>
+            <Box sx={{ width: "50%", minWidth: "30%" }}>
               {questionsBox(questionsShown)}
               {chatBox}
             </Box>
