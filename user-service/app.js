@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './model/UserModel.js';
 import auth from './auth.js';
-import { FRONTEND_SERVICE_LOCAL_URL } from './url.js';
+import { FRONTEND_SERVICE_LOCAL_URL, FRONTEND_SERVICE_PROD_URL } from './url.js';
 import 'dotenv/config';
 
 const MIN_USERNAME_LEN = 6;
@@ -15,7 +15,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: [FRONTEND_SERVICE_LOCAL_URL],
+  origin: [FRONTEND_SERVICE_LOCAL_URL, FRONTEND_SERVICE_PROD_URL ],
   credentials: true
 })); // config cors so that front-end can use
 

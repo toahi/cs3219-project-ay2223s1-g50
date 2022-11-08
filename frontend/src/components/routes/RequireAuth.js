@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import { Navigate, Outlet } from 'react-router-dom'
-import LoadingPage from '../LoadingPage'
+import LoadingPage from '../pages/LoadingPage'
 import ValidateAuth from '../hooks/ValidateAuth'
 
 const RequireAuth = () => {
@@ -17,7 +16,7 @@ const RequireAuth = () => {
     }
   }, [isLoggedIn])
 
-  ValidateAuth(isLoggedIn => setIsLoggedIn(isLoggedIn))
+  ValidateAuth((isLoggedIn) => setIsLoggedIn(isLoggedIn))
 
   return isLoading ? (
     <LoadingPage />
